@@ -284,9 +284,6 @@ function loadBlogArticles() {
 
 // Contact form functionality
 function initializeContactForm() {
-  // Replace this URL with your Google Apps Script Web App URL
-  const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbyJ2CkX6RHgCEXmU0oVua1ubQrWOjOeuCxGdicslALSJ3VJ1tl_muJ03ByAsKxBmh110g/exec';
-  
   contactForm.addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -306,61 +303,6 @@ function initializeContactForm() {
       return;
     }
     
-    // Show loading state
-    const submitButton = contactForm.querySelector('button[type="submit"]');
-    const originalText = submitButton.innerHTML;
-    submitButton.innerHTML = '<span class="loading"></span> Submitting...';
-    submitButton.disabled = true;
-    
-    // Send data to Google Sheets
-    fetch(GOOGLE_SHEET_URL, {
-      method: 'POST',
-      mode: 'no-cors', // Important for Google Apps Script
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
-    })
-    .then(response => {
-      // Reset form
-      contactForm.reset();
-      
-      // Restore button
-      submitButton.innerHTML = originalText;
-      submitButton.disabled = false;
-      
-      // Show success modal
-      showSuccessModal();
-      
-      // Track lead generation
-      trackLead(data);
-      
-      console.log('Form submitted successfully to Google Sheets');
-    })
-    .catch(error => {
-      console.error('Error submitting form:', error);
-      
-      // Restore button
-      submitButton.innerHTML = originalText;
-      submitButton.disabled = false;
-      
-      // Show error message
-      alert('Sorry, there was an error submitting your form. Please try again or contact us directly.');
-    });
-  });
-  
-  // Close modal functionality
-  closeModal.addEventListener('click', function() {
-    hideSuccessModal();
-  });
-  
-  // Close modal when clicking outside
-  successModal.addEventListener('click', function(e) {
-    if (e.target === successModal) {
-      hideSuccessModal();
-    }
-  });
-}    
     // Show loading state
     const submitButton = contactForm.querySelector('button[type="submit"]');
     const originalText = submitButton.innerHTML;
