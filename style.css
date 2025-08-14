@@ -1539,3 +1539,160 @@ html {
 .form-group .error-message.show {
   display: block;
 }
+/* Logo and Navigation Enhancement */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.nav-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.brand-text h2 {
+  color: var(--color-primary);
+  margin: 0;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+}
+
+.nav-tagline {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  display: block;
+  margin-top: -var(--space-2);
+  font-weight: var(--font-weight-normal);
+}
+
+/* Enhanced Hero Section */
+.hero-image-placeholder {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+  color: white;
+  padding: var(--space-32);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  font-size: var(--font-size-2xl);
+  line-height: 1.4;
+  box-shadow: var(--shadow-lg);
+}
+
+.about-image-placeholder {
+  background: linear-gradient(135deg, var(--color-bg-3), var(--color-bg-5));
+  color: var(--color-text);
+  padding: var(--space-24);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  font-size: var(--font-size-lg);
+  line-height: 1.4;
+  border: 2px solid var(--color-border);
+}
+
+/* Enhanced Destination Cards with Flags */
+.destination-flag {
+  width: 100%;
+  height: 120px;
+  background: var(--color-bg-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* WhatsApp Button Enhancement */
+.whatsapp-btn {
+  background: #25d366 !important;
+  border-color: #25d366 !important;
+  color: white !important;
+}
+
+.whatsapp-btn:hover {
+  background: #128c7e !important;
+  border-color: #128c7e !important;
+}
+
+/* Form Enhancements */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .logo-container {
+    gap: var(--space-8);
+  }
+  
+  .nav-logo {
+    height: 32px;
+  }
+  
+  .brand-text h2 {
+    font-size: var(--font-size-xl);
+  }
+  
+  .nav-tagline {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* Contact Item Enhancement */
+.contact-item {
+  display: flex;
+  gap: var(--space-12);
+  margin-bottom: var(--space-20);
+  align-items: flex-start;
+}
+
+.contact-icon {
+  font-size: var(--font-size-xl);
+  margin-top: var(--space-4);
+}
+
+/* Success Modal Enhancement */
+.modal-content h3 {
+  color: var(--color-success);
+  margin-bottom: var(--space-16);
+}
+
+/* Performance Optimizations */
+img {
+  loading: lazy;
+}
+
+.nav-logo {
+  loading: eager;
+}
+
+/* Accessibility Improvements */
+.whatsapp-float:focus,
+.btn:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: 2px;
+}
+
+/* SEO Enhancement Classes */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

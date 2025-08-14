@@ -1,79 +1,94 @@
 // EV Overseas - Study Abroad Consultancy Website JavaScript
+// Updated with new contact details and enhanced functionality
 
-// Application data
+// Application data with updated information
 const appData = {
   company: {
     name: "EV Overseas",
     tagline: "Your Gateway to Global Education",
-    location: "Hyderabad, India",
+    location: "Himayatnagar, Hyderabad",
     established: "2018",
     studentsHelped: "500+",
-    visaSuccessRate: "95%",
-    phone: "+91-9876543210",
+    visaSuccessRate: "99%",
+    phone: "+91-9666963756",
     email: "info@evoverseas.com",
-    address: "123 Education Plaza, Banjara Hills, Hyderabad - 500034",
-    whatsapp: "+919876543210"
+    address: "302-A, 3rd Floor, Aaltos A&M trade center, Himayatnagar, Hyderabad - 500029",
+    whatsapp: "+919666963756"
   },
   services: [
     {
       title: "University Selection",
-      description: "Expert guidance to choose the right university based on your profile, budget, and career goals.",
+      description: "Expert guidance to choose the right university based on your profile, budget, and career goals. We help you select from 200+ partner universities worldwide.",
       icon: "🎓"
     },
     {
       title: "Application Assistance",
-      description: "Complete support for university applications, documentation, and SOP writing.",
+      description: "Complete support for university applications, documentation, and SOP writing. Our experts ensure your application stands out.",
       icon: "📝"
     },
     {
       title: "Visa Guidance",
-      description: "End-to-end visa assistance with high success rate and expert consultation.",
+      description: "End-to-end visa assistance with 99% success rate and expert consultation. We handle all documentation and interview preparation.",
       icon: "🛂"
     },
     {
       title: "Scholarship Assistance",
-      description: "Help you find and apply for scholarships to reduce your education costs.",
+      description: "Help you find and apply for scholarships to reduce your education costs. We've secured over $2M+ in scholarships for students.",
       icon: "💰"
     },
     {
       title: "Test Preparation",
-      description: "IELTS, TOEFL, GRE, GMAT coaching and preparation guidance.",
+      description: "IELTS, TOEFL, GRE, GMAT coaching and preparation guidance. Expert trainers with proven track record of success.",
       icon: "📚"
     },
     {
       title: "Accommodation Support",
-      description: "Assistance with finding suitable accommodation in your destination country.",
+      description: "Assistance with finding suitable accommodation in your destination country. We help with housing, hostels, and homestays.",
       icon: "🏠"
     }
   ],
   destinations: [
     {
       country: "United States",
-      description: "World's leading destination for higher education with top-ranked universities.",
-      universities: "Harvard, MIT, Stanford, and 500+ more",
+      description: "World's leading destination for higher education with top-ranked universities and diverse opportunities.",
+      universities: "Harvard, MIT, Stanford, and 500+ more universities",
       popularCourses: "Engineering, Business, Medicine, Computer Science",
       flag: "🇺🇸"
     },
     {
       country: "United Kingdom",
-      description: "Home to prestigious institutions with rich academic heritage.",
-      universities: "Oxford, Cambridge, Imperial College, LSE",
+      description: "Home to prestigious institutions with rich academic heritage and shorter program durations.",
+      universities: "Oxford, Cambridge, Imperial College, LSE, UCL",
       popularCourses: "Business, Engineering, Law, Medicine",
       flag: "🇬🇧"
     },
     {
       country: "Australia",
-      description: "Quality education with excellent post-study work opportunities.",
+      description: "Quality education with excellent post-study work opportunities and pathway to permanent residency.",
       universities: "University of Melbourne, ANU, University of Sydney",
       popularCourses: "Engineering, Healthcare, Business, IT",
       flag: "🇦🇺"
     },
     {
       country: "Canada",
-      description: "Affordable quality education with pathway to permanent residency.",
+      description: "Affordable quality education with pathway to permanent residency and multicultural environment.",
       universities: "University of Toronto, UBC, McGill University",
       popularCourses: "Engineering, Computer Science, Business",
       flag: "🇨🇦"
+    },
+    {
+      country: "Germany",
+      description: "World-class education with low tuition fees and strong job market for international students.",
+      universities: "TU Munich, Heidelberg University, RWTH Aachen",
+      popularCourses: "Engineering, Medicine, Business, Technology",
+      flag: "🇩🇪"
+    },
+    {
+      country: "New Zealand",
+      description: "High-quality education system with stunning natural beauty and friendly environment for students.",
+      universities: "University of Auckland, University of Otago",
+      popularCourses: "Agriculture, Engineering, Tourism, IT",
+      flag: "🇳🇿"
     }
   ],
   testimonials: [
@@ -81,7 +96,7 @@ const appData = {
       name: "Priya Sharma",
       course: "MS Computer Science",
       university: "Stanford University, USA",
-      text: "EV Overseas made my dream come true. Their guidance throughout the application process was exceptional.",
+      text: "EV Overseas made my dream come true. Their guidance throughout the application process was exceptional. The team helped me secure admission with a scholarship!",
       rating: 5,
       year: "2024"
     },
@@ -89,7 +104,7 @@ const appData = {
       name: "Rohit Kumar",
       course: "MBA",
       university: "London Business School, UK",
-      text: "Professional service and excellent visa guidance. Highly recommend EV Overseas for study abroad.",
+      text: "Professional service and excellent visa guidance. Highly recommend EV Overseas for study abroad. They supported me from application to visa approval.",
       rating: 5,
       year: "2023"
     },
@@ -97,7 +112,15 @@ const appData = {
       name: "Anjali Reddy",
       course: "Masters in Engineering",
       university: "University of Toronto, Canada",
-      text: "They helped me secure a scholarship worth $15,000. Thank you EV Overseas team!",
+      text: "They helped me secure a scholarship worth $15,000. Thank you EV Overseas team! The counselors were very patient and helpful throughout.",
+      rating: 5,
+      year: "2024"
+    },
+    {
+      name: "Vikram Patel",
+      course: "MS Data Science",
+      university: "University of Melbourne, Australia",
+      text: "Best decision to choose EV Overseas. Their expert guidance helped me get into my dream university with proper visa assistance.",
       rating: 5,
       year: "2024"
     }
@@ -105,30 +128,33 @@ const appData = {
   blogArticles: [
     {
       title: "Top 10 Universities in USA for Indian Students 2024",
-      excerpt: "Discover the best American universities that welcome Indian students with scholarships and excellent programs.",
-      date: "January 15, 2024",
+      excerpt: "Discover the best American universities that welcome Indian students with scholarships and excellent programs. Complete guide with admission requirements.",
+      date: "December 15, 2024",
       category: "Universities"
     },
     {
-      title: "Complete Guide to UK Student Visa Process",
-      excerpt: "Step-by-step guide to obtaining your UK student visa with required documents and timeline.",
-      date: "December 20, 2023",
+      title: "Complete Guide to UK Student Visa Process 2024",
+      excerpt: "Step-by-step guide to obtaining your UK student visa with required documents, timeline, and expert tips for success.",
+      date: "December 10, 2024",
       category: "Visa"
     },
     {
       title: "Scholarship Opportunities for Indian Students in Canada",
-      excerpt: "Explore various scholarship programs available for Indian students planning to study in Canada.",
-      date: "November 18, 2023",
+      excerpt: "Explore various scholarship programs available for Indian students planning to study in Canada. Learn about eligibility and application process.",
+      date: "December 5, 2024",
       category: "Scholarships"
     }
   ]
 };
 
+// Global variables
+let submitted = false;
+
 // DOM elements
 const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
 const navbar = document.getElementById('navbar');
-const contactForm = document.getElementById('contact-form');
+const contactForm = document.getElementById('inquiry-form');
 const successModal = document.getElementById('success-modal');
 const closeModal = document.getElementById('close-modal');
 
@@ -138,23 +164,34 @@ document.addEventListener('DOMContentLoaded', function() {
   loadDynamicContent();
   initializeContactForm();
   initializeScrollEffects();
+  initializeWhatsApp();
   trackPageLoad();
 });
 
 // Navigation functionality
 function initializeNavigation() {
   // Mobile menu toggle
-  navToggle.addEventListener('click', function() {
-    navMenu.classList.toggle('active');
-    navToggle.classList.toggle('active');
-  });
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', function() {
+      navMenu.classList.toggle('active');
+      navToggle.classList.toggle('active');
+      
+      // Prevent body scroll when menu is open
+      if (navMenu.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    });
+  }
 
   // Close mobile menu when clicking on nav links
   const navLinks = document.querySelectorAll('.nav-link');
   navLinks.forEach(link => {
     link.addEventListener('click', function() {
-      navMenu.classList.remove('active');
-      navToggle.classList.remove('active');
+      navMenu?.classList.remove('active');
+      navToggle?.classList.remove('active');
+      document.body.style.overflow = '';
     });
   });
 
@@ -164,11 +201,9 @@ function initializeNavigation() {
       e.preventDefault();
       const targetId = this.getAttribute('href');
       const targetSection = document.querySelector(targetId);
-      
       if (targetSection) {
-        const navbarHeight = navbar.offsetHeight;
+        const navbarHeight = navbar?.offsetHeight || 70;
         const targetPosition = targetSection.offsetTop - navbarHeight;
-        
         window.scrollTo({
           top: targetPosition,
           behavior: 'smooth'
@@ -176,18 +211,40 @@ function initializeNavigation() {
       }
     });
   });
+
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!navToggle?.contains(e.target) && !navMenu?.contains(e.target)) {
+      navMenu?.classList.remove('active');
+      navToggle?.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
 }
 
 // Scroll effects
 function initializeScrollEffects() {
-  window.addEventListener('scroll', function() {
+  let ticking = false;
+  
+  function updateScrollEffects() {
     const scrollY = window.scrollY;
     
     // Add shadow to navbar when scrolled
-    if (scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
+    if (navbar) {
+      if (scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }
+    
+    ticking = false;
+  }
+  
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(updateScrollEffects);
+      ticking = true;
     }
   });
 }
@@ -203,6 +260,9 @@ function loadDynamicContent() {
 // Load services section
 function loadServices() {
   const servicesGrid = document.getElementById('services-grid');
+  if (!servicesGrid) return;
+  
+  servicesGrid.innerHTML = '';
   
   appData.services.forEach(service => {
     const serviceCard = document.createElement('div');
@@ -219,6 +279,9 @@ function loadServices() {
 // Load destinations section
 function loadDestinations() {
   const destinationsGrid = document.getElementById('destinations-grid');
+  if (!destinationsGrid) return;
+  
+  destinationsGrid.innerHTML = '';
   
   appData.destinations.forEach(destination => {
     const destinationCard = document.createElement('div');
@@ -241,20 +304,24 @@ function loadDestinations() {
 // Load testimonials section
 function loadTestimonials() {
   const testimonialsGrid = document.getElementById('testimonials-grid');
+  if (!testimonialsGrid) return;
+  
+  testimonialsGrid.innerHTML = '';
   
   appData.testimonials.forEach(testimonial => {
     const testimonialCard = document.createElement('div');
     testimonialCard.className = 'testimonial-card';
     
+    // Generate star rating
     const stars = '⭐'.repeat(testimonial.rating);
     
     testimonialCard.innerHTML = `
       <div class="testimonial-rating">${stars}</div>
-      <div class="testimonial-text">"${testimonial.text}"</div>
+      <p class="testimonial-text">"${testimonial.text}"</p>
       <div class="testimonial-author">
         <h4>${testimonial.name}</h4>
-        <p>${testimonial.course}</p>
-        <p>${testimonial.university} - ${testimonial.year}</p>
+        <p>${testimonial.course}<br>${testimonial.university}</p>
+        <span class="testimonial-year">Class of ${testimonial.year}</span>
       </div>
     `;
     testimonialsGrid.appendChild(testimonialCard);
@@ -264,6 +331,9 @@ function loadTestimonials() {
 // Load blog articles section
 function loadBlogArticles() {
   const blogGrid = document.getElementById('blog-grid');
+  if (!blogGrid) return;
+  
+  blogGrid.innerHTML = '';
   
   appData.blogArticles.forEach(article => {
     const blogCard = document.createElement('div');
@@ -271,8 +341,8 @@ function loadBlogArticles() {
     blogCard.innerHTML = `
       <div class="blog-content">
         <div class="blog-meta">
-          <span class="blog-category">${article.category}</span>
           <span class="blog-date">${article.date}</span>
+          <span class="blog-category">${article.category}</span>
         </div>
         <h3>${article.title}</h3>
         <p>${article.excerpt}</p>
@@ -282,324 +352,177 @@ function loadBlogArticles() {
   });
 }
 
-// Contact form functionality
+// Initialize contact form
 function initializeContactForm() {
-  contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(contactForm);
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      phone: formData.get('phone'),
-      destination: formData.get('destination'),
-      course: formData.get('course'),
-      message: formData.get('message')
-    };
-    
-    // Validate form
-    if (!validateForm(data)) {
-      return;
-    }
-    
-    // Show loading state
-    const submitButton = contactForm.querySelector('button[type="submit"]');
-    const originalText = submitButton.innerHTML;
-    submitButton.innerHTML = '<span class="loading"></span> Submitting...';
-    submitButton.disabled = true;
-    
-    // Simulate form submission
-    setTimeout(() => {
-      // Reset form
-      contactForm.reset();
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      // Let the form submit to Google Sheets
+      // The success modal will be triggered by the iframe onload event
       
-      // Restore button
-      submitButton.innerHTML = originalText;
-      submitButton.disabled = false;
+      // Show loading state
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const btnText = submitBtn.querySelector('.btn-text');
+      const loadingText = submitBtn.querySelector('.loading');
       
-      // Show success modal
-      showSuccessModal();
+      if (btnText && loadingText) {
+        btnText.classList.add('hidden');
+        loadingText.classList.remove('hidden');
+        submitBtn.disabled = true;
+      }
       
-      // Track lead generation
-      trackLead(data);
-      
-    }, 1500);
-  });
-  
+      // Reset loading state after a delay
+      setTimeout(() => {
+        if (btnText && loadingText) {
+          btnText.classList.remove('hidden');
+          loadingText.classList.add('hidden');
+          submitBtn.disabled = false;
+        }
+      }, 3000);
+    });
+  }
+
   // Close modal functionality
-  closeModal.addEventListener('click', function() {
-    hideSuccessModal();
-  });
-  
+  if (closeModal) {
+    closeModal.addEventListener('click', function() {
+      successModal?.classList.add('hidden');
+      contactForm?.reset();
+    });
+  }
+
   // Close modal when clicking outside
-  successModal.addEventListener('click', function(e) {
-    if (e.target === successModal) {
-      hideSuccessModal();
-    }
+  if (successModal) {
+    successModal.addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.classList.add('hidden');
+        contactForm?.reset();
+      }
+    });
+  }
+}
+
+// Initialize WhatsApp functionality
+function initializeWhatsApp() {
+  // Update all WhatsApp links with the correct number
+  const whatsappLinks = document.querySelectorAll('a[href*="wa.me"], .whatsapp-btn, .whatsapp-float a');
+  const whatsappNumber = appData.company.whatsapp;
+  const message = encodeURIComponent("Hi! I'm interested in study abroad guidance from EV Overseas. Please help me.");
+  
+  whatsappLinks.forEach(link => {
+    link.href = `https://wa.me/91${whatsappNumber}?text=${message}`;
   });
 }
 
 // Form validation
-function validateForm(data) {
-  const errors = [];
+function validateForm(form) {
+  const requiredFields = form.querySelectorAll('[required]');
+  let isValid = true;
   
-  // Name validation
-  if (!data.name || data.name.trim().length < 2) {
-    errors.push('Please enter a valid name');
-  }
-  
-  // Email validation
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!data.email || !emailRegex.test(data.email)) {
-    errors.push('Please enter a valid email address');
-  }
-  
-  // Phone validation
-  const phoneRegex = /^[\d\s\-\+\(\)]{10,}$/;
-  if (!data.phone || !phoneRegex.test(data.phone.replace(/\s/g, ''))) {
-    errors.push('Please enter a valid phone number');
-  }
-  
-  // Display errors if any
-  if (errors.length > 0) {
-    showError(errors.join('\n'));
-    return false;
-  }
-  
-  return true;
-}
-
-// Show error message
-function showError(message) {
-  alert('Please fix the following errors:\n\n' + message);
-}
-
-// Modal functionality
-function showSuccessModal() {
-  successModal.classList.remove('hidden');
-  document.body.style.overflow = 'hidden';
-}
-
-function hideSuccessModal() {
-  successModal.classList.add('hidden');
-  document.body.style.overflow = 'auto';
-}
-
-// Analytics and tracking
-function trackPageLoad() {
-  // Track page load for analytics
-  console.log('Page loaded: EV Overseas Study Abroad Consultancy');
-  
-  // SEO tracking
-  trackSEOKeywords();
-}
-
-function trackLead(data) {
-  // Track lead generation
-  console.log('New lead generated:', data);
-  
-  // In a real application, you would send this data to your analytics service
-  // Example: Google Analytics, Facebook Pixel, etc.
-  
-  // Track conversion for ads
-  trackConversion(data);
-}
-
-function trackConversion(data) {
-  // Track conversion events for marketing campaigns
-  console.log('Conversion tracked for:', data.destination || 'General Inquiry');
-}
-
-function trackSEOKeywords() {
-  // Track important SEO keywords for ranking
-  const keywords = [
-    'study abroad consultants Hyderabad',
-    'overseas education Hyderabad',
-    'international education consultancy',
-    'study abroad services',
-    'university admissions',
-    'student visa assistance',
-    'IELTS coaching Hyderabad',
-    'study in USA UK Australia Canada'
-  ];
-  
-  console.log('SEO Keywords tracked:', keywords);
-}
-
-// Utility functions
-function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
-}
-
-// Add scroll to top functionality
-function addScrollToTop() {
-  const scrollButton = document.createElement('button');
-  scrollButton.innerHTML = '↑';
-  scrollButton.className = 'scroll-to-top hidden';
-  scrollButton.setAttribute('aria-label', 'Scroll to top');
-  document.body.appendChild(scrollButton);
-  
-  scrollButton.addEventListener('click', scrollToTop);
-  
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 500) {
-      scrollButton.classList.remove('hidden');
+  requiredFields.forEach(field => {
+    const errorDiv = form.querySelector(`#${field.id}-error`);
+    
+    if (!field.value.trim()) {
+      field.classList.add('error');
+      errorDiv?.classList.add('show');
+      isValid = false;
     } else {
-      scrollButton.classList.add('hidden');
+      field.classList.remove('error');
+      errorDiv?.classList.remove('show');
+      
+      // Additional email validation
+      if (field.type === 'email' && !isValidEmail(field.value)) {
+        field.classList.add('error');
+        errorDiv?.classList.add('show');
+        if (errorDiv) errorDiv.textContent = 'Please enter a valid email address';
+        isValid = false;
+      }
+      
+      // Additional phone validation
+      if (field.type === 'tel' && !isValidPhone(field.value)) {
+        field.classList.add('error');
+        errorDiv?.classList.add('show');
+        if (errorDiv) errorDiv.textContent = 'Please enter a valid phone number';
+        isValid = false;
+      }
     }
   });
-}
-
-// Initialize scroll to top after DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-  addScrollToTop();
-});
-
-// WhatsApp functionality
-function openWhatsApp(message = '') {
-  const defaultMessage = `Hi! I'm interested in study abroad services from EV Overseas. Please provide more information.`;
-  const whatsappMessage = message || defaultMessage;
-  const encodedMessage = encodeURIComponent(whatsappMessage);
-  const whatsappURL = `https://wa.me/${appData.company.whatsapp}?text=${encodedMessage}`;
-  window.open(whatsappURL, '_blank');
-}
-
-// Add WhatsApp click tracking
-document.addEventListener('DOMContentLoaded', function() {
-  const whatsappButtons = document.querySelectorAll('a[href*="wa.me"], .whatsapp-btn, .whatsapp-float');
-  whatsappButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      console.log('WhatsApp contact initiated');
-      trackLead({
-        source: 'WhatsApp Button',
-        timestamp: new Date().toISOString()
-      });
-    });
-  });
-});
-
-// Phone call tracking
-document.addEventListener('DOMContentLoaded', function() {
-  const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
-  phoneLinks.forEach(link => {
-    link.addEventListener('click', function() {
-      console.log('Phone call initiated');
-      trackLead({
-        source: 'Phone Call',
-        timestamp: new Date().toISOString()
-      });
-    });
-  });
-});
-
-// Email tracking
-document.addEventListener('DOMContentLoaded', function() {
-  const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
-  emailLinks.forEach(link => {
-    link.addEventListener('click', function() {
-      console.log('Email contact initiated');
-      trackLead({
-        source: 'Email',
-        timestamp: new Date().toISOString()
-      });
-    });
-  });
-});
-
-// Service card interaction tracking
-document.addEventListener('DOMContentLoaded', function() {
-  setTimeout(() => {
-    const serviceCards = document.querySelectorAll('.service-card');
-    serviceCards.forEach(card => {
-      card.addEventListener('click', function() {
-        const serviceName = this.querySelector('h3').textContent;
-        console.log('Service interest:', serviceName);
-        trackLead({
-          source: 'Service Card',
-          service: serviceName,
-          timestamp: new Date().toISOString()
-        });
-      });
-    });
-  }, 1000);
-});
-
-// Destination card interaction tracking
-document.addEventListener('DOMContentLoaded', function() {
-  setTimeout(() => {
-    const destinationCards = document.querySelectorAll('.destination-card');
-    destinationCards.forEach(card => {
-      card.addEventListener('click', function() {
-        const countryName = this.querySelector('h3').textContent;
-        console.log('Destination interest:', countryName);
-        trackLead({
-          source: 'Destination Card',
-          destination: countryName,
-          timestamp: new Date().toISOString()
-        });
-      });
-    });
-  }, 1000);
-});
-
-// Lazy loading for images
-function initializeLazyLoading() {
-  const images = document.querySelectorAll('img[loading="lazy"]');
   
-  if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          img.src = img.dataset.src || img.src;
-          img.classList.remove('lazy');
-          observer.unobserve(img);
-        }
-      });
-    });
+  return isValid;
+}
+
+// Email validation helper
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+// Phone validation helper
+function isValidPhone(phone) {
+  const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
+  return phoneRegex.test(phone.replace(/\s/g, ''));
+}
+
+// Track page load for analytics
+function trackPageLoad() {
+  // Add any analytics tracking code here
+  console.log('EV Overseas website loaded successfully');
+  
+  // Add structured data for better SEO
+  if (!document.querySelector('script[type="application/ld+json"]')) {
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": appData.company.name,
+      "description": "Leading study abroad consultancy in Hyderabad",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "302-A, 3rd Floor, Aaltos A&M trade center",
+        "addressLocality": "Himayatnagar",
+        "addressRegion": "Telangana",
+        "postalCode": "500029",
+        "addressCountry": "IN"
+      },
+      "telephone": appData.company.phone,
+      "email": appData.company.email,
+      "url": "https://evoverseas.com",
+      "openingHours": "Mo-Sa 10:00-18:00"
+    };
     
-    images.forEach(img => imageObserver.observe(img));
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(structuredData);
+    document.head.appendChild(script);
   }
 }
 
-// Initialize lazy loading
-document.addEventListener('DOMContentLoaded', function() {
-  initializeLazyLoading();
-});
-
-// Performance monitoring
-function monitorPerformance() {
-  if ('performance' in window) {
-    window.addEventListener('load', function() {
-      setTimeout(() => {
-        const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-        console.log('Page load time:', loadTime + 'ms');
-        
-        // Track performance for optimization
-        if (loadTime > 3000) {
-          console.warn('Page load time is slow, consider optimization');
-        }
-      }, 0);
+// Intersection Observer for animations (optional enhancement)
+function initializeAnimations() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in');
+      }
     });
-  }
-}
-
-// Initialize performance monitoring
-monitorPerformance();
-
-// Error handling
-window.addEventListener('error', function(e) {
-  console.error('JavaScript error:', e.error);
-});
-
-// Service worker registration for better performance (if available)
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    // Service worker would be registered here in production
-    console.log('Service worker support detected');
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
   });
+  
+  // Observe elements for animation
+  const animatedElements = document.querySelectorAll('.service-card, .destination-card, .testimonial-card, .blog-card');
+  animatedElements.forEach(el => observer.observe(el));
 }
+
+// Initialize animations when DOM is loaded
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeAnimations);
+} else {
+  initializeAnimations();
+}
+
+// Export for potential use in other scripts
+window.EVOverseas = {
+  appData,
+  validateForm,
+  isValidEmail,
+  isValidPhone
+};
