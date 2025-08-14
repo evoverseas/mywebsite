@@ -285,7 +285,7 @@ function loadBlogArticles() {
 // Contact form functionality
 function initializeContactForm() {
   // Replace this URL with your Google Apps Script Web App URL
-  const GOOGLE_SHEET_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HEREhttps://script.google.com/macros/s/AKfycbyJ2CkX6RHgCEXmU0oVua1ubQrWOjOeuCxGdicslALSJ3VJ1tl_muJ03ByAsKxBmh110g/exec';
+  const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbyJ2CkX6RHgCEXmU0oVua1ubQrWOjOeuCxGdicslALSJ3VJ1tl_muJ03ByAsKxBmh110g/exec';
   
   contactForm.addEventListener('submit', function(e) {
     e.preventDefault();
