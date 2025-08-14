@@ -9,10 +9,10 @@ const appData = {
     established: "2018",
     studentsHelped: "500+",
     visaSuccessRate: "95%",
-    phone: "+91-9876543210",
+    phone: "+91-9666963756",
     email: "info@evoverseas.com",
-    address: "123 Education Plaza, Banjara Hills, Hyderabad - 500034",
-    whatsapp: "+919876543210"
+    address: "302A Aaltos A&M Trade Center Himayat Nagar, Hyderabad - 500029",
+    whatsapp: "+919666963756"
   },
   services: [
     {
@@ -461,7 +461,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // WhatsApp functionality
 function openWhatsApp(message = '') {
-  const defaultMessage = `Hi! I'm interested in study abroad services from EV Overseas. Please provide more information.`;
+  const defaultMessage = `Hi! I'm interested in studying abroad. Please provide more information.`;
   const whatsappMessage = message || defaultMessage;
   const encodedMessage = encodeURIComponent(whatsappMessage);
   const whatsappURL = `https://wa.me/${appData.company.whatsapp}?text=${encodedMessage}`;
@@ -484,7 +484,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Phone call tracking
 document.addEventListener('DOMContentLoaded', function() {
-  const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+  const phoneLinks = document.querySelectorAll('a[href^="tel: +91966696375"]');
   phoneLinks.forEach(link => {
     link.addEventListener('click', function() {
       console.log('Phone call initiated');
