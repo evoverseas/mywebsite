@@ -846,10 +846,11 @@ body {
   max-width: 800px;
   text-align: center;
   margin: 0 auto;
+  
 }
 
 .hero h1 {
-  font-size: clamp(var(--font-size-3xl), 5vw, 48px);
+  font-size: clamp(var(--font-size-4xl), 5vw, 48px);
   margin-bottom: var(--space-24);
   line-height: 1.2;
 }
@@ -1394,8 +1395,9 @@ body {
 
 @media (max-width: 480px) {
   .hero {
-    padding: var(--space-24) 0;
+    padding: 100px 0 var(--space-24);
     min-height: 80vh;
+    
   }
 
   .stat {
