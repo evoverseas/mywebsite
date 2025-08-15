@@ -311,7 +311,7 @@ async function submitFormToGoogleSheets(data) {
     */
     
     // Replace this with your actual Google Apps Script URL
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwRtK3z-qp2sRCztkPbkG8ixpITP7tom6Ffq6ct8K7jZ0hQ5o8g03BJeJSzMb7y_W8NMw/exec';
     
     // For demo purposes, simulate successful submission
     // In production, uncomment the fetch request and use your actual URL
@@ -321,7 +321,7 @@ async function submitFormToGoogleSheets(data) {
             resolve({ result: 'success' });
             
             // Uncomment this for actual Google Sheets integration:
-            /*
+            
             fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
                 headers: {
@@ -341,7 +341,7 @@ async function submitFormToGoogleSheets(data) {
                 console.error('Submission error:', error);
                 reject(error);
             });
-            */
+            
         }, 1000);
     });
 }
