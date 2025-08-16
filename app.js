@@ -430,31 +430,31 @@ window.scrollToSection = function(sectionId) {
     }
 };
 
-// Track user interactions
+// Enhanced Analytics Tracking (REPLACE existing trackEvent function)
 function trackEvent(eventName, eventData = {}) {
     console.log(`Analytics Event: ${eventName}`, eventData);
-    // Add your analytics tracking here (Google Analytics, etc.)
-}
-
-// Add click tracking
-document.addEventListener('click', function(e) {
-    if (e.target.matches('.btn--primary')) {
-        trackEvent('cta_click', {
-            button_text: e.target.textContent.trim(),
-            page_section: getPageSection(e.target)
+    
+    // Send to Google Analytics 4
+    if (typeof gtag !== 'undefined') {
+        gtag('event', eventName, {
+            event_category: eventData.page_section || 'general',
+            event_label: eventData.button_text || eventData.service_name || eventData.destination || '',
+            value: eventData.value || 1
         });
     }
-    
-    if (e.target.closest('.service-card')) {
-        const serviceTitle = e.target.closest('.service-card').querySelector('h3').textContent;
-        trackEvent('service_click', { service_name: serviceTitle });
-    }
-    
-    if (e.target.closest('.destination-card')) {
-        const destinationTitle = e.target.closest('.destination-card').querySelector('h3').textContent;
-        trackEvent('destination_click', { destination: destinationTitle });
+}
+
+// Add form submission tracking (ADD this to your form submit handler)
+document.getElementById('contactForm').addEventListener('submit', function() {
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'form_submit', {
+            event_category: 'engagement',
+            event_label: 'contact_form',
+            value: 1
+        });
     }
 });
+
 
 function getPageSection(element) {
     const section = element.closest('section');
