@@ -34,15 +34,10 @@
   --color-orange-400-rgb: 230, 129, 97;
 
   /* Background color tokens (Light Mode) */
-  --color-bg-1: rgba(59, 130, 246, 0.08); /* Light blue */
-  --color-bg-2: rgba(245, 158, 11, 0.08); /* Light yellow */
-  --color-bg-3: rgba(34, 197, 94, 0.08); /* Light green */
-  --color-bg-4: rgba(239, 68, 68, 0.08); /* Light red */
-  --color-bg-5: rgba(147, 51, 234, 0.08); /* Light purple */
-  --color-bg-6: rgba(249, 115, 22, 0.08); /* Light orange */
-  --color-bg-7: rgba(236, 72, 153, 0.08); /* Light pink */
-  --color-bg-8: rgba(6, 182, 212, 0.08); /* Light cyan */
-
+  --color-purple-light: rgba(147, 51, 234, 0.12); /* Enhanced light purple for sections */
+  --color-purple-footer: rgba(147, 51, 234, 0.18); /* Slightly darker purple for footer */
+  --color-white: #ffffff; /* Pure white for alternating sections */
+  
   /* Semantic Color Tokens (Light Mode) */
   --color-background: var(--color-cream-50);
   --color-surface: var(--color-cream-100);
@@ -270,18 +265,18 @@
   --color-slate-900-rgb: 19, 52, 59;
   
   /* Semantic Color Tokens (Light Mode) */
-  --color-background: var(--color-cream-50);
-  --color-surface: var(--color-cream-100);
-  --color-text: var(--color-slate-900);
-  --color-text-secondary: var(--color-slate-500);
-  --color-primary: var(--color-teal-500);
-  --color-primary-hover: var(--color-teal-600);
-  --color-primary-active: var(--color-teal-700);
+  --color-background: var(--color-purple-light);
+  --color-surface: var(--color-white);
+  --color-text: var(--color-black);
+  --color-text-secondary: var(--color-black);
+  --color-primary: var(--color-black);
+  --color-primary-hover: rgba(0, 0, 0, 0.85);
+  --color-primary-active: rgba(0, 0, 0, 0.75);
   --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
   --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
   --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
   --color-border: rgba(var(--color-brown-600-rgb), 0.2);
-  --color-btn-primary-text: var(--color-cream-50);
+  --color-btn-primary-text: var(--color-white);
   --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
   --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
   --color-error: var(--color-red-500);
@@ -319,17 +314,23 @@ body {
   box-sizing: inherit;
 }
 
+/* Force black text color globally */
+h1, h2, h3, h4, h5, h6, p, span, a, li, 
+.nav-link, .nav-brand, .hero-text, .section-header p,
+.feature h4, .service-card h3, .service-card p,
+.destination-card h3, .destination-card p,
+.testimonial-card p, .testimonial-author h4,
+.blog-card h3, .blog-card p,
+.stat-number, .stat-label {
+  color: var(--color-black) !important;
+}
+
 /* Typography */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   margin: 0;
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-tight);
-  color: var(--color-text);
+  color: var(--color-black);
   letter-spacing: var(--letter-spacing-tight);
 }
 
@@ -356,14 +357,15 @@ p {
   margin: 0 0 var(--space-16) 0;
 }
 
+/* Links */
 a {
-  color: var(--color-primary);
+  color: var(--color-black);
   text-decoration: none;
   transition: color var(--duration-fast) var(--ease-standard);
 }
 
 a:hover {
-  color: var(--color-primary-hover);
+  color: rgba(0, 0, 0, 0.85);
 }
 
 code,
@@ -413,16 +415,16 @@ pre code {
 }
 
 .btn--primary {
-  background: var(--color-primary);
-  color: var(--color-btn-primary-text);
+  background: var(--color-black);
+  color: var(--color-white);
 }
 
 .btn--primary:hover {
-  background: var(--color-primary-hover);
+  background: rgba(0, 0, 0, 0.85);
 }
 
 .btn--primary:active {
-  background: var(--color-primary-active);
+  background: rgba(0, 0, 0, 0.75);
 }
 
 .btn--secondary {
@@ -568,43 +570,19 @@ select.form-control {
 }
 
 .status--success {
-  background-color: rgba(
-    var(--color-success-rgb, 33, 128, 141),
-    var(--status-bg-opacity)
-  );
-  color: var(--color-success);
-  border: 1px solid
-    rgba(var(--color-success-rgb, 33, 128, 141), var(--status-border-opacity));
+  color: var(--color-black);
 }
 
 .status--error {
-  background-color: rgba(
-    var(--color-error-rgb, 192, 21, 47),
-    var(--status-bg-opacity)
-  );
-  color: var(--color-error);
-  border: 1px solid
-    rgba(var(--color-error-rgb, 192, 21, 47), var(--status-border-opacity));
+  color: var(--color-black);
 }
 
 .status--warning {
-  background-color: rgba(
-    var(--color-warning-rgb, 168, 75, 47),
-    var(--status-bg-opacity)
-  );
-  color: var(--color-warning);
-  border: 1px solid
-    rgba(var(--color-warning-rgb, 168, 75, 47), var(--status-border-opacity));
+  color: var(--color-black);
 }
 
 .status--info {
-  background-color: rgba(
-    var(--color-info-rgb, 98, 108, 113),
-    var(--status-bg-opacity)
-  );
-  color: var(--color-info);
-  border: 1px solid
-    rgba(var(--color-info-rgb, 98, 108, 113), var(--status-border-opacity));
+  color: var(--color-black);
 }
 
 /* Container layout */
@@ -747,6 +725,19 @@ html {
 
 body {
   overflow-x: hidden;
+}
+
+/* Alternating section backgrounds */
+section {
+  background-color: var(--color-white);
+}
+
+section:nth-child(even) {
+  background-color: var(--color-purple-light);
+}
+
+.hero {
+  background-color: var(--color-purple-light);
 }
 
 /* Navigation */
@@ -1264,9 +1255,10 @@ body {
 
 /* Footer */
 .footer {
-  background: var(--color-charcoal-800);
-  color: var(--color-gray-200);
+  background: var(--color-purple-footer);
+  color: var(--color-black);
   padding: 60px 0 var(--space-20);
+  border-top: 1px solid rgba(147, 51, 234, 0.2);
 }
 
 .footer-content {
@@ -1279,12 +1271,12 @@ body {
 .footer-section h3,
 .footer-section h4 {
   margin-bottom: var(--space-16);
-  color: var(--color-teal-300);
+  color: var(--color-black);
 }
 
 .footer-section p {
   line-height: 1.6;
-  color: var(--color-gray-300);
+  color: var(--color-black);
 }
 
 .footer-section ul {
@@ -1298,13 +1290,13 @@ body {
 }
 
 .footer-section a {
-  color: var(--color-gray-300);
+  color: var(--color-black);
   text-decoration: none;
   transition: color var(--duration-fast) var(--ease-standard);
 }
 
 .footer-section a:hover {
-  color: var(--color-teal-300);
+  color: rgba(0, 0, 0, 0.85);
 }
 
 .social-links {
@@ -1538,3 +1530,4 @@ section {
 section[id] {
   scroll-margin-top: 80px;
 }
+
