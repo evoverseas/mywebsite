@@ -1329,6 +1329,31 @@ section:nth-child(even) {
   margin: 0;
 }
 
+/* Floating Call Button */
+.call-float {
+  position: fixed;
+  bottom: calc(var(--space-20) + 70px); /* Position above WhatsApp button */
+  right: var(--space-20);
+  background: #000000; /* Black background */
+  color: #ffffff; /* White icon */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xl);
+  text-decoration: none;
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.call-float:hover {
+  transform: scale(1.1);
+  background: rgba(0, 0, 0, 0.85); /* Slightly transparent black on hover */
+}
+
 /* WhatsApp Float Button */
 .whatsapp-float {
   position: fixed;
@@ -1471,6 +1496,23 @@ section:nth-child(even) {
   .contact-form,
   .contact-info {
     padding: var(--space-20);
+  }
+
+  /* Floating buttons mobile size adjustment */
+  .whatsapp-float,
+  .call-float {
+    width: 50px;
+    height: 50px;
+    font-size: var(--font-size-lg);
+    right: 20px; /* Explicit right position for both buttons */
+  }
+  
+  .call-float {
+    bottom: calc(20px + 60px); /* Fixed 20px margin plus 60px spacing */
+  }
+  
+  .whatsapp-float {
+    bottom: 20px; /* Explicit bottom position */
   }
 
   .whatsapp-float {
