@@ -48,6 +48,7 @@
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://evoverseas.com/">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="./images/logo.png">
@@ -184,7 +185,7 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-brand">
-                <img src="./images/logo.png" alt="EV Overseas Logo" class="nav-logo-img">
+                <img src="./images/logo.png" alt="EV Overseas Logo" class="nav-logo-img" loading="lazy">
                 <div class="nav-brand-text">
                     <a href="index.html" class="nav-logo">EV Overseas</a>
                     <span class="nav-tagline">Connecting you to Global Opportunities</span>
@@ -196,7 +197,7 @@
                 <li><a href="#services" class="nav-link">Services</a></li>
                 <li><a href="#destinations" class="nav-link">Destinations</a></li>
                 <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
-                <li><a href="#blog" class="nav-link">Blog</a></li>
+                <li><a href="#journey" class="nav-link">Journey</a></li>
                 <li><a href="#faq" class="nav-link">FAQ</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
@@ -214,20 +215,29 @@
         <div class="hero-content">
             <div class="container">
                 <div class="hero-text">
-                    <h1>EV Overseas - #1 Study Abroad Consultants in Hyderabad & India | Overseas Education Experts</h1>
-                    <p>Fulfill your dream of studying overseas with EV Overseas - the leading overseas education consultants in Hyderabad. Expert guidance for USA, UK, Canada, Germany, Australia & other countries.</p>
-                    <div class="hero-stats">
+                    <h1>Go Places. Go Global. Go EV Overseas.</h1>
+                    <p class="hero-subtitle">Your Gateway to World-Class Universities in USA, UK, Canada, Australia & Beyond</p>
+                    <p class="hero-description">Experience hassle-free overseas education consulting with Hyderabad's most trusted study abroad experts. Get personalized guidance, visa support, and scholarship assistance.</p>
+                    <div class="hero-stats animate-stats">
                         <div class="stat">
-                            <span class="stat-number">500+</span>
-                            <span class="stat-label">Students Helped</span>
+                            <span class="stat-number counter" data-target="5000">0</span><span class="stat-plus">+</span>
+                            <span class="stat-label">Success Stories</span>
+                            <span class="stat-subtitle">Happy Students</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-number">95%</span>
-                            <span class="stat-label">Visa Success Rate</span>
+                            <span class="stat-number counter" data-target="99">0</span><span class="stat-percent">%</span>
+                            <span class="stat-label">Visa Success</span>
+                            <span class="stat-subtitle">Guaranteed Results</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-number">6+</span>
-                            <span class="stat-label">Years Experience</span>
+                            <span class="stat-number counter" data-target="100">0</span><span class="stat-plus">+</span>
+                            <span class="stat-label">Universities</span>
+                            <span class="stat-subtitle">Global Partners</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number counter" data-target="6">0</span><span class="stat-plus">+</span>
+                            <span class="stat-label">Years</span>
+                            <span class="stat-subtitle">of Excellence</span>
                         </div>
                     </div>
                     <div class="hero-buttons">
@@ -399,31 +409,49 @@
         </div>
     </section>
 
-    <!-- Blog Section -->
-    <section id="blog" class="blog">
+    <!-- Student Journey Map Section -->
+    <section id="journey" class="journey">
         <div class="container">
             <div class="section-header">
-                <h2>Latest Articles & Guides</h2>
-                <p>Stay Updated with Study Abroad Information</p>
+                <h2>Student Journey Map</h2>
+                <p>A clear, step-by-step pathway from consultation to campus life.</p>
             </div>
-            <div class="blog-grid">
-                <article class="blog-card">
-                    <div class="blog-category">Universities</div>
-                    <h3>Top 10 Universities in USA for Indian Students 2025</h3>
-                    <p>Discover the best American universities that welcome Indian students with scholarships and excellent programs.</p>
-                    <div class="blog-meta">January 15, 2025</div>
+            <div class="journey-grid">
+                <article class="journey-card">
+                    <div class="journey-step">1</div>
+                    <h3>Initial Consultation</h3>
+                    <p>Discuss goals, timelines, and preferred destinations with our expert counselors. Get a personalised action plan.</p>
+                    <div class="journey-cta"><button class="btn btn--outline" onclick="scrollToSection('contact')">Book Consultation</button></div>
                 </article>
-                <article class="blog-card">
-                    <div class="blog-category">Visa</div>
-                    <h3>Complete Guide to UK Student Visa Process</h3>
-                    <p>Step-by-step guide to obtaining your UK student visa with required documents and timeline from Hyderabad.</p>
-                    <div class="blog-meta">July 20, 2025</div>
+                <article class="journey-card">
+                    <div class="journey-step">2</div>
+                    <h3>Profile & University Shortlist</h3>
+                    <p>We evaluate your profile and shortlist universities and programs that match your academic and financial goals.</p>
+                    <div class="journey-cta"><button class="btn btn--outline" onclick="scrollToSection('services')">Explore Services</button></div>
                 </article>
-                <article class="blog-card">
-                    <div class="blog-category">Scholarships</div>
-                    <h3>Scholarship Opportunities for Indian Students in Canada</h3>
-                    <p>Explore various scholarship programs available for Indian students planning to study in Canada from Hyderabad.</p>
-                    <div class="blog-meta">August 05, 2025</div>
+                <article class="journey-card">
+                    <div class="journey-step">3</div>
+                    <h3>Application & Documentation</h3>
+                    <p>Assistance with SOP, LORs, document verification, and timely application submission to universities.</p>
+                    <div class="journey-cta"><button class="btn btn--outline" onclick="scrollToSection('contact')">Get Help</button></div>
+                </article>
+                <article class="journey-card">
+                    <div class="journey-step">4</div>
+                    <h3>Offer & Scholarship Negotiation</h3>
+                    <p>We review offers, negotiate scholarships where possible, and help you choose the best option.</p>
+                    <div class="journey-cta"><button class="btn btn--outline" onclick="scrollToSection('contact')">Discuss Offers</button></div>
+                </article>
+                <article class="journey-card">
+                    <div class="journey-step">5</div>
+                    <h3>Visa & Pre-departure</h3>
+                    <p>Complete visa filing support, interview preparation, and pre-departure briefing to ensure smooth travel.</p>
+                    <div class="journey-cta"><button class="btn btn--outline" onclick="scrollToSection('contact')">Start Visa Process</button></div>
+                </article>
+                <article class="journey-card">
+                    <div class="journey-step">6</div>
+                    <h3>Arrival & Onboarding</h3>
+                    <p>Help with accommodation, on-ground support, and initial orientation so you settle in quickly.</p>
+                    <div class="journey-cta"><button class="btn btn--outline" onclick="scrollToSection('contact')">Learn More</button></div>
                 </article>
             </div>
         </div>
@@ -433,29 +461,118 @@
     <section id="faq" class="faq">
         <div class="container">
             <div class="section-header">
-                <h2>Frequently Asked Questions - EV Overseas</h2>
-                <p>Common questions about study abroad consultancy services</p>
+                <h2>Frequently Asked Questions</h2>
+                <p>Get answers to common questions about studying abroad</p>
             </div>
             <div class="faq-content">
-                <div class="faq-item">
-                    <h3>Who is the best study abroad consultant in Hyderabad?</h3>
-                    <p>EV Overseas is recognized as the leading study abroad consultancy in Hyderabad with 95% visa success rate and over 500+ successful student placements since 2018.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>How much does study abroad consultancy cost in Hyderabad?</h3>
-                    <p>EV Overseas offers competitive pricing for study abroad consultancy services. Contact us for a free consultation and personalized quote based on your requirements.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Which countries does EV Overseas help students study in?</h3>
-                    <p>EV Overseas provides expert guidance for studying in USA, UK, Canada, Australia, Germany, and other popular study destinations worldwide.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Does EV Overseas provide IELTS coaching in Hyderabad?</h3>
-                    <p>Yes, EV Overseas offers comprehensive IELTS coaching in Hyderabad with experienced trainers and proven strategies for achieving high band scores.</p>
+                <div class="faq-grid">
+                    <div class="faq-category">
+                        <h3 class="category-title">General Questions</h3>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Why choose EV Overseas as your study abroad consultant?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>EV Overseas stands out with:</p>
+                                <ul>
+                                    <li>95% visa success rate</li>
+                                    <li>500+ successful placements</li>
+                                    <li>Expert counselors with international education experience</li>
+                                    <li>Personalized guidance throughout your journey</li>
+                                    <li>Strong university partnerships worldwide</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>What services does EV Overseas provide?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <ul>
+                                    <li>University selection and application</li>
+                                    <li>Visa processing and guidance</li>
+                                    <li>Scholarship assistance</li>
+                                    <li>IELTS/TOEFL coaching</li>
+                                    <li>Education loan assistance</li>
+                                    <li>Pre-departure guidance</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-category">
+                        <h3 class="category-title">Admission & Visa Process</h3>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>What is the study abroad application process?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <ol>
+                                    <li>Initial consultation and profile evaluation</li>
+                                    <li>University and course selection</li>
+                                    <li>Document preparation and application submission</li>
+                                    <li>Offer letter acceptance</li>
+                                    <li>Visa application and interview preparation</li>
+                                    <li>Pre-departure briefing</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>What are the visa requirements for different countries?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Common requirements include:</p>
+                                <ul>
+                                    <li>Valid passport</li>
+                                    <li>University acceptance letter</li>
+                                    <li>Financial documents</li>
+                                    <li>English proficiency test scores</li>
+                                    <li>Statement of purpose</li>
+                                    <li>Academic transcripts</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-category">
+                        <h3 class="category-title">Financial Matters</h3>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>How can I finance my study abroad education?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>We help you explore multiple funding options:</p>
+                                <ul>
+                                    <li>Education loans from partner banks</li>
+                                    <li>University scholarships</li>
+                                    <li>Government scholarships</li>
+                                    <li>Research assistantships</li>
+                                    <li>Part-time work opportunities</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>What are the consultation charges?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Initial consultation is completely FREE. Our services are success-based, and we provide transparent fee structures based on your requirements. Contact us for a detailed discussion.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Contact Section -->
 
     <!-- Contact Section -->
     <section id="contact" class="contact">

@@ -1,6 +1,49 @@
 // EV Overseas Website JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Animated Counter Implementation
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200;
+
+    function animateCounter(counter) {
+        const target = +counter.getAttribute('data-target');
+        let count = 0;
+        const inc = target / speed;
+
+        function updateCount() {
+            if (count < target) {
+                count += inc;
+                counter.innerText = Math.ceil(count);
+                setTimeout(updateCount, 1);
+            } else {
+                counter.innerText = target;
+            }
+        }
+
+        updateCount();
+    }
+
+    // Intersection Observer for counter animation
+    const countersObserverOptions = {
+        threshold: 0.5
+    };
+
+    const countersObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counters = entry.target.querySelectorAll('.counter');
+                counters.forEach(counter => animateCounter(counter));
+                countersObserver.unobserve(entry.target);
+            }
+        });
+    }, countersObserverOptions);
+
+    // Observe stats section
+    const statsSection = document.querySelector('.hero-stats');
+    if (statsSection) {
+        countersObserver.observe(statsSection);
+    }
+
     // Mobile Navigation
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
@@ -132,36 +175,215 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Animate elements on scroll
-    const observerOptions = {
+    const animationObserverOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
 
-    const observer = new IntersectionObserver(function(entries) {
+    const animationObserver = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate-fade-in-up');
             }
         });
-    }, observerOptions);
+    }, animationObserverOptions);
 
     // Observe all cards and sections
-    const elementsToAnimate = document.querySelectorAll('.service-card, .destination-card, .testimonial-card, .blog-card, .about-content');
+    const elementsToAnimate = document.querySelectorAll('.service-card, .destination-card, .testimonial-card, .journey-card, .about-content');
     elementsToAnimate.forEach(el => {
-        observer.observe(el);
+        animationObserver.observe(el);
     });
 
-    // Add click handlers for blog cards
-    const blogCards = document.querySelectorAll('.blog-card');
-    blogCards.forEach(card => {
+    // Add click handlers for journey cards (analytics / tracking placeholder)
+    const journeyCards = document.querySelectorAll('.journey-card');
+    journeyCards.forEach(card => {
         card.addEventListener('click', function() {
-            const title = card.querySelector('h3').textContent;
-            console.log(`Blog card clicked: ${title}`);
+            const title = card.querySelector('h3') ? card.querySelector('h3').textContent : 'Journey Step';
+            console.log(`Journey card clicked: ${title}`);
         });
     });
 
     // Initialize scroll animations
     initScrollAnimations();
+
+    // Improved focus management for accessibility (moved here from bottom of file)
+    const focusableElements = document.querySelectorAll(
+        'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+    );
+    focusableElements.forEach(el => {
+        el.addEventListener('focus', function() {
+            this.style.outline = '2px solid var(--color-primary)';
+            this.style.outlineOffset = '2px';
+        });
+        el.addEventListener('blur', function() {
+            this.style.outline = '';
+        });
+    });
+
+    // University Search Functionality
+    const universitySearchForm = document.getElementById('universitySearchForm');
+    const searchResults = document.getElementById('searchResults');
+
+    // Sample university data - In production, this would come from your backend
+    const universities = [
+        {
+            name: "California State University",
+            country: "USA",
+            courses: ["masters", "bachelors"],
+            fields: ["engineering", "it", "business"],
+            budget: "20-25",
+            logo: "./images/universities/csu-logo.png",
+            location: "California, USA",
+            ranking: "#120 in US News",
+            tuitionFee: "₹22 Lakhs/year",
+            acceptance: "75%"
+        },
+        {
+            name: "University of Manchester",
+            country: "UK",
+            courses: ["masters", "phd"],
+            fields: ["engineering", "business", "medicine"],
+            budget: "25+",
+            logo: "./images/universities/manchester-logo.png",
+            location: "Manchester, UK",
+            ranking: "#27 in QS World Rankings",
+            tuitionFee: "₹26 Lakhs/year",
+            acceptance: "65%"
+        },
+        // Add more universities as needed
+    ];
+
+    if (universitySearchForm) {
+        universitySearchForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const country = document.getElementById('country').value;
+            const course = document.getElementById('course').value;
+            const field = document.getElementById('field').value;
+            const budget = document.getElementById('budget').value;
+
+            // Filter universities based on criteria
+            const filteredUniversities = universities.filter(uni => {
+                return (!country || uni.country === country) &&
+                       (!course || uni.courses.includes(course)) &&
+                       (!field || uni.fields.includes(field)) &&
+                       (!budget || uni.budget === budget);
+            });
+
+            // Display results
+            displaySearchResults(filteredUniversities);
+        });
+    }
+
+    function displaySearchResults(results) {
+        if (!searchResults) return;
+
+        if (results.length === 0) {
+            searchResults.innerHTML = `
+                <div class="no-results">
+                    <p>No universities found matching your criteria. Please try different filters or contact us for more options.</p>
+                </div>
+            `;
+            return;
+        }
+
+        searchResults.innerHTML = results.map(uni => `
+            <div class="university-card">
+                <img src="${uni.logo}" alt="${uni.name} logo" class="university-logo" loading="lazy">
+                <h3 class="university-name">${uni.name}</h3>
+                <div class="university-location">
+                    <i class="fas fa-map-marker-alt"></i> ${uni.location}
+                </div>
+                <div class="university-details">
+                    <p><i class="fas fa-trophy"></i> ${uni.ranking}</p>
+                    <p><i class="fas fa-money-bill-wave"></i> ${uni.tuitionFee}</p>
+                    <p><i class="fas fa-check-circle"></i> ${uni.acceptance} Acceptance Rate</p>
+                </div>
+                <div class="university-cta">
+                    <button class="btn btn--outline" onclick="window.location.href='#contact'">Enquire Now</button>
+                    <button class="btn btn--primary" onclick="window.location.href='#contact'">Apply Now</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // FAQ Section Interactivity (robust with ARIA + keyboard support)
+    const faqContainer = document.querySelector('.faq-content');
+    if (faqContainer) {
+        // Initialize aria attributes
+        faqContainer.querySelectorAll('.faq-question').forEach(btn => {
+            btn.setAttribute('role', 'button');
+            btn.setAttribute('aria-expanded', 'false');
+            const answer = btn.nextElementSibling;
+            if (answer && answer.classList.contains('faq-answer')) {
+                const id = answer.id || ('faq-answer-' + Math.random().toString(36).substr(2, 9));
+                answer.id = id;
+                btn.setAttribute('aria-controls', id);
+            }
+            // Ensure focusable and clickable
+            if (!btn.hasAttribute('tabindex')) btn.setAttribute('tabindex', '0');
+        });
+
+        // Use event delegation for clicks and keypresses
+        faqContainer.addEventListener('click', (e) => {
+            const btn = e.target.closest('.faq-question');
+            if (!btn) return;
+            toggleFaq(btn);
+        });
+
+        faqContainer.addEventListener('keydown', (e) => {
+            const key = e.key;
+            if (key !== 'Enter' && key !== ' ') return;
+            const btn = e.target.closest('.faq-question');
+            if (!btn) return;
+            e.preventDefault();
+            toggleFaq(btn);
+        });
+    }
+
+    function toggleFaq(button) {
+        const answer = button.nextElementSibling;
+        if (!answer || !answer.classList.contains('faq-answer')) return;
+
+        console.log('Toggling FAQ for:', button.textContent.trim());
+
+        const parentCategory = button.closest('.faq-category');
+        // Close other open answers in same category
+        if (parentCategory) {
+            parentCategory.querySelectorAll('.faq-question.active').forEach(openBtn => {
+                if (openBtn !== button) {
+                    openBtn.classList.remove('active');
+                    openBtn.setAttribute('aria-expanded', 'false');
+                    const otherAnswer = openBtn.nextElementSibling;
+                    if (otherAnswer && otherAnswer.classList.contains('faq-answer')) {
+                        otherAnswer.classList.remove('show');
+                    }
+                }
+            });
+        }
+
+        const isOpen = button.classList.toggle('active');
+        button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        if (isOpen) {
+            answer.classList.add('show');
+        } else {
+            answer.classList.remove('show');
+        }
+    }
+
+    // Fallback: attach direct listeners to each faq-question (in case delegation misses)
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleFaq(btn);
+        });
+        btn.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleFaq(btn);
+            }
+        });
+    });
 });
 
 // Improved form validation
@@ -380,7 +602,7 @@ function showFieldError(field, message) {
 
 // Add scroll-based animations
 function initScrollAnimations() {
-    const animatedElements = document.querySelectorAll('.service-card, .destination-card, .testimonial-card, .blog-card');
+    const animatedElements = document.querySelectorAll('.service-card, .destination-card, .testimonial-card, .journey-card');
     
     const animationObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
@@ -461,20 +683,4 @@ function getPageSection(element) {
     return section ? section.id || section.className : 'unknown';
 }
 
-// Improved focus management for accessibility
-document.addEventListener('DOMContentLoaded', function() {
-    const focusableElements = document.querySelectorAll(
-        'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
-    );
-    
-    focusableElements.forEach(el => {
-        el.addEventListener('focus', function() {
-            this.style.outline = '2px solid var(--color-primary)';
-            this.style.outlineOffset = '2px';
-        });
-        
-        el.addEventListener('blur', function() {
-            this.style.outline = '';
-        });
-    });
-});
+// ...existing code...
