@@ -1342,16 +1342,17 @@ section:nth-child(even) {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--font-size-xl);
+  font-size: calc(var(--font-size-xl) * 0.9);
   text-decoration: none;
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   z-index: 1000;
-  transition: transform var(--duration-fast) var(--ease-standard);
+  transition: all var(--duration-fast) var(--ease-standard);
 }
 
 .call-float:hover {
   transform: scale(1.1);
-  background: rgba(0, 0, 0, 0.85); /* Slightly transparent black on hover */
+  background: #000000;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
 /* WhatsApp Float Button */
@@ -1504,22 +1505,15 @@ section:nth-child(even) {
     width: 50px;
     height: 50px;
     font-size: var(--font-size-lg);
-    right: 20px; /* Explicit right position for both buttons */
+    right: 16px; /* Consistent spacing using var(--space-16) equivalent */
   }
   
   .call-float {
-    bottom: calc(20px + 60px); /* Fixed 20px margin plus 60px spacing */
+    bottom: 82px; /* Fixed spacing: 16px margin + 50px button height + 16px gap */
   }
   
   .whatsapp-float {
-    bottom: 20px; /* Explicit bottom position */
-  }
-
-  .whatsapp-float {
-    width: 50px;
-    height: 50px;
-    bottom: var(--space-16);
-    right: var(--space-16);
+    bottom: 16px;
   }
 }
 
