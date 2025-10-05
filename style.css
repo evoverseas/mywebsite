@@ -34,8 +34,8 @@
   --color-orange-400-rgb: 230, 129, 97;
 
   /* Background color tokens (Light Mode) */
-  --color-purple-light: rgba(147, 51, 234, 0.12); /* Enhanced light purple for sections */
-  --color-purple-footer: rgba(147, 51, 234, 0.18); /* Slightly darker purple for footer */
+  --color-purple-light: rgba(135, 206, 235, 1); /* Enhanced light purple for sections */
+  --color-purple-footer: rgba(135, 206, 235, 1); /* Slightly darker purple for footer */
   --color-white: #ffffff; /* Pure white for alternating sections */
   
   /* Semantic Color Tokens (Light Mode) */
