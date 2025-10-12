@@ -1517,6 +1517,8 @@ section:nth-child(even) {
   transition: transform var(--duration-normal) var(--ease-standard);
 }
 
+
+
 .journey-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-lg);
@@ -1526,8 +1528,8 @@ section:nth-child(even) {
   width: 48px;
   height: 48px;
   border-radius: 9999px;
-  background: var(--color-primary);
-  color: var(--color-btn-primary-text);
+ background: rgba(255, 59, 48, 1);
+color: rgba(255, 255, 255, 1);
   display: inline-flex;
   align-items: center;
   justify-content: center;
