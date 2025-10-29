@@ -198,6 +198,7 @@
                 <li><a href="#destinations" class="nav-link">Destinations</a></li>
                 <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
                 <li><a href="#journey" class="nav-link">Journey</a></li>
+                <li><a href="#blog" class="nav-link">Blog</a></li>
                 <li><a href="#faq" class="nav-link">FAQ</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
@@ -456,6 +457,25 @@
             </div>
         </div>
     </section>
+
+    <!-- Blog Section - Add this after the Journey section and before FAQ section -->
+<section id="blog" class="blog">
+    <div class="container">
+        <div class="section-header">
+            <h2>Latest Insights & Updates</h2>
+            <p>Expert advice, tips, and updates on studying abroad</p>
+        </div>
+        <div class="blog-grid" id="blogPosts">
+            <!-- Blog posts will be loaded dynamically -->
+            <div class="blog-loading">Loading latest posts...</div>
+        </div>
+        <div class="blog-cta">
+            <a href="https://blog.evoverseas.com" target="_blank" class="btn btn--primary btn--lg">
+                View All Blog Posts
+            </a>
+        </div>
+    </div>
+</section>
 
     <!-- FAQ Section -->
     <section id="faq" class="faq">
@@ -765,6 +785,125 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-HTL90BKZXG');
+    </script>
+
+<!-- Blog Feed Integration Script -->
+    <script>
+    (function() {
+        // Function to load blog posts from Blogger using JSONP
+        function loadBlogPosts() {
+            const blogContainer = document.getElementById('blogPosts');
+            
+            if (!blogContainer) {
+                console.log('Blog container not found');
+                return;
+            }
+            
+            // Show loading state
+            blogContainer.innerHTML = '<div class="blog-loading">Loading latest posts...</div>';
+            
+            console.log('Loading blog posts via JSONP...');
+            
+            // Create callback function name
+            window.blogCallback = function(data) {
+                try {
+                    console.log('Blog feed data received:', data);
+                    
+                    // Check if feed has entries
+                    if (!data.feed || !data.feed.entry || data.feed.entry.length === 0) {
+                        console.log('No blog posts found');
+                        blogContainer.innerHTML = `
+                            <div class="blog-error">
+                                <h3 style="margin-bottom: 16px; color: var(--color-text);">No Posts Yet</h3>
+                                <p>We're working on creating great content. Check back soon!</p>
+                                <a href="https://blog.evoverseas.com" target="_blank" class="btn btn--outline" style="margin-top: 16px;">
+                                    Visit Our Blog
+                                </a>
+                            </div>
+                        `;
+                        return;
+                    }
+                    
+                    const posts = data.feed.entry;
+                    console.log(`Found ${posts.length} blog posts`);
+                    
+                    // Generate HTML for each post
+                    const postsHTML = posts.map((post, index) => {
+                        // Extract post data safely
+                        const title = post.title?.$t || 'Untitled Post';
+                        const link = post.link?.find(l => l.rel === 'alternate')?.href || 'https://blog.evoverseas.com';
+                        const content = post.content?.$t || post.summary?.$t || '';
+                        const plainText = content.replace(/<[^>]*>/g, '').substring(0, 150).trim();
+                        const excerpt = plainText ? plainText + '...' : 'Read this interesting article on our blog.';
+                        
+                        const publishedDate = post.published?.$t ? new Date(post.published.$t) : new Date();
+                        const published = publishedDate.toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric'
+                        });
+                        
+                        // Extract category/label
+                        const category = post.category && post.category.length > 0 
+                            ? post.category[0].term 
+                            : 'Study Abroad';
+                        
+                       
+                        
+                        return `
+    <article class="blog-card" onclick="window.open('${link}', '_blank')" style="animation-delay: ${index * 0.1}s">
+        <div class="blog-content">
+                                    <span class="blog-category">${category}</span>
+                                    <h3>${title}</h3>
+                                    <p>${excerpt}</p>
+                                    <div class="blog-meta">
+                                        <span><i class="far fa-calendar"></i> ${published}</span>
+                                        <span class="blog-read-more">Read More →</span>
+                                    </div>
+                                </div>
+                            </article>
+                        `;
+                    }).join('');
+                    
+                    blogContainer.innerHTML = postsHTML;
+                    console.log('Blog posts loaded successfully');
+                    
+                } catch (error) {
+                    console.error('Error processing blog data:', error);
+                    showBlogError();
+                }
+            };
+            
+            function showBlogError() {
+                blogContainer.innerHTML = `
+                    <div class="blog-error">
+                        <h3 style="margin-bottom: 16px; color: var(--color-text);">Coming Soon!</h3>
+                        <p>Our blog is being set up. Check back soon for expert insights and study abroad tips.</p>
+                        <a href="https://blog.evoverseas.com" target="_blank" class="btn btn--outline" style="margin-top: 16px;">
+                            Visit Our Blog
+                        </a>
+                    </div>
+                `;
+            }
+            
+            // Load blog feed using JSONP
+            const script = document.createElement('script');
+            script.src = 'https://blog.evoverseas.com/feeds/posts/default?alt=json-in-script&callback=blogCallback&max-results=3';
+            script.onerror = function() {
+                console.error('Failed to load blog feed');
+                showBlogError();
+            };
+            document.body.appendChild(script);
+        }
+
+        // Load blog posts when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadBlogPosts);
+        } else {
+            // DOM is already loaded
+            loadBlogPosts();
+        }
+    })();
     </script>
 
     <script src="app.js"></script>
