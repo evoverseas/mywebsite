@@ -1,46 +1,20 @@
-# robots.txt for https://evoverseas.com/
+# robots.txt for evoverseas.com
 
-# Allow all search engines
 User-agent: *
 Allow: /
 
-# Disallow admin or private areas (if any)
-# Disallow: /admin/
-# Disallow: /private/
-
 # Sitemap location
 Sitemap: https://evoverseas.com/sitemap.xml
-Sitemap: https://blog.evoverseas.com/sitemap.xml
 
-# Crawl-delay (optional - use only if needed)
-# Crawl-delay: 10
+# Block search engines from indexing admin or test pages
+Disallow: /admin/
+Disallow: /test/
+Disallow: /*.json$
 
-# Specific rules for major search engines
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 0
-
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 0
-
-User-agent: Slurp
-Allow: /
-
-# Allow CSS and JS files to be crawled (important for Google)
-User-agent: Googlebot
-Allow: /*.css
-Allow: /*.js
-
-User-agent: Googlebot-Image
+# Allow all crawlers to access main content
 Allow: /images/
+Allow: /css/
+Allow: /js/
 
-# Block bad bots (optional)
-User-agent: AhrefsBot
-Disallow: /
-
-User-agent: MJ12bot
-Disallow: /
-
-User-agent: SemrushBot
-Disallow: /
+# Crawl delay (optional, helps prevent server overload)
+Crawl-delay: 1
