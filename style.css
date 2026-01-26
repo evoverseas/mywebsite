@@ -141,21 +141,19 @@ body {
   padding: 0;
 }
 
-\n\n
+
 
 /* Remove all focus outlines globally */
-\n*:focus {
-  \n outline: none;
-  \n
+*:focus {
+  outline: none;
 }
 
-\n\nbutton:focus,
-\na:focus,
-\ninput:focus,
-\nselect:focus,
-\ntextarea:focus {
-  \n outline: none;
-  \n
+button:focus,
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
 }
 
 /* Base Typography */
@@ -720,16 +718,187 @@ section:nth-child(even) {
 }
 
 /* ============================================
+   ANNOUNCEMENT BANNER - Configurable
+   ============================================ */
+.announce-banner {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #7C3AED 0%, #6366F1 50%, #3B82F6 100%);
+  color: var(--color-white);
+  padding: 12px 24px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+  transition: all 0.3s ease;
+}
+
+.announce-banner[data-enabled="false"],
+.announce-banner.hidden {
+  display: none !important;
+}
+
+.announce-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.announce-icon {
+  font-size: 1.2rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.announce-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  font-family: var(--font-heading);
+}
+
+.announce-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--color-white);
+  color: var(--color-primary);
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.announce-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background: #f0f0ff;
+}
+
+.announce-close {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: var(--color-white);
+  font-size: 1.3rem;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.announce-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Adjust body padding when banner is visible */
+body.banner-visible {
+  --banner-height: 52px;
+}
+
+/* Mobile responsive banner */
+@media (max-width: 768px) {
+  .announce-banner {
+    padding: 8px 48px 8px 12px;
+    /* More compact on mobile */
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .announce-content {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .announce-icon {
+    display: none;
+  }
+
+  .announce-text {
+    font-size: 0.85rem;
+    line-height: 1.3;
+  }
+
+  .announce-cta {
+    padding: 7px 16px;
+    font-size: 0.8rem;
+  }
+
+  .announce-close {
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    font-size: 1.1rem;
+  }
+
+  body.banner-visible {
+    --banner-height: 80px;
+  }
+
+  /* Adjust hero padding for mobile - dynamic based on banner visibility */
+  .hero {
+    padding-top: 142px;
+    /* Default: 72px navbar + 70px extra for mobile */
+  }
+
+  body.banner-visible .hero {
+    padding-top: 240px !important;
+    /* When banner visible: increased spacing */
+  }
+}
+
+/* ============================================
    HERO SECTION - Premium Design
    ============================================ */
 .hero {
   min-height: 100vh;
-  padding: calc(var(--header-height) + 50px) 0 60px;
+  /* Default padding when banner is NOT visible */
+  padding-top: 122px;
+  /* 72px navbar + 50px extra */
+  padding-bottom: 60px;
   background: var(--gradient-hero);
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
+  transition: padding-top 0.3s ease;
+  /* Smooth transition when banner closes */
+}
+
+/* When banner is visible, add extra padding */
+body.banner-visible .hero {
+  padding-top: 174px;
+  /* 72px navbar + 52px banner + 50px extra */
 }
 
 /* ============================================
@@ -775,8 +944,34 @@ section:nth-child(even) {
 }
 
 /* ============================================
-   IMPROVED PASSPORT ANIMATION (Bottom Left)
-   Open book with page turning effect
+   GLOBE ANIMATION (Bottom Right of Hero)
+   ============================================ */
+.hero::after {
+  content: '🌍';
+  position: absolute;
+  bottom: 12%;
+  right: 5%;
+  font-size: 4.5rem;
+  opacity: 0.35;
+  animation: rotateGlobeSubtle 40s linear infinite;
+  z-index: 1;
+  will-change: transform;
+  transform: translateZ(0);
+  pointer-events: none;
+}
+
+@keyframes rotateGlobeSubtle {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   PASSPORT ANIMATION (Bottom Left of Hero)
    ============================================ */
 .hero .hero-content::before {
   content: '';
@@ -785,14 +980,14 @@ section:nth-child(even) {
   left: 4%;
   width: 55px;
   height: 70px;
-  /* Passport with visible pages */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 56'%3E%3C!-- Back pages --%3E%3Crect x='6' y='4' width='34' height='46' rx='2' fill='%23f5f5dc'/%3E%3Crect x='8' y='6' width='30' height='42' rx='1' fill='%23fffef0'/%3E%3C!-- Passport cover --%3E%3Crect x='2' y='2' width='36' height='50' rx='3' fill='%231a365d' stroke='%23c9a227' stroke-width='1.5'/%3E%3C!-- Gold emblem --%3E%3Ccircle cx='20' cy='18' r='9' fill='none' stroke='%23c9a227' stroke-width='1.2'/%3E%3Ccircle cx='20' cy='18' r='5' fill='none' stroke='%23c9a227' stroke-width='0.8'/%3E%3Cpath d='M20 11 L20 25 M13 18 L27 18' stroke='%23c9a227' stroke-width='0.6'/%3E%3C!-- PASSPORT text --%3E%3Crect x='8' y='32' width='24' height='3' fill='%23c9a227' rx='1'/%3E%3C!-- Decorative lines --%3E%3Crect x='10' y='38' width='20' height='2' fill='%23c9a227' rx='0.5' opacity='0.8'/%3E%3Crect x='12' y='43' width='16' height='1.5' fill='%23c9a227' rx='0.5' opacity='0.6'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 56'%3E%3Crect x='6' y='4' width='34' height='46' rx='2' fill='%23f5f5dc'/%3E%3Crect x='8' y='6' width='30' height='42' rx='1' fill='%23fffef0'/%3E%3Crect x='2' y='2' width='36' height='50' rx='3' fill='%231a365d' stroke='%23c9a227' stroke-width='1.5'/%3E%3Ccircle cx='20' cy='18' r='9' fill='none' stroke='%23c9a227' stroke-width='1.2'/%3E%3Ccircle cx='20' cy='18' r='5' fill='none' stroke='%23c9a227' stroke-width='0.8'/%3E%3Cpath d='M20 11 L20 25 M13 18 L27 18' stroke='%23c9a227' stroke-width='0.6'/%3E%3Crect x='8' y='32' width='24' height='3' fill='%23c9a227' rx='1'/%3E%3Crect x='10' y='38' width='20' height='2' fill='%23c9a227' rx='0.5' opacity='0.8'/%3E%3Crect x='12' y='43' width='16' height='1.5' fill='%23c9a227' rx='0.5' opacity='0.6'/%3E%3C/svg%3E");
   background-size: contain;
   background-repeat: no-repeat;
   opacity: 0.5;
   animation: passportBob 3s ease-in-out infinite;
   z-index: 1;
   will-change: transform;
+  pointer-events: none;
 }
 
 .hero .hero-content::after {
@@ -802,19 +997,14 @@ section:nth-child(even) {
   left: calc(4% + 30px);
   width: 22px;
   height: 55px;
-  /* Flipping page */
-  background: linear-gradient(to right,
-      rgba(255, 254, 240, 0.2) 0%,
-      rgba(255, 254, 240, 0.7) 30%,
-      rgba(255, 254, 240, 0.9) 50%,
-      rgba(255, 254, 240, 0.7) 70%,
-      rgba(255, 254, 240, 0.2) 100%);
+  background: linear-gradient(to right, rgba(255, 254, 240, 0.2) 0%, rgba(255, 254, 240, 0.7) 30%, rgba(255, 254, 240, 0.9) 50%, rgba(255, 254, 240, 0.7) 70%, rgba(255, 254, 240, 0.2) 100%);
   transform-origin: left center;
   animation: pageTurn 2s ease-in-out infinite;
   z-index: 2;
   opacity: 0.6;
   border-radius: 0 2px 2px 0;
   box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+  pointer-events: none;
 }
 
 @keyframes passportBob {
@@ -838,32 +1028,6 @@ section:nth-child(even) {
 
   50% {
     transform: perspective(150px) rotateY(-75deg) scaleX(0.9);
-  }
-}
-
-/* ============================================
-   SUBTLE ROTATING GLOBE
-   ============================================ */
-.hero::after {
-  content: '🌍';
-  position: absolute;
-  bottom: 12%;
-  right: 5%;
-  font-size: 4.5rem;
-  opacity: 0.35;
-  animation: rotateGlobeSubtle 40s linear infinite;
-  z-index: 1;
-  will-change: transform;
-  transform: translateZ(0);
-}
-
-@keyframes rotateGlobeSubtle {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
   }
 }
 
