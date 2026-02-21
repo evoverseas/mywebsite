@@ -334,6 +334,7 @@ pre {
 
 .btn--black:hover {
   background: #1a1a1a;
+  color: #FFFFFF;
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
@@ -341,11 +342,19 @@ pre {
 .btn--black:active {
   transform: translateY(0);
   background: #333333;
+  color: #FFFFFF;
+}
+
+.btn--black:visited,
+.btn--black:focus,
+.btn--black:active {
+  color: #FFFFFF;
 }
 
 .btn--black:focus-visible {
   outline: 2px solid #000000;
   outline-offset: 2px;
+  color: #FFFFFF;
 }
 
 .btn--full-width {
