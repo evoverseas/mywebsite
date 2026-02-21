@@ -1,58 +1,72 @@
 :root {
   /* ============================================
-     ADMITKARD-INSPIRED DESIGN SYSTEM
-     Purple/Blue Gradient Theme
+     EV OVERSEAS DESIGN SYSTEM
+     Minimalist Tech Theme - "Anti-Agent" Style
      ============================================ */
 
-  /* Primary Colors */
-  --color-primary: #7C3AED;
-  --color-primary-dark: #5B21B6;
-  --color-primary-light: #A78BFA;
-  --color-accent: #3B82F6;
-  --color-accent-light: #60A5FA;
+  /* Primary Brand Colors */
+  --color-primary: #0A2342;
+  /* Deep Navy Blue - Headers, Footer */
+  --color-primary-dark: #061526;
+  /* Darker Navy */
+  --color-primary-light: #1A3A5C;
+  /* Lighter Navy */
+  --color-accent: #00B4D8;
+  /* Bright Cyan - Buttons, Icons, Flow Elements */
+  --color-accent-light: #48CAE4;
+  /* Light Cyan */
+  --color-accent-dark: #0096C7;
+  /* Dark Cyan */
+  --color-urgency: #FF9F1C;
+  /* Orange - Priority CTAs */
+  --color-urgency-light: #FFB74D;
+  /* Light Orange */
 
-  /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
-  --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-button: linear-gradient(135deg, #7C3AED 0%, #6366F1 100%);
+  /* Gradients - Tech Flow Style */
+  --gradient-primary: linear-gradient(135deg, #0A2342 0%, #00B4D8 100%);
+  --gradient-hero: linear-gradient(135deg, #0A2342 0%, #1A3A5C 50%, #0A2342 100%);
+  --gradient-button: linear-gradient(135deg, #00B4D8 0%, #0096C7 100%);
+  --gradient-flow: linear-gradient(90deg, #00B4D8 0%, #48CAE4 50%, #00B4D8 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
 
   /* Neutral Colors */
   --color-white: #FFFFFF;
-  --color-black: #1F2937;
-  --color-gray-50: #F9FAFB;
-  --color-gray-100: #F3F4F6;
-  --color-gray-200: #E5E7EB;
-  --color-gray-300: #D1D5DB;
-  --color-gray-400: #9CA3AF;
-  --color-gray-500: #6B7280;
-  --color-gray-600: #4B5563;
-  --color-gray-700: #374151;
-  --color-gray-800: #1F2937;
-  --color-gray-900: #111827;
+  --color-black: #0A2342;
+  --color-gray-50: #F8FAFC;
+  --color-gray-100: #F1F5F9;
+  --color-gray-200: #E2E8F0;
+  --color-gray-300: #CBD5E1;
+  --color-gray-400: #94A3B8;
+  --color-gray-500: #64748B;
+  --color-gray-600: #475569;
+  --color-gray-700: #334155;
+  --color-gray-800: #1E293B;
+  --color-gray-900: #0F172A;
 
   /* Semantic Colors */
   --color-background: var(--color-white);
   --color-background-alt: var(--color-gray-50);
   --color-surface: var(--color-white);
-  --color-text: var(--color-gray-800);
+  --color-text: var(--color-primary);
   --color-text-body: var(--color-gray-600);
   --color-text-muted: var(--color-gray-400);
   --color-text-secondary: var(--color-gray-500);
   --color-border: var(--color-gray-200);
 
   --color-success: #10B981;
-  --color-warning: #F59E0B;
+  --color-warning: var(--color-urgency);
   --color-error: #EF4444;
 
-  /* Legacy Support */
-  --color-primary-navy: #1F2937;
-  --color-primary-orange: var(--color-primary);
-  --color-purple-light: #F5F3FF;
-  --color-purple-footer: #1F2937;
+  /* Legacy Support - Updated for EV OVERSEAS */
+  --color-primary-navy: #0A2342;
+  --color-primary-orange: var(--color-urgency);
+  --color-purple-light: #F0FDFA;
+  /* Light cyan tint for alternating sections */
+  --color-purple-footer: #0A2342;
 
-  /* Typography - AdmitKard Style */
-  --font-heading: 'Poppins', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
+  /* Typography - EV OVERSEAS Style */
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -78,7 +92,7 @@
   --space-16: 4rem;
   --space-20: 5rem;
 
-  /* Borders & Shadows */
+  /* Borders & Shadows - Tech Style */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
@@ -86,12 +100,13 @@
   --radius-2xl: 32px;
   --radius-full: 9999px;
 
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 12px rgba(124, 58, 237, 0.1);
-  --shadow-lg: 0 10px 40px rgba(124, 58, 237, 0.15);
-  --shadow-xl: 0 20px 60px rgba(124, 58, 237, 0.2);
-  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.06);
-  --shadow-hover: 0 12px 40px rgba(124, 58, 237, 0.25);
+  --shadow-sm: 0 1px 3px rgba(10, 35, 66, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 180, 216, 0.1);
+  --shadow-lg: 0 10px 40px rgba(10, 35, 66, 0.12);
+  --shadow-xl: 0 20px 60px rgba(10, 35, 66, 0.15);
+  --shadow-card: 0 4px 20px rgba(10, 35, 66, 0.06);
+  --shadow-hover: 0 12px 40px rgba(0, 180, 216, 0.2);
+  --shadow-glow: 0 0 30px rgba(0, 180, 216, 0.3);
 
   /* Layout */
   --container-sm: 640px;
@@ -306,6 +321,31 @@ pre {
 .btn--lg {
   padding: 18px 40px;
   font-size: var(--text-lg);
+}
+
+/* Modern Black Button - Flat, Premium, High-Contrast */
+.btn--black {
+  background: #000000;
+  color: #FFFFFF;
+  border: none;
+  box-shadow: none;
+  transition: all 0.25s ease;
+}
+
+.btn--black:hover {
+  background: #1a1a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn--black:active {
+  transform: translateY(0);
+  background: #333333;
+}
+
+.btn--black:focus-visible {
+  outline: 2px solid #000000;
+  outline-offset: 2px;
 }
 
 .btn--full-width {
@@ -572,7 +612,7 @@ select.form-control {
 
 
 /* END PERPLEXITY DESIGN SYSTEM */
-/* Custom styles for EV Overseas website */
+/* Custom styles for EV OVERSEAS website */
 
 /* Smooth scrolling */
 html {
@@ -698,8 +738,15 @@ section:nth-child(even) {
   color: var(--color-primary);
 }
 
-.nav-cta {
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   margin-left: 16px;
+}
+
+.nav-cta {
+  margin-left: 0;
 }
 
 .hamburger {
@@ -1101,9 +1148,27 @@ body.banner-visible .hero {
   border-radius: var(--radius-lg);
   border: 2px solid rgba(124, 58, 237, 0.2);
   min-width: 120px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   transition: all var(--transition-normal);
   animation: fadeInUp 0.8s ease-out 0.6s backwards;
   box-shadow: 0 4px 20px rgba(124, 58, 237, 0.15);
+}
+
+.stat-value-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0;
+}
+
+.stat-icon {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  line-height: 1.2;
+  display: block;
 }
 
 .stat:hover {
@@ -1184,6 +1249,31 @@ body.banner-visible .hero {
   justify-content: center;
   flex-wrap: wrap;
   max-width: 100%;
+}
+
+.hero-free-counselling {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.free-badge {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10B981;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.5px;
+}
+
+.free-text {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 /* Cost Calculator Section */
@@ -1442,8 +1532,7 @@ body.banner-visible .hero {
 /* Clean Section Headers */
 .section-header {
   text-align: center;
-  margin-bottom: 24px;
-  /* Compressed */
+  margin-bottom: 20px;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
@@ -1473,7 +1562,7 @@ body.banner-visible .hero {
 }
 
 .section-header h2 {
-  margin-bottom: var(--space-16);
+  margin-bottom: 10px;
 }
 
 .section-header p {
@@ -1483,7 +1572,7 @@ body.banner-visible .hero {
 
 /* About Section */
 .about {
-  padding: 80px 0;
+  padding: 50px 0;
   background: var(--color-background);
 }
 
@@ -1607,7 +1696,7 @@ body.banner-visible .hero {
 
 @media (min-width: 768px) {
   .services {
-    padding: 60px 0;
+    padding: 48px 0;
   }
 
   .services-grid {
@@ -1622,7 +1711,7 @@ body.banner-visible .hero {
 
 @media (min-width: 1024px) {
   .services {
-    padding: 80px 0;
+    padding: 60px 0;
   }
 }
 
@@ -1634,23 +1723,26 @@ body.banner-visible .hero {
 
 .destinations-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }
 
 .destination-card {
   background: var(--color-white);
-  padding: 28px;
+  padding: 20px 16px;
   border-radius: var(--radius-lg);
   border: 2px solid rgba(124, 58, 237, 0.1);
   transition: all var(--transition-normal);
   box-shadow: 0 4px 20px rgba(124, 58, 237, 0.08);
   cursor: pointer;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .destination-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
   box-shadow: 0 12px 40px rgba(124, 58, 237, 0.2);
   border-color: var(--color-primary);
 }
@@ -1660,11 +1752,11 @@ body.banner-visible .hero {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .destination-flag img {
-  width: 80px;
+  width: 64px;
   height: auto;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -1677,39 +1769,25 @@ body.banner-visible .hero {
 }
 
 .destination-flag .country-name {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--color-primary-navy);
   letter-spacing: 0.5px;
 }
 
-.destination-card h3 {
-  margin-bottom: 16px;
-  color: var(--color-primary-navy);
-  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-  font-weight: 700;
-}
-
-.destination-card>p {
-  margin-bottom: 24px;
-  color: var(--color-text-body);
-  line-height: 1.7;
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
-}
-
 .destination-info {
   text-align: left;
   background: rgba(124, 58, 237, 0.03);
-  padding: 16px;
+  padding: 12px;
   border-radius: var(--radius-md);
-  margin-top: 20px;
+  width: 100%;
 }
 
 .destination-info p {
-  font-size: var(--text-sm);
-  margin-bottom: 8px;
+  font-size: 0.75rem;
+  margin-bottom: 4px;
   color: var(--color-text);
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .destination-info p:last-child {
@@ -1723,20 +1801,20 @@ body.banner-visible .hero {
 
 @media (min-width: 640px) {
   .destinations-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 24px;
   }
 }
 
 @media (min-width: 768px) {
   .destinations {
-    padding: 60px 0;
+    padding: 48px 0;
   }
 }
 
 @media (min-width: 1024px) {
   .destinations {
-    padding: 80px 0;
+    padding: 60px 0;
   }
 
   .destinations-grid {
@@ -1826,7 +1904,7 @@ body.banner-visible .hero {
 
 @media (min-width: 768px) {
   .testimonials {
-    padding: 60px 0;
+    padding: 48px 0;
   }
 
   .testimonials-grid {
@@ -1841,13 +1919,13 @@ body.banner-visible .hero {
 
 @media (min-width: 1024px) {
   .testimonials {
-    padding: 80px 0;
+    padding: 60px 0;
   }
 }
 
 /* Blog Section */
 .blog {
-  padding: 60px 0;
+  padding: 40px 0;
   background: var(--color-white);
 }
 
@@ -1908,7 +1986,7 @@ body.banner-visible .hero {
 
 /* Journey Section */
 .journey {
-  padding: 60px 0;
+  padding: 40px 0;
   background: var(--color-background-alt);
 }
 
@@ -2073,7 +2151,7 @@ body.banner-visible .hero {
 
 @media (min-width: 768px) {
   .faq {
-    padding: 60px 0;
+    padding: 48px 0;
   }
 
   .faq-grid {
@@ -2088,7 +2166,7 @@ body.banner-visible .hero {
 
 @media (min-width: 1024px) {
   .faq {
-    padding: 80px 0;
+    padding: 60px 0;
   }
 
   .faq-grid {
@@ -3529,6 +3607,13 @@ section[id] {
    MOBILE BASE STYLES (Default < 768px)
    ============================================ */
 
+/* Mobile: override header height to match smaller navbar */
+@media (max-width: 767px) {
+  :root {
+    --header-height: 64px;
+  }
+}
+
 /* Enhanced Container for Mobile */
 .container {
   padding-left: 16px;
@@ -3552,7 +3637,15 @@ section[id] {
 }
 
 .nav-brand-text {
+  display: flex;
+}
+
+.nav-tagline {
   display: none;
+}
+
+.nav-logo {
+  font-size: 1.1rem;
 }
 
 .nav-menu {
@@ -4140,6 +4233,14 @@ select.form-control {
     display: flex;
   }
 
+  .nav-tagline {
+    display: block;
+  }
+
+  .nav-logo {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+  }
+
   /* Hero on Tablet */
   .hero {
     padding: 120px 0 60px;
@@ -4163,14 +4264,16 @@ select.form-control {
 
   .hero-stats {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
     gap: 16px;
   }
 
   .stat {
     padding: 20px 24px;
-    min-width: 130px;
+    min-width: 0;
+    flex: 1;
+    max-width: 200px;
   }
 
   .stat-number {
@@ -4343,7 +4446,9 @@ select.form-control {
 
   .stat {
     padding: 24px 32px;
-    min-width: 140px;
+    min-width: 0;
+    flex: 1;
+    max-width: 220px;
   }
 
   .stat-number {
@@ -4647,6 +4752,490 @@ button,
     max-width: 100%;
   }
 }
+
+/* ============================================
+   EV OVERSEAS SPECIFIC STYLES
+   ============================================ */
+
+/* Rebrand Announcement Banner */
+.rebrand-banner {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #0A2342 0%, #1A3A5C 50%, #0A2342 100%);
+  color: var(--color-white);
+  padding: 14px 24px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  box-shadow: 0 4px 20px rgba(10, 35, 66, 0.3);
+  transition: all 0.3s ease;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.rebrand-banner.hidden {
+  display: none !important;
+}
+
+.rebrand-banner strong {
+  color: var(--color-accent);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.rebrand-banner span {
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
+.rebrand-close {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: var(--color-white);
+  font-size: 1.2rem;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.rebrand-close:hover {
+  background: rgba(0, 180, 216, 0.3);
+}
+
+/* Glass Box Process Section */
+.glass-box {
+  background: var(--color-white);
+  padding: 50px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-flow);
+}
+
+.glass-box-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.glass-box-card {
+  background: var(--color-white);
+  border: 2px solid var(--color-gray-200);
+  border-radius: var(--radius-xl);
+  padding: 40px 32px;
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-box-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-button);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glass-box-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--color-accent);
+}
+
+.glass-box-card:hover::before {
+  opacity: 1;
+}
+
+.glass-box-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(0, 180, 216, 0.1) 0%, rgba(0, 180, 216, 0.05) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 2.5rem;
+}
+
+.glass-box-card h3 {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 16px;
+}
+
+.glass-box-card p {
+  color: var(--color-text-body);
+  font-size: var(--text-base);
+  line-height: 1.7;
+}
+
+/* Comparison Table Section */
+.comparison-section {
+  background: var(--color-gray-50);
+  padding: 50px 0;
+}
+
+.comparison-table {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 60px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.comparison-column {
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  box-shadow: var(--shadow-card);
+  border: 2px solid var(--color-gray-200);
+}
+
+.comparison-column.old-way {
+  border-color: var(--color-gray-300);
+}
+
+.comparison-column.EV OVERSEAS-way {
+  border-color: var(--color-accent);
+  background: linear-gradient(180deg, rgba(0, 180, 216, 0.03) 0%, var(--color-white) 100%);
+}
+
+.comparison-column.EV OVERSEAS-way::before {
+  content: '✓ RECOMMENDED';
+  display: block;
+  background: var(--gradient-button);
+  color: var(--color-white);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  width: fit-content;
+  margin: -20px auto 20px;
+  font-family: var(--font-heading);
+}
+
+.comparison-header {
+  text-align: center;
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--color-gray-100);
+  margin-bottom: 24px;
+}
+
+.comparison-header h3 {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.comparison-column.old-way .comparison-header h3 {
+  color: var(--color-gray-500);
+}
+
+.comparison-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comparison-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--color-gray-100);
+  font-size: var(--text-base);
+  color: var(--color-text-body);
+}
+
+.comparison-list li:last-child {
+  border-bottom: none;
+}
+
+.comparison-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.comparison-column.old-way .comparison-icon {
+  background: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
+}
+
+.comparison-column.EV OVERSEAS-way .comparison-icon {
+  background: rgba(0, 180, 216, 0.1);
+  color: var(--color-accent);
+}
+
+/* About Section - IT Professionals */
+.about-it {
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-it::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(0, 180, 216, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.about-it .section-header h2 {
+  color: var(--color-white);
+}
+
+.about-it .section-header p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.about-it-content {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  margin-top: 40px;
+}
+
+.about-it-text {
+  flex: 1;
+}
+
+.about-it-text p {
+  font-size: var(--text-lg);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 24px;
+}
+
+.about-it-pillars {
+  display: flex;
+  gap: 40px;
+  margin-top: 32px;
+}
+
+.about-pillar {
+  text-align: center;
+}
+
+.about-pillar-icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+.about-pillar h4 {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-accent);
+  margin: 0;
+}
+
+/* Updated Hero for EV OVERSEAS */
+.hero {
+  background: var(--gradient-hero);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 180, 216, 0.2) 0%, transparent 70%);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.hero h1 {
+  color: var(--color-white);
+}
+
+.hero-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--text-xl);
+}
+
+/* Updated Button Styles */
+.btn--primary {
+  background: var(--gradient-button);
+  color: var(--color-white);
+  box-shadow: var(--shadow-md);
+}
+
+.btn--primary:hover {
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-3px);
+}
+
+.btn--urgency {
+  background: linear-gradient(135deg, var(--color-urgency) 0%, var(--color-urgency-light) 100%);
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.btn--urgency:hover {
+  box-shadow: 0 12px 40px rgba(255, 159, 28, 0.3);
+  transform: translateY(-3px);
+}
+
+/* Footer CTA Section - Clean, Professional, High Contrast */
+.footer-cta {
+  background: #F8FAFC;
+  padding: 80px 0;
+  text-align: center;
+  border-top: 1px solid #E2E8F0;
+}
+
+.footer-cta h2 {
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 24px;
+}
+
+.footer-cta p {
+  font-size: var(--text-xl);
+  color: var(--color-gray-600);
+  margin-bottom: 32px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Data Flow Animation */
+@keyframes flowPulse {
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.flow-line {
+  position: absolute;
+  height: 2px;
+  background: var(--gradient-flow);
+  animation: flowPulse 3s ease-in-out infinite;
+}
+
+/* Responsive for new sections */
+@media (max-width: 1024px) {
+  .glass-box-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .comparison-table {
+    gap: 24px;
+  }
+
+  .about-it-content {
+    flex-direction: column;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .rebrand-banner {
+    padding: 12px 48px 12px 16px;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .rebrand-banner strong {
+    font-size: 1rem;
+  }
+
+  .rebrand-banner span {
+    font-size: 0.85rem;
+  }
+
+  .glass-box-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .glass-box-card {
+    padding: 32px 24px;
+  }
+
+  .comparison-table {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .comparison-column {
+    padding: 32px 24px;
+  }
+
+  .about-it-pillars {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .footer-cta h2 {
+    font-size: var(--text-2xl);
+  }
+}
+
+/* ============================================
+   END EV OVERSEAS SPECIFIC STYLES
+   ============================================ */
 
 /* ============================================
    END MOBILE-FIRST RESPONSIVE DESIGN SYSTEM

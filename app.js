@@ -710,7 +710,7 @@ function initAnnounceBanner() {
 }
 
 function updateBannerHeight() {
-    const banner = document.getElementById('announceBanner');
+    const banner = document.getElementById('announceBanner') || document.getElementById('rebrandBanner');
     if (banner && !banner.classList.contains('hidden')) {
         const height = banner.offsetHeight;
         document.body.style.setProperty('--banner-height', height + 'px');
@@ -728,3 +728,43 @@ window.closeBanner = function () {
         sessionStorage.setItem('bannerClosed', 'true');
     }
 };
+
+// ============================================
+// CLOSE ANNOUNCE BANNER (for onclick handler)
+// ============================================
+window.closeAnnounceBanner = function () {
+    const banner = document.getElementById('announceBanner');
+    if (banner) {
+        banner.classList.add('hidden');
+        document.body.classList.remove('banner-visible');
+        document.body.style.setProperty('--banner-height', '0px');
+        // Remember that user closed the banner for this session
+        sessionStorage.setItem('bannerClosed', 'true');
+    }
+};
+
+// Initialize announce banner on page load (auto-enable for this banner)
+document.addEventListener('DOMContentLoaded', function () {
+    const banner = document.getElementById('announceBanner');
+    if (banner) {
+        // Check if user has closed the banner in this session
+        const isClosed = sessionStorage.getItem('bannerClosed') === 'true';
+
+        if (!isClosed) {
+            banner.classList.remove('hidden');
+            document.body.classList.add('banner-visible');
+            // Set CSS variable for banner height
+            const height = banner.offsetHeight;
+            document.body.style.setProperty('--banner-height', height + 'px');
+            window.addEventListener('resize', () => {
+                if (!banner.classList.contains('hidden')) {
+                    document.body.style.setProperty('--banner-height', banner.offsetHeight + 'px');
+                }
+            });
+        } else {
+            banner.classList.add('hidden');
+            document.body.classList.remove('banner-visible');
+            document.body.style.setProperty('--banner-height', '0px');
+        }
+    }
+});
