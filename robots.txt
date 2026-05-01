@@ -15,4 +15,5 @@ Disallow: /google-apps-script.js
 # Allow static assets
 Allow: /images/
 Allow: /style.css
-Allow: /script.js
+Allow: /app.js
+Allow: /dashboard.html

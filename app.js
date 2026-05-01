@@ -149,26 +149,24 @@ document.addEventListener('DOMContentLoaded', function () {
             const formData = new FormData(contactForm);
             const data = Object.fromEntries(formData);
 
-            // Show loading state
+            // Show brief loading state with spinner
             const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Submitting...';
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:8px;"><svg width="18" height="18" viewBox="0 0 24 24" style="animation:spin 0.8s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="31.4 31.4" stroke-linecap="round"/></svg> Sending...</span>';
             submitBtn.disabled = true;
 
-            // Submit form to Google Sheets
-            submitFormToGoogleSheets(data)
-                .then(response => {
-                    showMessage('Thank you! Your application has been submitted successfully. We will contact you soon.', 'success');
-                    contactForm.reset();
-                })
-                .catch(error => {
-                    showMessage('Sorry, there was an error submitting your form. Please try again or contact us directly at +91-9666963756.', 'error');
-                    console.error('Form submission error:', error);
-                })
-                .finally(() => {
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                });
+            // Show success immediately (optimistic UI) — don't make user wait for Apps Script
+            setTimeout(() => {
+                showMessage(data.name || 'there', 'success');
+                contactForm.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 600);
+
+            // Send data in background (fire-and-forget)
+            submitFormToGoogleSheets(data).catch(error => {
+                console.error('Background submission error:', error);
+            });
         });
     }
 
@@ -442,128 +440,123 @@ function clearFormErrors() {
     });
 }
 
-function showMessage(message, type) {
+function showMessage(nameOrMessage, type) {
     // Remove any existing messages
-    const existingMessages = document.querySelectorAll('.form-success, .form-error');
+    const existingMessages = document.querySelectorAll('.form-message-overlay');
     existingMessages.forEach(msg => msg.remove());
 
-    // Create message element
-    const messageDiv = document.createElement('div');
-    messageDiv.className = type === 'success' ? 'form-success' : 'form-error';
-    messageDiv.textContent = message;
-
-    // Insert before the form
     const contactForm = document.getElementById('contactForm');
-    contactForm.parentNode.insertBefore(messageDiv, contactForm);
 
-    // Scroll to message
-    messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (type === 'success') {
+        // Premium success confirmation
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'form-message-overlay';
+        messageDiv.innerHTML = `
+            <div class="form-message-card success">
+                <div class="form-message-icon">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                        <circle cx="28" cy="28" r="28" fill="#059669" opacity="0.1"/>
+                        <circle cx="28" cy="28" r="20" fill="#059669" opacity="0.2"/>
+                        <path d="M20 28.5L25.5 34L36 22" stroke="#059669" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="checkmark-path"/>
+                    </svg>
+                </div>
+                <h3 class="form-message-title">Thank You, ${nameOrMessage}! 🎉</h3>
+                <p class="form-message-text">Your application has been submitted successfully. Our counselor will reach out to you within <strong>24 hours</strong>.</p>
+                <div class="form-message-actions">
+                    <a href="https://wa.me/919666963756?text=Hi%2C%20I%20just%20submitted%20a%20form%20on%20your%20website.%20My%20name%20is%20${encodeURIComponent(nameOrMessage)}." target="_blank" class="form-msg-btn whatsapp">
+                        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                    </a>
+                    <button class="form-msg-btn close" onclick="this.closest('.form-message-overlay').remove(); document.getElementById('contactForm').style.display=''">
+                        Close
+                    </button>
+                </div>
+            </div>
+        `;
 
-    // Auto-remove after 10 seconds
-    setTimeout(() => {
-        if (messageDiv.parentNode) {
-            messageDiv.remove();
-        }
-    }, 10000);
+        contactForm.parentNode.insertBefore(messageDiv, contactForm);
+        contactForm.style.display = 'none';
+
+        // Scroll to message
+        messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        // Show form again after 15 seconds
+        setTimeout(() => {
+            if (messageDiv.parentNode) {
+                messageDiv.style.opacity = '0';
+                messageDiv.style.transition = 'opacity 0.4s ease';
+                setTimeout(() => {
+                    messageDiv.remove();
+                    contactForm.style.display = '';
+                }, 400);
+            }
+        }, 15000);
+
+    } else {
+        // Error message
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'form-message-overlay';
+        messageDiv.innerHTML = `
+            <div class="form-message-card error">
+                <div class="form-message-icon">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                        <circle cx="28" cy="28" r="28" fill="#DC2626" opacity="0.1"/>
+                        <circle cx="28" cy="28" r="20" fill="#DC2626" opacity="0.2"/>
+                        <path d="M22 22L34 34M34 22L22 34" stroke="#DC2626" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h3 class="form-message-title">Oops! Something went wrong</h3>
+                <p class="form-message-text">${nameOrMessage}</p>
+                <div class="form-message-actions">
+                    <a href="tel:+919666963756" class="form-msg-btn whatsapp" style="background:#0A2342;">
+                        <i class="fas fa-phone-alt"></i> Call Us Directly
+                    </a>
+                    <button class="form-msg-btn close" onclick="this.closest('.form-message-overlay').remove(); document.getElementById('contactForm').style.display=''">
+                        Try Again
+                    </button>
+                </div>
+            </div>
+        `;
+
+        contactForm.parentNode.insertBefore(messageDiv, contactForm);
+        messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        setTimeout(() => {
+            if (messageDiv.parentNode) messageDiv.remove();
+        }, 10000);
+    }
 }
 
 // Google Sheets Integration Function
 async function submitFormToGoogleSheets(data) {
-    /*
-    DETAILED STEPS TO CONNECT FORM TO GOOGLE SHEETS:
-    
-    1. CREATE GOOGLE SHEET:
-       - Go to https://sheets.google.com
-       - Click "+" to create new sheet
-       - Name it "EV Overseas - Contact Forms"
-       - In row 1, add these headers: Name | Email | Phone | Destination | Course | Message | Timestamp
-    
-    2. SET UP GOOGLE APPS SCRIPT:
-       - In your sheet, click Extensions > Apps Script
-       - Delete default code and paste this:
-       
-       function doPost(e) {
-         try {
-           var sheet = SpreadsheetApp.getActiveSheet();
-           var data = JSON.parse(e.postData.contents);
-           
-           sheet.appendRow([
-             data.name || '',
-             data.email || '',
-             data.phone || '',
-             data.destination || '',
-             data.course || '',
-             data.message || '',
-             new Date()
-           ]);
-           
-           return ContentService
-             .createTextOutput(JSON.stringify({result: 'success', message: 'Data saved successfully'}))
-             .setMimeType(ContentService.MimeType.JSON);
-         } catch (error) {
-           return ContentService
-             .createTextOutput(JSON.stringify({result: 'error', message: error.toString()}))
-             .setMimeType(ContentService.MimeType.JSON);
-         }
-       }
-    
-    3. DEPLOY THE SCRIPT:
-       - Click "Deploy" > "New deployment" 
-       - Type: Web app
-       - Execute as: Me
-       - Who has access: Anyone
-       - Click "Deploy"
-       - Copy the Web App URL
-    
-    4. UPDATE THIS CODE:
-       - Replace the URL below with your actual deployment URL
-       - Test the form
-    
-    5. OPTIONAL - ADD EMAIL NOTIFICATIONS:
-       Add this to your Apps Script after the sheet.appendRow line:
-       
-       // Send email notification
-       GmailApp.sendEmail(
-         'info@evoverseas.com',
-         'New Contact Form Submission - EV Overseas',
-         `New inquiry received:\n\nName: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone}\nDestination: ${data.destination}\nCourse: ${data.course}\nMessage: ${data.message}`
-       );
-    */
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxDvs7F0II0wyRYKF8TTCDv3wSJzlI9kzPfrEmn2pvLtEXwNCDlVzrBDUygUPxGuP8d7w/exec';
 
-    // Replace this with your actual Google Apps Script URL
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwRtK3z-qp2sRCztkPbkG8ixpITP7tom6Ffq6ct8K7jZ0hQ5o8g03BJeJSzMb7y_W8NMw/exec';
+    try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'text/plain',
+            },
+            body: JSON.stringify(data),
+            redirect: 'follow'
+        });
 
-    // For demo purposes, simulate successful submission
-    // In production, uncomment the fetch request and use your actual URL
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            console.log('Form data that would be submitted:', data);
-            resolve({ result: 'success' });
-
-            // Uncomment this for actual Google Sheets integration:
-
-            fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'text/plain',
-                },
-                body: JSON.stringify(data)
-            })
-                .then(response => response.json())
-                .then(result => {
-                    if (result.result === 'success') {
-                        resolve(result);
-                    } else {
-                        reject(new Error(result.message || 'Form submission failed'));
-                    }
-                })
-                .catch(error => {
-                    console.error('Submission error:', error);
-                    reject(error);
-                });
-
-        }, 1000);
-    });
+        // Apps Script may return opaque response via redirect
+        // If we can parse JSON, great — otherwise treat as success if no error thrown
+        try {
+            const result = await response.json();
+            if (result.result === 'error') {
+                throw new Error(result.message || 'Form submission failed');
+            }
+            return result;
+        } catch (parseError) {
+            // Response wasn't JSON (common with Apps Script redirects) — treat as success
+            console.log('Form submitted (non-JSON response):', response.status);
+            return { result: 'success' };
+        }
+    } catch (error) {
+        console.error('Submission error:', error);
+        throw error;
+    }
 }
 
 // Improved email validation (less strict)
