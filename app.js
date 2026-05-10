@@ -110,12 +110,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Fix CTA buttons functionality
+    // Fix CTA buttons functionality — navigate to contact page
     const ctaButtons = document.querySelectorAll('.nav-cta');
     ctaButtons.forEach(btn => {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
-            smoothScrollTo('contact');
+            window.location.href = 'contact.html';
         });
     });
 
@@ -296,8 +296,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     <p><i class="fas fa-check-circle"></i> ${uni.acceptance} Acceptance Rate</p>
                 </div>
                 <div class="university-cta">
-                    <button class="btn btn--outline" onclick="window.location.href='#contact'">Enquire Now</button>
-                    <button class="btn btn--primary" onclick="window.location.href='#contact'">Apply Now</button>
+                    <button class="btn btn--outline" onclick="window.location.href='contact.html'">Enquire Now</button>
+                    <button class="btn btn--primary" onclick="window.location.href='contact.html'">Apply Now</button>
                 </div>
             </div>
         `).join('');
@@ -658,15 +658,18 @@ function trackEvent(eventName, eventData = {}) {
 }
 
 // Add form submission tracking (ADD this to your form submit handler)
-document.getElementById('contactForm').addEventListener('submit', function () {
-    if (typeof gtag !== 'undefined') {
-        gtag('event', 'form_submit', {
-            event_category: 'engagement',
-            event_label: 'contact_form',
-            value: 1
-        });
-    }
-});
+var contactFormEl = document.getElementById('contactForm');
+if (contactFormEl) {
+    contactFormEl.addEventListener('submit', function () {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'form_submit', {
+                event_category: 'engagement',
+                event_label: 'contact_form',
+                value: 1
+            });
+        }
+    });
+}
 
 
 function getPageSection(element) {

@@ -521,11 +521,11 @@
                 <li><a href="#destinations" class="nav-link">Destinations</a></li>
                 <li><a href="#blog" class="nav-link">Blog</a></li>
                 <li><a href="#faq" class="nav-link">FAQ</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
             <div class="nav-actions">
                 <a href="dashboard.html" class="btn btn--black btn--sm nav-dashboard-btn">Dashboard</a>
-                <button class="btn btn--primary nav-cta">Get Free Roadmap</button>
+                <a href="contact.html" class="btn btn--primary nav-cta" style="text-decoration:none;">Get Free Roadmap</a>
             </div>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -538,14 +538,14 @@
     <!-- ============================================
          ANNOUNCEMENT BANNER
          ============================================ -->
-    <div class="announce-banner" id="announceBanner">
+    <div class="announce-banner" id="announceBanner" data-enabled="true">
         <div class="announce-content">
             <div class="announce-message">
                 <span class="announce-icon">🎓</span>
                 <span class="announce-icon">🚀</span>
                 <span class="announce-text">Fall 2026 Admissions Open! Secure your spot now!</span>
             </div>
-            <a href="#contact" class="announce-cta" onclick="scrollToSection('contact'); return false;">
+            <a href="contact.html" class="announce-cta">
                 Get in Touch →
             </a>
         </div>
@@ -589,7 +589,7 @@
                         </div>
                     </div>
                     <div class="hero-buttons">
-                        <button class="btn btn--primary btn--lg" onclick="scrollToSection('contact')">Get Your Free
+                        <button class="btn btn--primary btn--lg" onclick="window.location.href='contact.html'">Get Your Free
                             Career Roadmap</button>
                         <button class="btn btn--black btn--lg" onclick="scrollToSection('glass-box')">See How We're
                             Different</button>
@@ -857,7 +857,7 @@
                     <h3>Free Consultation</h3>
                     <p>Discuss goals, timelines, and preferred destinations with our expert counselors — completely
                         free, from home via Google Meet. Book your session today.</p>
-                    <div class="journey-cta"><button class="btn btn--outline" onclick="scrollToSection('contact')">Book
+                    <div class="journey-cta"><button class="btn btn--outline" onclick="window.location.href='contact.html'">Book
                             Free Google Meet</button></div>
                 </article>
                 <article class="journey-card">
@@ -873,7 +873,7 @@
                     <h3>Application & Documentation</h3>
                     <p>Assistance with SOP, LORs, document verification, and timely application submission to
                         universities.</p>
-                    <div class="journey-cta"><button class="btn btn--outline" onclick="scrollToSection('contact')">Get
+                    <div class="journey-cta"><button class="btn btn--outline" onclick="window.location.href='contact.html'">Get
                             Help</button></div>
                 </article>
                 <article class="journey-card">
@@ -881,14 +881,14 @@
                     <h3>Offer & Scholarship Negotiation</h3>
                     <p>We review offers, negotiate scholarships where possible, and help you choose the best option.</p>
                     <div class="journey-cta"><button class="btn btn--outline"
-                            onclick="scrollToSection('contact')">Discuss Offers</button></div>
+                            onclick="window.location.href='contact.html'">Discuss Offers</button></div>
                 </article>
                 <article class="journey-card">
                     <div class="journey-step">5</div>
                     <h3>Education Loan Assistance</h3>
                     <p>End-to-end loan assistance with trusted partner banks and NBFCs. Transparent eligibility checks
                         with no hidden commissions.</p>
-                    <div class="journey-cta"><button class="btn btn--outline" onclick="scrollToSection('contact')">Get
+                    <div class="journey-cta"><button class="btn btn--outline" onclick="window.location.href='contact.html'">Get
                             Loan Help</button></div>
                 </article>
                 <article class="journey-card">
@@ -896,7 +896,7 @@
                     <h3>Visa & Pre-departure</h3>
                     <p>Complete visa filing support, interview preparation, and pre-departure briefing to ensure smooth
                         travel.</p>
-                    <div class="journey-cta"><button class="btn btn--outline" onclick="scrollToSection('contact')">Start
+                    <div class="journey-cta"><button class="btn btn--outline" onclick="window.location.href='contact.html'">Start
                             Visa Process</button></div>
                 </article>
             </div>
@@ -1045,87 +1045,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2>Get In Touch — Study Abroad Consultants in Hyderabad</h2>
-                <p>Ready to start your study abroad journey from Hyderabad?</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-form-container">
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-group">
-                            <label for="name" class="form-label">Full Name</label>
-                            <input type="text" id="name" name="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="form-label">Email Address</label>
-                            <input type="email" id="email" name="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone" class="form-label">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="destination" class="form-label">Preferred Study Destination</label>
-                            <select id="destination" name="destination" class="form-control" required>
-                                <option value="">Select Destination</option>
-                                <option value="USA">United States</option>
-                                <option value="UK">United Kingdom</option>
-                                <option value="Canada">Canada</option>
-                                <option value="Germany">Germany</option>
-                                <option value="Australia">Australia</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="course" class="form-label">Course/Program Interest</label>
-                            <input type="text" id="course" name="course" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message" class="form-label">Message/Query</label>
-                            <textarea id="message" name="message" class="form-control" rows="4"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn--primary btn--full-width">Submit Application</button>
-                    </form>
-                </div>
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <div class="contact-item">
-                        <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
-                        <div>
-                            <h4>Address</h4>
-                            <p>302A Aaltos A&M Trade Center<br>Himayat Nagar, Hyderabad - 500029</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon"><i class="fas fa-phone-alt"></i></span>
-                        <div>
-                            <h4>Phone</h4>
-                            <p>+91-9666963756</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon"><i class="fas fa-envelope"></i></span>
-                        <div>
-                            <h4>Email</h4>
-                            <p>info@evoverseas.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon"><i class="fab fa-whatsapp"></i></span>
-                        <div>
-                            <h4>WhatsApp</h4>
-                            <p>+919666963756</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- About Section - Transparency-First Philosophy -->
     <section id="about" class="about-it">
@@ -1220,7 +1140,7 @@
         <div class="container">
             <h2>Stop guessing. Start tracking.</h2>
             <p>Talk to a Career Architect today and see the difference radical transparency makes.</p>
-            <button class="btn btn--urgency btn--lg" onclick="scrollToSection('contact')">Get Your Free Career
+            <button class="btn btn--urgency btn--lg" onclick="window.location.href='contact.html'">Get Your Free Career
                 Roadmap</button>
         </div>
     </section>
