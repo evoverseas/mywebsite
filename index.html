@@ -28,7 +28,7 @@
         content="97% visa success rate. Free counselling via Google Meet. Transparent study abroad consulting from Hyderabad — USA, UK, Germany &amp; Australia.">
     <meta property="og:image" content="https://evoverseas.com/images/logo.png">
     <meta property="og:site_name" content="EV Overseas">
-    <meta property="og:locale" content="en_US">
+    <meta property="og:locale" content="en_IN">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
@@ -69,7 +69,7 @@
 
     <!-- Preload Critical Resources -->
     <link rel="preload"
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap"
         as="style">
 
     <!-- Theme Color for Mobile Browsers -->
@@ -84,9 +84,10 @@
     <style>
         :root {
             --color-primary: #0A2342;
-            --color-primary-dark: #061526;
+            --color-primary-dark: #051424;
+            --color-primary-light: #162E4A;
             --color-accent: #00B4D8;
-            --color-urgency: #FF9F1C;
+            --color-urgency: #FF6B00;
             --color-white: #FFF;
             --color-black: #0A2342;
             --color-gray-600: #475569;
@@ -94,8 +95,14 @@
             --color-border: #E2E8F0;
             --gradient-hero: linear-gradient(135deg, #0A2342 0%, #1A3A5C 50%, #0A2342 100%);
             --gradient-button: linear-gradient(135deg, #00B4D8 0%, #0096C7 100%);
-            --font-heading: 'Montserrat', sans-serif;
-            --font-body: 'Open Sans', sans-serif;
+            --gradient-premium: linear-gradient(135deg, #6366F1 0%, #00B4D8 100%);
+            --gradient-cta: linear-gradient(135deg, #FF6B00 0%, #FF9F1C 100%);
+            --font-heading: 'Plus Jakarta Sans', 'Montserrat', sans-serif;
+            --font-body: 'Inter', 'Open Sans', sans-serif;
+            --space-section-desktop: 48px 0;
+            --space-section-tablet: 36px 0;
+            --space-section-mobile: 24px 0;
+            --space-section-large-desktop: 60px 0;
             --text-base: 1rem;
             --text-5xl: 3.5rem;
             --text-6xl: 4.5rem;
@@ -104,7 +111,7 @@
             --radius-lg: 16px;
             --shadow-sm: 0 1px 3px rgba(10, 35, 66, .06);
             --shadow-md: 0 4px 12px rgba(0, 180, 216, .1);
-            --transition-normal: .3s cubic-bezier(.4, 0, .2, 1)
+            --transition-normal: .3s cubic-bezier(.16, 1, 0.3, 1)
         }
 
         *,
@@ -281,7 +288,7 @@
 
     <!-- Load EV Overseas fonts -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
     <!-- Main Stylesheet -->
@@ -695,6 +702,307 @@
         </div>
     </section>
 
+    <!-- ============================================
+         INTERACTIVE STUDENT ABROAD HUB
+         ============================================ -->
+    <section id="hub" class="abroad-hub-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Interactive Student Abroad Hub</h2>
+                <p>Match with global universities, calculate realistic study budgets, and search for active international scholarships instantly.</p>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="hub-tabs">
+                <button class="hub-tab-btn active" data-tab="quiz">
+                    <i class="fas fa-graduation-cap"></i> Smart Profile Matcher
+                </button>
+                <button class="hub-tab-btn" data-tab="calculator">
+                    <i class="fas fa-calculator"></i> Cost & Budget Estimator
+                </button>
+                <button class="hub-tab-btn" data-tab="scholarships">
+                    <i class="fas fa-award"></i> International Scholarships
+                </button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div class="hub-tab-content">
+
+                <!-- TAB 1: Smart Match & Eligibility Quiz -->
+                <div class="hub-tab-pane active" id="pane-quiz">
+                    <div class="hub-glass-card">
+                        <div class="quiz-progress-container">
+                            <div class="quiz-steps-info">
+                                <span id="quiz-step-text">Step 1 of 3: Academic Destination</span>
+                                <span id="quiz-percent-text">33% Complete</span>
+                            </div>
+                            <div class="quiz-progress-bar">
+                                <div class="quiz-progress-fill" id="quiz-progress" style="width: 33%;"></div>
+                            </div>
+                        </div>
+
+                        <form id="hubQuizForm" novalidate>
+                            <!-- Quiz Step 1: Destination -->
+                            <div class="quiz-step active" data-step="1">
+                                <h3 class="quiz-question">Where do you want to pursue your higher education?</h3>
+                                <div class="quiz-options-grid">
+                                    <div class="quiz-option-card" data-value="USA">
+                                        <div class="quiz-option-icon">🇺🇸</div>
+                                        <div class="quiz-option-text">
+                                            <h4>United States (USA)</h4>
+                                            <p>Top STEM research & high tech pay</p>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option-card" data-value="UK">
+                                        <div class="quiz-option-icon">🇬🇧</div>
+                                        <div class="quiz-option-text">
+                                            <h4>United Kingdom (UK)</h4>
+                                            <p>1-Year Masters & legacy brands</p>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option-card" data-value="Germany">
+                                        <div class="quiz-option-icon">🇩🇪</div>
+                                        <div class="quiz-option-text">
+                                            <h4>Germany</h4>
+                                            <p>Zero tuition fees & strong industry</p>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option-card" data-value="Australia">
+                                        <div class="quiz-option-icon">🇦🇺</div>
+                                        <div class="quiz-option-text">
+                                            <h4>Australia</h4>
+                                            <p>2-Year PR post-study work pathways</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="quiz-destination" id="quiz-destination" value="">
+
+                                <div class="quiz-form-group">
+                                    <label for="quiz-degree">Intended Degree Type</label>
+                                    <select id="quiz-degree" class="quiz-select">
+                                        <option value="Masters" selected>Masters / Post-Graduate</option>
+                                        <option value="Bachelors">Bachelors / Under-Graduate</option>
+                                        <option value="PhD">PhD / Doctorate</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Quiz Step 2: Academics -->
+                            <div class="quiz-step" data-step="2">
+                                <h3 class="quiz-question">Tell us about your academic profile</h3>
+                                <div class="quiz-form-group">
+                                    <label for="quiz-gpa">Current CGPA / Percentage <span id="gpa-val" class="quiz-range-val">8.0 CGPA</span></label>
+                                    <input type="range" id="quiz-gpa" min="5.0" max="10.0" step="0.1" value="8.0" class="quiz-input" style="padding: 0; height: 6px;">
+                                </div>
+
+                                <div class="quiz-form-group">
+                                    <label for="quiz-english-test">English Eligibility Test</label>
+                                    <select id="quiz-english-test" class="quiz-select">
+                                        <option value="IELTS">IELTS</option>
+                                        <option value="TOEFL">TOEFL</option>
+                                        <option value="PTE">PTE</option>
+                                        <option value="None" selected>Not Yet Taken / Waiver Preferred</option>
+                                    </select>
+                                </div>
+
+                                <div class="quiz-form-group" id="english-score-group" style="display: none;">
+                                    <label for="quiz-english-score">Your Score / Expected Score</label>
+                                    <input type="number" id="quiz-english-score" placeholder="e.g. 7.0 for IELTS, 95 for TOEFL" class="quiz-input" min="0" step="0.5">
+                                </div>
+                            </div>
+
+                            <!-- Quiz Step 3: Locked Results (Lead Capture overlay) -->
+                            <div class="quiz-step" data-step="3">
+                                <div class="quiz-results-wrapper">
+                                    <!-- Blurry results preview background -->
+                                    <div class="quiz-blurred-results">
+                                        <div class="quiz-results-grid">
+                                            <div class="uni-match-card">
+                                                <div class="uni-match-header">
+                                                    <span class="uni-match-badge">Top Tier Match</span>
+                                                    <span>92% Fit</span>
+                                                </div>
+                                                <h4>Northeastern University</h4>
+                                                <p class="uni-match-detail"><i class="fas fa-map-marker-alt"></i> Boston, USA</p>
+                                                <p class="uni-match-detail"><i class="fas fa-money-bill-wave"></i> Tuition: $32,000/yr</p>
+                                            </div>
+                                            <div class="uni-match-card">
+                                                <div class="uni-match-header">
+                                                    <span class="uni-match-badge">Target Match</span>
+                                                    <span>88% Fit</span>
+                                                </div>
+                                                <h4>University of Texas</h4>
+                                                <p class="uni-match-detail"><i class="fas fa-map-marker-alt"></i> Arlington, USA</p>
+                                                <p class="uni-match-detail"><i class="fas fa-money-bill-wave"></i> Tuition: $24,000/yr</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Floating lead locked box -->
+                                    <div class="quiz-locked-overlay">
+                                        <div class="unlock-card">
+                                            <button type="button" class="unlock-close-btn" aria-label="Close & Unlock Matches">×</button>
+                                            <span class="free-badge">🎉 MATCHES COMPUTED!</span>
+                                            <h3>Unlock Your Matching Universities</h3>
+                                            <p>We found <strong>5+ matching universities</strong> matching your GPA and destination criteria. Enter your details to view the list and get a free personalized timeline.</p>
+                                            
+                                            <div class="quiz-form-group" style="text-align: left;">
+                                                <input type="text" id="quiz-name" placeholder="Full Name" class="quiz-input" required style="margin-bottom: 12px;">
+                                                <input type="email" id="quiz-email" placeholder="Email Address" class="quiz-input" required style="margin-bottom: 12px;">
+                                                <input type="tel" id="quiz-phone" placeholder="Phone Number (WhatsApp preferred)" class="quiz-input" required style="margin-bottom: 16px;">
+                                            </div>
+
+                                            <button type="submit" class="btn btn--primary" style="width: 100%;">Unlock Matches & Get Free Consultation</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Navigation Buttons -->
+                            <div class="quiz-nav-buttons" id="quiz-nav">
+                                <button type="button" class="btn btn--outline" id="quiz-prev-btn" style="visibility: hidden;">Back</button>
+                                <button type="button" class="btn btn--primary" id="quiz-next-btn">Next Step <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- TAB 2: Cost & Living Calculator -->
+                <div class="hub-tab-pane" id="pane-calculator">
+                    <div class="hub-glass-card">
+                        <div class="calc-container">
+                            <!-- Inputs -->
+                            <div class="calc-inputs-panel">
+                                <h3 style="font-family:var(--font-heading); color:var(--color-primary); font-weight:700; margin-bottom:12px;">Select Study Options</h3>
+                                
+                                <div class="quiz-form-group">
+                                    <label for="calc-country">Destination Country</label>
+                                    <select id="calc-country" class="quiz-select">
+                                        <option value="USA" selected>United States (USA)</option>
+                                        <option value="UK">United Kingdom (UK)</option>
+                                        <option value="Germany">Germany</option>
+                                        <option value="Australia">Australia</option>
+                                    </select>
+                                </div>
+
+                                <div class="quiz-form-group">
+                                    <label for="calc-tuition">Estimated Annual Tuition (INR)<span id="calc-tuition-val" class="quiz-range-val">₹25 Lakhs</span></label>
+                                    <input type="range" id="calc-tuition" min="0" max="50" step="1" value="25" class="quiz-input" style="padding:0; height:6px;">
+                                </div>
+
+                                <div class="quiz-form-group">
+                                    <label for="calc-rent">Accommodation Tier</label>
+                                    <select id="calc-rent" class="quiz-select">
+                                        <option value="shared" selected>Shared Student Apartment (Saver)</option>
+                                        <option value="private">Private Studio / Single Bed (Standard)</option>
+                                        <option value="campus">On-Campus Residence Hall (Premium)</option>
+                                    </select>
+                                </div>
+
+                                <div class="quiz-form-group">
+                                    <label for="calc-lifestyle">Lifestyle & Food Expenses</label>
+                                    <select id="calc-lifestyle" class="quiz-select">
+                                        <option value="budget" selected>Self-Cooking & Public Transit (Budget)</option>
+                                        <option value="moderate">Dining Out & Moderate Shopping (Standard)</option>
+                                        <option value="comfort">Frequent Dining & Entertainment (Comfort)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Visual Outputs -->
+                            <div class="calc-results-panel">
+                                <div class="calc-results-header">
+                                    <h3>Total Annual Cost Estimate</h3>
+                                    <span id="calc-total" class="calc-total-amount">₹32.4 Lakhs</span>
+                                    <p style="font-size: var(--text-xs); color: var(--color-gray-500); margin-top: 4px;">Convertible to Education Loan with Low Interest Rate</p>
+                                </div>
+
+                                <div class="cost-breakdown-list">
+                                    <!-- Tuition -->
+                                    <div class="cost-item">
+                                        <div class="cost-item-header">
+                                            <span>University Tuition Fees</span>
+                                            <span id="item-tuition">₹25.0 Lakhs</span>
+                                        </div>
+                                        <div class="cost-progress-bar">
+                                            <div class="cost-progress-fill fill-tuition" id="bar-tuition" style="width: 77%;"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Rent -->
+                                    <div class="cost-item">
+                                        <div class="cost-item-header">
+                                            <span>Rent & Accommodation</span>
+                                            <span id="item-rent">₹4.2 Lakhs</span>
+                                        </div>
+                                        <div class="cost-progress-bar">
+                                            <div class="cost-progress-fill fill-rent" id="bar-rent" style="width: 13%;"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Food & Living -->
+                                    <div class="cost-item">
+                                        <div class="cost-item-header">
+                                            <span>Food & Living Expenses</span>
+                                            <span id="item-living">₹2.4 Lakhs</span>
+                                        </div>
+                                        <div class="cost-progress-bar">
+                                            <div class="cost-progress-fill fill-living" id="bar-living" style="width: 7%;"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Visa & Insurance -->
+                                    <div class="cost-item">
+                                        <div class="cost-item-header">
+                                            <span>Insurance, Visas & Airfare</span>
+                                            <span id="item-insurance">₹0.8 Lakhs</span>
+                                        </div>
+                                        <div class="cost-progress-bar">
+                                            <div class="cost-progress-fill fill-insurance" id="bar-insurance" style="width: 3%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn--primary calc-pdf-btn" id="calc-lead-trigger">
+                                    <i class="fas fa-file-pdf" style="margin-right: 8px;"></i> Get detailed Expense PDF on WhatsApp
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: Scholarship Explorer -->
+                <div class="hub-tab-pane" id="pane-scholarships">
+                    <div class="hub-glass-card">
+                        <!-- Filters -->
+                        <div class="scholarship-filter-bar">
+                            <input type="text" id="sch-search" placeholder="Search by name, eligibility..." class="sch-search-input">
+                            <select id="sch-country" class="quiz-select">
+                                <option value="all" selected>All Countries</option>
+                                <option value="USA">USA</option>
+                                <option value="UK">UK</option>
+                                <option value="Germany">Germany</option>
+                                <option value="Australia">Australia</option>
+                            </select>
+                            <select id="sch-type" class="quiz-select">
+                                <option value="all" selected>All Types</option>
+                                <option value="government">Government</option>
+                                <option value="university">University-Specific</option>
+                                <option value="external">Private Trust</option>
+                            </select>
+                        </div>
+
+                        <!-- Scholarship Grid -->
+                        <div class="scholarship-grid" id="scholarship-results-grid">
+                            <!-- Populated dynamically via app.js -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
@@ -1086,7 +1394,7 @@
     </section>
 
     <!-- Local SEO Content Section -->
-    <section id="location" class="location-section" style="padding:60px 0;background:#f8fafc;">
+    <section id="location" class="location-section" style="padding: var(--space-section-large-desktop); background: #f8fafc;">
         <div class="container">
             <div class="section-header">
                 <h2>Visit EV Overseas in Hyderabad</h2>
@@ -1344,6 +1652,61 @@
             }
         })();
     </script>
+
+    <!-- ============================================
+         FLOATING DRAWER FOR QUICK ELIGIBILITY CHECK
+         ============================================ -->
+    <button id="drawer-toggle" class="drawer-toggle-btn">
+        <i class="fas fa-magic"></i> 45s Profile Matcher
+    </button>
+
+    <div id="quick-match-drawer" class="quick-match-drawer">
+        <div class="drawer-header">
+            <h3>45s Eligibility Check</h3>
+            <button class="drawer-close-btn" id="drawer-close" aria-label="Close drawer">×</button>
+        </div>
+        <div class="drawer-body">
+            <span class="free-badge">🔥 100% FREE MATCHING</span>
+            <p style="font-size: var(--text-sm); margin-bottom: 20px; color: var(--color-gray-600);">Get matched to top international universities in less than 45 seconds.</p>
+            
+            <form id="drawerForm" class="drawer-form" novalidate>
+                <div class="quiz-form-group">
+                    <label for="drawer-name">Full Name</label>
+                    <input type="text" id="drawer-name" placeholder="Enter your full name" class="quiz-input" required>
+                </div>
+                <div class="quiz-form-group">
+                    <label for="drawer-phone">WhatsApp Number</label>
+                    <input type="tel" id="drawer-phone" placeholder="Enter your phone number" class="quiz-input" required>
+                </div>
+                <div class="quiz-form-group">
+                    <label for="drawer-destination">Preferred Country</label>
+                    <select id="drawer-destination" class="quiz-select">
+                        <option value="USA">USA</option>
+                        <option value="UK">UK</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Australia">Australia</option>
+                    </select>
+                </div>
+                <div class="quiz-form-group">
+                    <label for="drawer-gpa">Current CGPA / Percentage</label>
+                    <input type="text" id="drawer-gpa" placeholder="e.g. 8.5 CGPA or 78%" class="quiz-input" required>
+                </div>
+                <div class="quiz-form-group">
+                    <label for="drawer-degree">Intended Course Degree</label>
+                    <select id="drawer-degree" class="quiz-select">
+                        <option value="Masters">Masters / PG</option>
+                        <option value="Bachelors">Bachelors / UG</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn--primary">Get Matching Universities</button>
+            </form>
+
+            <div class="drawer-promo">
+                <p><strong>Over 500+ successful matches</strong> processed this month with a 97% visa success rate.</p>
+            </div>
+        </div>
+    </div>
 
     <script src="app.js" defer></script>
 </body>

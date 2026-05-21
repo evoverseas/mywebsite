@@ -18,7 +18,7 @@
     --dash-accent: #00B4D8;
     --dash-accent-glow: rgba(0, 180, 216, 0.1);
     --dash-success: #10B981;
-    --dash-warning: #FF9F1C;
+    --dash-warning: #FF6B00;
     --dash-danger: #EF4444;
     --dash-pending: #7C3AED;
     --dash-info: #3B82F6;
@@ -28,7 +28,11 @@
     --dash-shadow: 0 4px 20px rgba(10, 35, 66, 0.06);
     --dash-shadow-md: 0 4px 12px rgba(0, 180, 216, 0.1);
     --dash-shadow-hover: 0 12px 40px rgba(0, 180, 216, 0.2);
-    --dash-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --dash-transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    
+    /* Typography Tokens */
+    --dash-font-heading: 'Plus Jakarta Sans', 'Montserrat', sans-serif;
+    --dash-font-body: 'Inter', 'Open Sans', sans-serif;
 }
 
 /* ── Base Reset for Dashboard ────────────────────────────── */
@@ -36,7 +40,7 @@
     background: var(--dash-bg);
     min-height: 100vh;
     color: var(--dash-text);
-    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--dash-font-body);
 }
 
 .dashboard-page *,
@@ -118,7 +122,7 @@
 }
 
 .login-card h1 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--dash-font-heading);
     font-size: 1.75rem;
     font-weight: 700;
     color: var(--dash-text-heading);
@@ -169,7 +173,7 @@
     color: #3C4043;
     border: 2px solid #E2E8F0;
     border-radius: 100px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: var(--dash-font-body);
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
@@ -249,7 +253,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--dash-font-heading);
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--dash-text-heading);
@@ -263,7 +267,7 @@
     border: 1px solid var(--dash-border);
     border-radius: var(--dash-radius-sm);
     color: var(--dash-text-heading);
-    font-family: 'Open Sans', sans-serif;
+    font-family: var(--dash-font-body);
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
@@ -307,7 +311,7 @@
 }
 
 .app-badge-university {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--dash-font-heading);
     font-size: 1.05rem;
     font-weight: 700;
     color: var(--dash-text-heading);
@@ -321,7 +325,7 @@
 
 
 .welcome-section h1 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--dash-font-heading);
     font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: 700;
     color: var(--dash-text-heading);
@@ -431,7 +435,7 @@
 }
 
 .status-card-value {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--dash-font-heading);
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--dash-text-heading);
@@ -448,7 +452,7 @@
 }
 
 .section-title {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--dash-font-heading);
     font-size: 1.15rem;
     font-weight: 700;
     color: var(--dash-text-heading);
@@ -499,7 +503,7 @@
 
 .progress-percentage {
     text-align: right;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--dash-font-heading);
     font-size: 0.9rem;
     font-weight: 700;
     color: var(--dash-accent);
@@ -525,7 +529,7 @@
     align-items: center;
     justify-content: center;
     margin: 0 auto 10px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--dash-font-heading);
     font-size: 0.85rem;
     font-weight: 700;
     transition: all var(--dash-transition);
@@ -815,12 +819,12 @@
     font-size: 1.5rem;
     color: white;
     font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--dash-font-heading);
     flex-shrink: 0;
 }
 
 .counselor-info h3 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--dash-font-heading);
     font-size: 1rem;
     font-weight: 700;
     color: var(--dash-text-heading);
@@ -958,7 +962,7 @@
 }
 
 .error-screen h2 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--dash-font-heading);
     font-size: 1.3rem;
     color: var(--dash-text-heading);
     margin-bottom: 8px;
