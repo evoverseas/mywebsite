@@ -380,66 +380,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // STUDENT ABROAD HUB INTERACTIVE ENGINES
     // ============================================
 
-    // Dynamic lead source context variables
-    let leadSource = 'drawer';
-    let selectedScholarshipName = '';
-    let selectedScholarshipCountry = '';
-    let originalDrawerBodyHtml = '';
-
-    const drawerBodyEl = document.querySelector('.drawer-body');
-    if (drawerBodyEl) {
-        originalDrawerBodyHtml = drawerBodyEl.innerHTML;
-    }
-
-    // Helper to open drawer with context
+    // Helper to open drawer with context (Redirects directly to contact.html)
     window.openDrawerWithContext = function (source, context = {}) {
-        const drawer = document.getElementById('quick-match-drawer');
-        if (!drawer) return;
-
-        leadSource = source;
-        drawer.classList.add('open');
-
-        // Restore original body content first (in case success screen was showing)
-        const drawerBody = drawer.querySelector('.drawer-body');
-        if (drawerBody && originalDrawerBodyHtml) {
-            drawerBody.innerHTML = originalDrawerBodyHtml;
-            // Re-bind the submit event handler since the form got replaced!
-            bindDrawerFormSubmit();
-        }
-
-        const drawerHeaderTitle = drawer.querySelector('.drawer-header h3');
-        const drawerGpaLabel = drawer.querySelector('label[for="drawer-gpa"]');
-        const drawerGpaInput = document.getElementById('drawer-gpa');
-        const drawerDestSelect = document.getElementById('drawer-destination');
-
-        if (source === 'calculator') {
-            if (drawerHeaderTitle) drawerHeaderTitle.textContent = `Get ${context.country} Expense PDF`;
-            if (drawerGpaLabel) drawerGpaLabel.textContent = `Current CGPA / Percentage (Optional)`;
-            if (drawerGpaInput) {
-                drawerGpaInput.placeholder = `e.g. 8.5 CGPA (Helps match scholarships)`;
-                drawerGpaInput.value = `Inquired via Cost Calculator`;
-            }
-            if (drawerDestSelect) drawerDestSelect.value = context.country;
-        } else if (source === 'scholarship') {
-            selectedScholarshipName = context.scholarshipName;
-            selectedScholarshipCountry = context.scholarshipCountry;
-
-            if (drawerHeaderTitle) drawerHeaderTitle.textContent = `Scholarship Eligibility`;
-            if (drawerGpaLabel) drawerGpaLabel.textContent = `Your GPA / Academic Score`;
-            if (drawerGpaInput) {
-                drawerGpaInput.placeholder = `e.g. 8.5 CGPA (Required for evaluation)`;
-                drawerGpaInput.value = ``;
-            }
-            if (drawerDestSelect) drawerDestSelect.value = context.scholarshipCountry;
-        } else {
-            // standard drawer
-            if (drawerHeaderTitle) drawerHeaderTitle.textContent = `Quick Eligibility Check`;
-            if (drawerGpaLabel) drawerGpaLabel.textContent = `Current CGPA / Percentage`;
-            if (drawerGpaInput) {
-                drawerGpaInput.placeholder = `e.g. 8.5 CGPA or 78%`;
-                drawerGpaInput.value = ``;
-            }
-        }
+        window.location.href = 'contact.html';
     };
 
     // 1. Data Repositories

@@ -32,7 +32,7 @@ let currentApplicationIndex = 0;
 let progressChart = null;
 
 // ── INITIALIZATION ─────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', async function () {
+document.addEventListener('DOMContentLoaded', function () {
     // Check if URL has ?demo=true or #demo parameter
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('demo') === 'true' || window.location.hash === '#demo') {
@@ -49,33 +49,124 @@ document.addEventListener('DOMContentLoaded', async function () {
         demoBtn.addEventListener('click', loadDemoMode);
     }
 
-    // Initialize Clerk Authentication
-    initClerkAuth();
+    // Initialize Clerk Authentication asynchronously without blocking
+    setTimeout(initClerkAuth, 100);
 });
+
+// ── Demo Mode Preview ──────────────────────────────────────
+function loadDemoMode() {
+    currentUser = {
+        name: "Rahul Sharma (Demo)",
+        email: "rahul.sharma.demo@evoverseas.com",
+        picture: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80",
+        given_name: "Rahul"
+    };
+
+    studentData = {
+        success: true,
+        isDemo: true,
+        student: {
+            name: "Rahul Sharma",
+            email: "rahul.sharma.demo@evoverseas.com",
+            phone: "+91 98765 43210",
+            counselorName: "Siddharth V.",
+            counselorRole: "Senior Overseas Education Lead (USA & UK)",
+            counselorPhone: "+91 96669 63756",
+            counselorEmail: "siddharth@evoverseas.com"
+        },
+        applications: [
+            {
+                university: "Northeastern University",
+                country: "USA",
+                intake: "Fall 2026",
+                degree: "MS in Computer Science",
+                overallStatus: "Offer Received",
+                currentStep: 4,
+                documents: [
+                    { name: "Passport (First & Last Page)", status: "Approved", link: "#" },
+                    { name: "Bachelor's Transcripts & Degree", status: "Approved", link: "#" },
+                    { name: "Statement of Purpose (SOP)", status: "Approved", link: "#" },
+                    { name: "Letters of Recommendation (3 LORs)", status: "Approved", link: "#" },
+                    { name: "IELTS Scorecard (7.5 Overall)", status: "Approved", link: "#" },
+                    { name: "Financial Savings & Bank Solvency", status: "Under Review", link: "#" },
+                    { name: "DS-160 & I-20 Form Request", status: "Pending Upload", link: "#" }
+                ],
+                milestones: [
+                    { title: "Free Initial Consultation & Profile Analysis", date: "Jan 10, 2026", status: "completed", note: "Evaluated CGPA (8.4/10), target ROI, and budget limits." },
+                    { title: "University Shortlisting & Course Match", date: "Jan 18, 2026", status: "completed", note: "Shortlisted 5 tuition-efficient universities with high graduate placement rates." },
+                    { title: "Application Submission & Document Upload", date: "Feb 05, 2026", status: "completed", note: "Application submitted to Northeastern University admissions portal." },
+                    { title: "Admissions Offer & Merit Scholarship Approval", date: "Mar 12, 2026", status: "current", note: "Unconditional Admit Letter received with $5,000 Dean's Merit Scholarship!" },
+                    { title: "Visa Documentation & Mock Interview Practice", date: "Expected May 2026", status: "upcoming", note: "1-on-1 mock visa interview preparation with Himayatnagar senior visa expert." },
+                    { title: "Pre-Departure Briefing & Flight Onboarding", date: "Expected Aug 2026", status: "upcoming", note: "Housing arrangement, forex card, and student community group join." }
+                ]
+            },
+            {
+                university: "University of Birmingham",
+                country: "UK",
+                intake: "Fall 2026",
+                degree: "MSc Data Science & AI",
+                overallStatus: "Application Submitted",
+                currentStep: 3,
+                documents: [
+                    { name: "Passport", status: "Approved", link: "#" },
+                    { name: "Academic Transcripts", status: "Approved", link: "#" },
+                    { name: "UK SOP & Personal Statement", status: "Approved", link: "#" },
+                    { name: "CAS Statement Request Form", status: "Under Review", link: "#" }
+                ],
+                milestones: [
+                    { title: "Consultation & Eligibility Audit", date: "Jan 12, 2026", status: "completed", note: "Confirmed UK 1-year Masters eligibility with 2-year Post-Study Work Visa." },
+                    { title: "UK University Shortlisting", date: "Jan 22, 2026", status: "completed", note: "Selected Russell Group university." },
+                    { title: "UCAS/Direct Application Submission", date: "Feb 28, 2026", status: "current", note: "Application under assessment by Birmingham Admissions Board." },
+                    { title: "Offer Letter & Deposit Payment", date: "Expected Apr 2026", status: "upcoming", note: "Awaiting conditional/unconditional offer." }
+                ]
+            }
+        ]
+    };
+
+    currentApplicationIndex = 0;
+
+    // Reveal Demo Mode Banner
+    const demoBanner = document.getElementById('demoBanner');
+    if (demoBanner) {
+        demoBanner.style.display = 'block';
+    }
+
+    renderDashboard();
+}
 
 // ── Clerk Authentication Initializer ───────────────────────
 async function initClerkAuth() {
     const customSignInBtn = document.getElementById('customGoogleBtn');
+    const clerkContainer = document.getElementById('clerk-sign-in-container');
 
-    // Wait for Clerk SDK to load asynchronously if needed
-    let attempts = 0;
-    while (!window.Clerk && attempts < 30) {
-        await new Promise(res => setTimeout(res, 100));
-        attempts++;
-    }
-
-    if (!window.Clerk) {
-        console.warn('Clerk SDK script loading...');
-        if (customSignInBtn) {
-            customSignInBtn.addEventListener('click', () => {
-                alert('Authentication service is initializing. Please wait a moment or try again.');
-            });
-        }
-        return;
+    // Attach custom button click listener immediately
+    if (customSignInBtn) {
+        customSignInBtn.onclick = function () {
+            if (window.Clerk && window.Clerk.openSignIn) {
+                window.Clerk.openSignIn();
+            } else if (clerkContainer) {
+                clerkContainer.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert('Authentication service is initializing. Please wait a moment.');
+            }
+        };
     }
 
     try {
-        await window.Clerk.load();
+        let attempts = 0;
+        while (!window.Clerk && attempts < 40) {
+            await new Promise(res => setTimeout(res, 100));
+            attempts++;
+        }
+
+        if (!window.Clerk) {
+            console.warn('Clerk SDK not loaded yet.');
+            return;
+        }
+
+        if (!window.Clerk.loaded) {
+            await window.Clerk.load();
+        }
 
         // Check if student is already authenticated with Clerk
         if (window.Clerk.user) {
@@ -90,23 +181,13 @@ async function initClerkAuth() {
             loadDashboard();
         } else {
             // Mount Clerk Sign In component into container
-            const clerkContainer = document.getElementById('clerk-sign-in-container');
             if (clerkContainer && window.Clerk.mountSignIn) {
                 try {
+                    clerkContainer.innerHTML = '';
                     window.Clerk.mountSignIn(clerkContainer);
                 } catch (e) {
                     console.log('Mounting Clerk Sign-In info:', e);
                 }
-            }
-
-            if (customSignInBtn) {
-                customSignInBtn.addEventListener('click', () => {
-                    if (window.Clerk.openSignIn) {
-                        window.Clerk.openSignIn();
-                    } else if (clerkContainer) {
-                        clerkContainer.scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
             }
         }
     } catch (err) {
