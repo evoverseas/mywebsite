@@ -135,69 +135,85 @@ function loadDemoMode() {
 }
 
 // ── Global Clerk Sign-In Trigger ───────────────────────────
-window.triggerClerkSignIn = function () {
+window.triggerClerkSignIn = function (e) {
+    if (e) e.preventDefault();
     const clerkContainer = document.getElementById('clerk-sign-in-container');
 
     if (window.Clerk && window.Clerk.openSignIn) {
-        window.Clerk.openSignIn();
-    } else if (window.Clerk && window.Clerk.redirectToSignIn) {
-        window.Clerk.redirectToSignIn();
-    } else if (clerkContainer && clerkContainer.children.length > 0) {
-        clerkContainer.scrollIntoView({ behavior: 'smooth' });
-    } else {
-        window.location.href = 'https://clerk.evoverseas.com/sign-in';
+        try {
+            window.Clerk.openSignIn();
+            return;
+        } catch (err) {
+            console.log("Clerk openSignIn error:", err);
+        }
     }
+
+    if (window.Clerk && window.Clerk.redirectToSignIn) {
+        try {
+            window.Clerk.redirectToSignIn();
+            return;
+        } catch (err) {
+            console.log("Clerk redirectToSignIn error:", err);
+        }
+    }
+
+    if (clerkContainer && clerkContainer.children.length > 0) {
+        clerkContainer.scrollIntoView({ behavior: 'smooth' });
+        return;
+    }
+
+    // Direct verified custom Account Portal fallback
+    window.location.href = 'https://accounts.evoverseas.com/sign-in';
 };
 
 // ── Clerk Authentication Initializer ───────────────────────
 async function initClerkAuth() {
     const customSignInBtn = document.getElementById('customGoogleBtn');
-    const clerkContainer = document.getElementById('clerk-sign-in-container');
-
     if (customSignInBtn) {
         customSignInBtn.onclick = window.triggerClerkSignIn;
     }
 
-    try {
-        let attempts = 0;
-        while (!window.Clerk && attempts < 40) {
-            await new Promise(res => setTimeout(res, 100));
-            attempts++;
-        }
+    const initClerk = async () => {
+        try {
+            if (!window.Clerk) {
+                console.warn('Clerk SDK script was not loaded properly.');
+                return;
+            }
 
-        if (!window.Clerk) {
-            console.warn('Clerk SDK not loaded yet.');
-            return;
-        }
-
-        if (!window.Clerk.loaded) {
             await window.Clerk.load();
-        }
 
-        // Check if student is already authenticated with Clerk
-        if (window.Clerk.user) {
-            const user = window.Clerk.user;
-            const primaryEmail = user.primaryEmailAddress ? user.primaryEmailAddress.emailAddress : '';
-            currentUser = {
-                email: primaryEmail,
-                name: user.fullName || user.firstName || 'Student',
-                picture: user.imageUrl,
-                given_name: user.firstName || 'Student'
-            };
-            loadDashboard();
-        } else {
-            // Mount Clerk Sign In component into container
-            if (clerkContainer && window.Clerk.mountSignIn) {
-                try {
-                    clerkContainer.innerHTML = '';
-                    window.Clerk.mountSignIn(clerkContainer);
-                } catch (e) {
-                    console.log('Mounting Clerk Sign-In info:', e);
+            if (window.Clerk.user) {
+                // Already logged in
+                const user = window.Clerk.user;
+                const primaryEmail = user.primaryEmailAddress ? user.primaryEmailAddress.emailAddress : '';
+                currentUser = {
+                    email: primaryEmail,
+                    name: user.fullName || user.firstName || 'Student',
+                    picture: user.imageUrl,
+                    given_name: user.firstName || 'Student'
+                };
+                loadDashboard();
+            } else {
+                // Not logged in, try to mount the sign-in directly on the page
+                const clerkContainer = document.getElementById('clerk-sign-in-container');
+                if (clerkContainer && window.Clerk.mountSignIn) {
+                    try {
+                        clerkContainer.innerHTML = '';
+                        window.Clerk.mountSignIn(clerkContainer);
+                    } catch (e) {
+                        console.error('Error mounting Clerk Sign-In info:', e);
+                    }
                 }
             }
+        } catch (err) {
+            console.error('Error initializing Clerk Auth:', err);
         }
-    } catch (err) {
-        console.error('Error initializing Clerk:', err);
+    };
+
+    if (document.readyState === 'complete') {
+        initClerk();
+    } else {
+        window.addEventListener('load', initClerk);
     }
 }
 
