@@ -12,9 +12,8 @@
  */
 
 // ── CONFIGURATION ──────────────────────────────────────────
-// ⚠️ REPLACE THESE WITH YOUR ACTUAL VALUES:
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzI6mgA3ELgi4YW-nbbpXEUhxJsBUc6gyj7IZn6rodIClK7AybjkVfTQMyDxfF1B8c-/exec';
-const GOOGLE_CLIENT_ID = '1004728784932-0380a7n79s0rs5d41dbgnmreoogp0fmm.apps.googleusercontent.com';
+const CLERK_PUBLISHABLE_KEY = 'pk_live_Y2xlcmsuZXZvdmVyc2Vhcy5jb20k';
 
 // ── Journey Steps Definition (matches website) ────────────
 const JOURNEY_STEPS = [
@@ -33,86 +32,85 @@ let currentApplicationIndex = 0;
 let progressChart = null;
 
 // ── INITIALIZATION ─────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', function () {
-    // Show login screen initially
-    showLoginScreen();
-
-    // Initialize custom Google Sign-In button
-    const googleBtn = document.getElementById('customGoogleBtn');
-    if (googleBtn) {
-        googleBtn.addEventListener('click', handleGoogleSignIn);
-    }
-});
-
-// ── Google Identity Services Callback ──────────────────────
-function handleCredentialResponse(response) {
-    // Decode the JWT token from Google
-    const payload = parseJwt(response.credential);
-
-    if (payload) {
-        currentUser = {
-            email: payload.email,
-            name: payload.name,
-            picture: payload.picture,
-            given_name: payload.given_name
-        };
-        loadDashboard();
-    } else {
-        showError('Failed to process your sign-in. Please try again.');
-    }
-}
-
-// Google Sign-In handler for custom button
-function handleGoogleSignIn() {
-    // Check if GIS is loaded
-    if (typeof google === 'undefined' || !google.accounts) {
-        showError('Google Sign-In is loading. Please wait a moment and try again.');
+document.addEventListener('DOMContentLoaded', async function () {
+    // Check if URL has ?demo=true or #demo parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('demo') === 'true' || window.location.hash === '#demo') {
+        loadDemoMode();
         return;
     }
 
-    google.accounts.id.initialize({
-        client_id: GOOGLE_CLIENT_ID,
-        callback: handleCredentialResponse,
-        auto_select: false,
-        cancel_on_tap_outside: true
-    });
+    // Show login screen initially
+    showLoginScreen();
 
-    google.accounts.id.prompt((notification) => {
-        if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-            // Fallback — show the One Tap prompt in popup mode
-            google.accounts.id.renderButton(
-                document.getElementById('googleSignInFallback'),
-                {
-                    type: 'standard',
-                    theme: 'outline',
-                    size: 'large',
-                    shape: 'pill',
-                    width: 300,
-                    text: 'signin_with',
-                    logo_alignment: 'left'
-                }
-            );
-            document.getElementById('googleSignInFallback').style.display = 'flex';
-            document.getElementById('googleSignInFallback').style.justifyContent = 'center';
-            document.getElementById('googleSignInFallback').style.marginTop = '12px';
+    // Initialize Demo Preview button
+    const demoBtn = document.getElementById('demoPreviewBtn');
+    if (demoBtn) {
+        demoBtn.addEventListener('click', loadDemoMode);
+    }
+
+    // Initialize Clerk Authentication
+    initClerkAuth();
+});
+
+// ── Clerk Authentication Initializer ───────────────────────
+async function initClerkAuth() {
+    const customSignInBtn = document.getElementById('customGoogleBtn');
+
+    // Wait for Clerk SDK to load asynchronously if needed
+    let attempts = 0;
+    while (!window.Clerk && attempts < 30) {
+        await new Promise(res => setTimeout(res, 100));
+        attempts++;
+    }
+
+    if (!window.Clerk) {
+        console.warn('Clerk SDK script loading...');
+        if (customSignInBtn) {
+            customSignInBtn.addEventListener('click', () => {
+                alert('Authentication service is initializing. Please wait a moment or try again.');
+            });
         }
-    });
-}
+        return;
+    }
 
-// ── Parse JWT Token ────────────────────────────────────────
-function parseJwt(token) {
     try {
-        const base64Url = token.split('.')[1];
-        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        const jsonPayload = decodeURIComponent(
-            atob(base64).split('').map(function (c) {
-                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-            }).join('')
-        );
-        return JSON.parse(jsonPayload);
-    } catch (e) {
-        console.error('Error parsing JWT:', e);
-        return null;
+        await window.Clerk.load();
+
+        // Check if student is already authenticated with Clerk
+        if (window.Clerk.user) {
+            const user = window.Clerk.user;
+            const primaryEmail = user.primaryEmailAddress ? user.primaryEmailAddress.emailAddress : '';
+            currentUser = {
+                email: primaryEmail,
+                name: user.fullName || user.firstName || 'Student',
+                picture: user.imageUrl,
+                given_name: user.firstName || 'Student'
+            };
+            loadDashboard();
+        } else {
+            // Mount Clerk Sign In component into container
+            const clerkContainer = document.getElementById('clerk-sign-in-container');
+            if (clerkContainer && window.Clerk.mountSignIn) {
+                try {
+                    window.Clerk.mountSignIn(clerkContainer);
+                } catch (e) {
+                    console.log('Mounting Clerk Sign-In info:', e);
+                }
+            }
+
+            if (customSignInBtn) {
+                customSignInBtn.addEventListener('click', () => {
+                    if (window.Clerk.openSignIn) {
+                        window.Clerk.openSignIn();
+                    } else if (clerkContainer) {
+                        clerkContainer.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+        }
+    } catch (err) {
+        console.error('Error initializing Clerk:', err);
     }
 }
 
@@ -197,13 +195,23 @@ function showNotRegistered(message) {
 }
 
 // ── SIGN OUT ───────────────────────────────────────────────
-function signOut() {
+async function signOut() {
     currentUser = null;
     studentData = null;
     currentApplicationIndex = 0;
 
-    if (typeof google !== 'undefined' && google.accounts) {
-        google.accounts.id.disableAutoSelect();
+    if (window.Clerk && window.Clerk.user) {
+        try {
+            await window.Clerk.signOut();
+        } catch (e) {
+            console.error('Clerk signOut error:', e);
+        }
+    }
+
+    // Hide Demo Banner if visible
+    const demoBanner = document.getElementById('demoBanner');
+    if (demoBanner) {
+        demoBanner.style.display = 'none';
     }
 
     // Destroy chart
@@ -534,12 +542,12 @@ function renderTimeline(milestones, currentStep) {
 function renderCounselor(student) {
     const container = document.getElementById('counselorContainer');
 
-    const name = student.counselorName || 'EV Overseas Team';
-    const email = student.counselorEmail || 'info@evoverseas.com';
+    const name = student.counselorName || 'Siddharth V.';
+    const role = student.counselorRole || 'Senior Overseas Education Expert';
+    const email = student.counselorEmail || 'siddharth@evoverseas.com';
     const phone = (student.counselorPhone || '+919666963756').toString();
     const initials = name.split(' ').map(n => n.charAt(0)).join('').substring(0, 2).toUpperCase();
 
-    // Format phone for display (remove + and spaces for cleaner look)
     const phoneDisplay = phone.replace(/[\s-]/g, '');
     // Format phone for WhatsApp (ensure it starts with country code, no + or spaces)
     const whatsappPhone = phoneDisplay.replace(/^\+/, '');
@@ -549,24 +557,17 @@ function renderCounselor(student) {
             <div class="counselor-avatar">${initials}</div>
             <div class="counselor-info">
                 <h3>${name}</h3>
-                <p>Your Dedicated Counselor</p>
-                <p style="font-size: 0.78rem; color: var(--dash-accent);">${phoneDisplay}</p>
+                <p class="counselor-role"><i class="fas fa-certificate" style="color: #00B4D8;"></i> ${role}</p>
+                <p style="font-size: 0.8rem; color: #64748B; margin-top: 4px;"><i class="fas fa-map-marker-alt" style="color: #FF6B00;"></i> Himayatnagar, Hyderabad</p>
             </div>
         </div>
         <div class="quick-actions">
-            <a href="https://wa.me/${whatsappPhone}?text=Hi, I'm ${encodeURIComponent(student.name || 'a student')} and I have a query about my application." 
+            <a href="https://wa.me/${whatsappPhone}?text=${encodeURIComponent("Hi, I'm checking my student portal and have a query about my study abroad application.")}" 
                class="action-btn action-btn-whatsapp" target="_blank" rel="noopener">
-                💬 WhatsApp
-            </a>
-            <a href="mailto:${email}?subject=Application Query - ${student.name || 'Student'}" 
-               class="action-btn action-btn-email">
-                ✉️ Email
+                <i class="fab fa-whatsapp"></i> Chat on WhatsApp
             </a>
             <a href="tel:${phoneDisplay}" class="action-btn action-btn-call">
-                📞 Call
-            </a>
-            <a href="index.html" class="action-btn action-btn-website">
-                🌐 Website
+                <i class="fas fa-phone-alt"></i> Direct Call
             </a>
         </div>
     `;

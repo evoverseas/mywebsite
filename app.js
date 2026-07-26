@@ -73,21 +73,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Navbar scroll effect
-    // Navbar scroll effect
-    window.addEventListener('scroll', function () {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-        // Add background to navbar on scroll
-        if (scrollTop > 50) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.backdropFilter = 'blur(12px)';
-            navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)';
-        } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            navbar.style.backdropFilter = 'blur(12px)';
-            navbar.style.boxShadow = 'var(--shadow-sm)';
-        }
-    });
+    if (navbar) {
+        window.addEventListener('scroll', function () {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > 20) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    }
 
     // Fix smooth scrolling for all navigation links
     function smoothScrollTo(targetId) {
@@ -438,7 +433,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (drawerDestSelect) drawerDestSelect.value = context.scholarshipCountry;
         } else {
             // standard drawer
-            if (drawerHeaderTitle) drawerHeaderTitle.textContent = `45s Eligibility Check`;
+            if (drawerHeaderTitle) drawerHeaderTitle.textContent = `Quick Eligibility Check`;
             if (drawerGpaLabel) drawerGpaLabel.textContent = `Current CGPA / Percentage`;
             if (drawerGpaInput) {
                 drawerGpaInput.placeholder = `e.g. 8.5 CGPA or 78%`;
@@ -511,271 +506,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // 3. Smart Profile Matcher Quiz Logic
-    let quizActiveStep = 1;
-    const quizPrevBtn = document.getElementById('quiz-prev-btn');
-    const quizNextBtn = document.getElementById('quiz-next-btn');
-    const quizProgress = document.getElementById('quiz-progress');
-    const quizStepText = document.getElementById('quiz-step-text');
-    const quizPercentText = document.getElementById('quiz-percent-text');
-    const quizForm = document.getElementById('hubQuizForm');
-    const quizGpaSlider = document.getElementById('quiz-gpa');
-    const quizGpaVal = document.getElementById('gpa-val');
-    const quizEnglishTest = document.getElementById('quiz-english-test');
-    const englishScoreGroup = document.getElementById('english-score-group');
 
-    // GPA Slider real-time change
-    if (quizGpaSlider && quizGpaVal) {
-        quizGpaSlider.addEventListener('input', function () {
-            quizGpaVal.textContent = parseFloat(this.value).toFixed(1) + ' CGPA';
-        });
-    }
-
-    // Toggle english score input
-    if (quizEnglishTest && englishScoreGroup) {
-        quizEnglishTest.addEventListener('change', function () {
-            if (this.value === 'None') {
-                englishScoreGroup.style.display = 'none';
-            } else {
-                englishScoreGroup.style.display = 'block';
-                const scoreInput = document.getElementById('quiz-english-score');
-                if (scoreInput) {
-                    scoreInput.placeholder = this.value === 'IELTS' ? 'e.g. 6.5' : (this.value === 'TOEFL' ? 'e.g. 90' : 'e.g. 58');
-                }
-            }
-        });
-    }
-
-    // Handle Country card clicks
-    const countryCards = document.querySelectorAll('.quiz-option-card');
-    const quizDestinationInput = document.getElementById('quiz-destination');
-    
-    countryCards.forEach(card => {
-        card.addEventListener('click', function () {
-            countryCards.forEach(c => c.classList.remove('selected'));
-            this.classList.add('selected');
-            if (quizDestinationInput) {
-                quizDestinationInput.value = this.getAttribute('data-value');
-            }
-        });
-    });
-
-    function showQuizStep(step) {
-        document.querySelectorAll('.quiz-step').forEach(el => el.classList.remove('active'));
-        const activeEl = document.querySelector(`.quiz-step[data-step="${step}"]`);
-        if (activeEl) activeEl.classList.add('active');
-
-        // Update progress bar
-        let percent = 33;
-        let stepTitle = "Step 1 of 3: Academic Destination";
-        if (step === 2) {
-            percent = 66;
-            stepTitle = "Step 2 of 3: Academic Profile";
-        } else if (step === 3) {
-            percent = 100;
-            stepTitle = "Step 3 of 3: Personalized Matches";
-        }
-
-        if (quizProgress) quizProgress.style.width = `${percent}%`;
-        if (quizStepText) quizStepText.textContent = stepTitle;
-        if (quizPercentText) quizPercentText.textContent = `${percent}% Complete`;
-
-        // Update Nav buttons
-        if (quizPrevBtn) {
-            quizPrevBtn.style.visibility = step === 1 ? 'hidden' : 'visible';
-        }
-        if (quizNextBtn) {
-            if (step === 3) {
-                quizNextBtn.style.display = 'none';
-            } else {
-                quizNextBtn.style.display = 'block';
-                quizNextBtn.innerHTML = 'Next Step <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>';
-            }
-        }
-    }
-
-    if (quizNextBtn) {
-        quizNextBtn.addEventListener('click', function () {
-            if (quizActiveStep === 1) {
-                // Validate destination
-                if (!quizDestinationInput || !quizDestinationInput.value) {
-                    alert('Please select your preferred study destination to proceed!');
-                    return;
-                }
-                quizActiveStep = 2;
-                showQuizStep(quizActiveStep);
-            } else if (quizActiveStep === 2) {
-                // Validate IELTS score if visible
-                if (quizEnglishTest.value !== 'None') {
-                    const scoreInputEl = document.getElementById('quiz-english-score');
-                    const score = scoreInputEl ? parseFloat(scoreInputEl.value) : 0;
-                    if (!score || score <= 0) {
-                        alert('Please enter your expected English score to get matching recommendations.');
-                        return;
-                    }
-                }
-                quizActiveStep = 3;
-                showQuizStep(quizActiveStep);
-            }
-        });
-    }
-
-    if (quizPrevBtn) {
-        quizPrevBtn.addEventListener('click', function () {
-            if (quizActiveStep > 1) {
-                quizActiveStep--;
-                showQuizStep(quizActiveStep);
-            }
-        });
-    }
-
-    // Submit handler for Smart Profile Matcher Form
-    if (quizForm) {
-        quizForm.addEventListener('submit', async function (e) {
-            e.preventDefault();
-
-            const name = document.getElementById('quiz-name').value.trim();
-            const email = document.getElementById('quiz-email').value.trim();
-            const phone = document.getElementById('quiz-phone').value.trim();
-            const destination = quizDestinationInput.value;
-            const degree = document.getElementById('quiz-degree').value;
-            const gpa = parseFloat(quizGpaSlider.value).toFixed(1);
-            const testType = quizEnglishTest.value;
-            const testScore = testType !== 'None' ? document.getElementById('quiz-english-score').value : 'N/A';
-
-            if (!name || !email || !phone) {
-                alert('Please fill out all fields to unlock your university matches!');
-                return;
-            }
-
-            // Get matching universities
-            const matches = hubUniversities[destination] || [];
-            let filteredMatches = matches.filter(uni => parseFloat(gpa) >= uni.minGpa);
-            if (filteredMatches.length === 0) {
-                filteredMatches = matches.slice(-2); // Fallback to last 2
-            }
-
-            // Populate matching universities cards dynamically
-            const resultsGrid = document.querySelector('.quiz-results-grid');
-            if (resultsGrid) {
-                resultsGrid.innerHTML = filteredMatches.map(uni => `
-                    <div class="uni-match-card" style="animation: fadeIn 0.4s ease;">
-                        <div class="uni-match-header">
-                            <span class="uni-match-badge">${parseFloat(gpa) >= uni.minGpa + 0.5 ? 'High Chance' : 'Target Match'}</span>
-                            <span style="font-size: var(--text-xs); color: var(--color-success); font-weight: 700;">Matched!</span>
-                        </div>
-                        <h4>${uni.name}</h4>
-                        <div class="uni-match-detail"><i class="fas fa-map-marker-alt"></i> ${uni.location}</div>
-                        <div class="uni-match-detail"><i class="fas fa-money-bill-wave"></i> Tuition: ${uni.tuitionFee}</div>
-                        <div class="uni-match-detail"><i class="fas fa-trophy"></i> Rank: ${uni.ranking}</div>
-                        <div class="uni-match-detail"><i class="fas fa-check-circle"></i> Acceptance: ${uni.acceptanceRate}</div>
-                    </div>
-                `).join('');
-            }
-
-            // Submit lead to Google Sheets
-            const submitBtn = quizForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerText;
-            submitBtn.innerText = 'Unlocking...';
-            submitBtn.disabled = true;
-
-            const payload = {
-                name: name,
-                email: email,
-                phone: phone,
-                destination: destination,
-                course: `${degree} via Hub Smart Matcher`,
-                message: `Matched Profile GPA: ${gpa}. English Test: ${testType} (${testScore}). Universities unlocked: ${filteredMatches.map(u => u.name).join(', ')}`
-            };
-
-            try {
-                // Submit lead to Google Sheets in background
-                submitFormToGoogleSheets(payload).catch(error => console.error(error));
-
-                // Unblur results overlay
-                const overlay = document.querySelector('.quiz-locked-overlay');
-                if (overlay) overlay.style.display = 'none';
-
-                const blurredResults = document.querySelector('.quiz-blurred-results');
-                if (blurredResults) blurredResults.classList.remove('quiz-blurred-results');
-
-                // Update next navigation element
-                const quizNav = document.getElementById('quiz-nav');
-                if (quizNav) {
-                    quizNav.innerHTML = `
-                        <div style="text-align: center; width: 100%; margin-top: 16px;">
-                            <p style="font-size: var(--text-sm); color: var(--color-success); font-weight: 700; margin-bottom: 12px;">🎉 Congratulations! Your matches are unlocked.</p>
-                            <a href="https://wa.me/919666963756?text=Hi%2C%20I%20just%20unlocked%20my%20university%20matches%20on%20your%20website.%20My%20GPA%20is%20${gpa}%20and%20I%20want%20to%20study%20in%20${destination}." target="_blank" class="btn btn--primary" style="background:#25D366; box-shadow:none; border-color:transparent;">
-                                <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Talk to our Lead Expert on WhatsApp
-                            </a>
-                        </div>
-                    `;
-                }
-            } catch (err) {
-                console.error(err);
-                submitBtn.innerText = originalText;
-                submitBtn.disabled = false;
-            }
-        });
-    }
-
-    // Close / Bypass handler for Profile Matcher Locked Overlay
-    const unlockCloseBtn = document.querySelector('.unlock-close-btn');
-    if (unlockCloseBtn) {
-        unlockCloseBtn.addEventListener('click', function () {
-            const destination = quizDestinationInput ? quizDestinationInput.value : 'USA';
-            const gpa = quizGpaSlider ? parseFloat(quizGpaSlider.value).toFixed(1) : '7.0';
-
-            // Get matching universities
-            const matches = hubUniversities[destination] || [];
-            let filteredMatches = matches.filter(uni => parseFloat(gpa) >= uni.minGpa);
-            if (filteredMatches.length === 0) {
-                filteredMatches = matches.slice(-2); // Fallback to last 2
-            }
-
-            // Populate matching universities cards dynamically
-            const resultsGrid = document.querySelector('.quiz-results-grid');
-            if (resultsGrid) {
-                resultsGrid.innerHTML = filteredMatches.map(uni => `
-                    <div class="uni-match-card" style="animation: fadeIn 0.4s ease;">
-                        <div class="uni-match-header">
-                            <span class="uni-match-badge">${parseFloat(gpa) >= uni.minGpa + 0.5 ? 'High Chance' : 'Target Match'}</span>
-                            <span style="font-size: var(--text-xs); color: var(--color-success); font-weight: 700;">Matched!</span>
-                        </div>
-                        <h4>${uni.name}</h4>
-                        <div class="uni-match-detail"><i class="fas fa-map-marker-alt"></i> ${uni.location}</div>
-                        <div class="uni-match-detail"><i class="fas fa-money-bill-wave"></i> Tuition: ${uni.tuitionFee}</div>
-                        <div class="uni-match-detail"><i class="fas fa-trophy"></i> Rank: ${uni.ranking}</div>
-                        <div class="uni-match-detail"><i class="fas fa-check-circle"></i> Acceptance: ${uni.acceptanceRate}</div>
-                    </div>
-                `).join('');
-            }
-
-            // Hide the locked overlay
-            const overlay = document.querySelector('.quiz-locked-overlay');
-            if (overlay) overlay.style.display = 'none';
-
-            // Remove blur
-            const blurredResults = document.querySelector('.quiz-blurred-results');
-            if (blurredResults) blurredResults.classList.remove('quiz-blurred-results');
-
-            // Update navigation button to show WhatsApp Lead helper
-            const quizNav = document.getElementById('quiz-nav');
-            if (quizNav) {
-                quizNav.innerHTML = `
-                    <div style="text-align: center; width: 100%; margin-top: 16px;">
-                        <p style="font-size: var(--text-sm); color: var(--color-gray-600); margin-bottom: 12px;">💡 Want a certified expert to review your university shortlist?</p>
-                        <a href="https://wa.me/919666963756?text=Hi%2C%20I%20just%20unlocked%20my%20university%20matches%20on%20your%20website.%20My%20GPA%20is%20${gpa}%20and%20I%20want%20to%20study%20in%20${destination}." target="_blank" class="btn btn--primary" style="background:#25D366; box-shadow:none; border-color:transparent;">
-                            <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Talk to our Lead Expert on WhatsApp
-                        </a>
-                    </div>
-                `;
-            }
-
-            // Track bypass event in GA4
-            trackEvent('quiz_bypass', { destination: destination, gpa: gpa });
-        });
-    }
 
     // 4. Cost and Living Budget Calculator Logic
     const calcCountry = document.getElementById('calc-country');
@@ -880,10 +611,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (calcLeadTrigger) {
         calcLeadTrigger.addEventListener('click', function (e) {
             e.preventDefault();
-            e.stopPropagation(); // Prevent document click listener from immediately closing the drawer
-            const countryVal = calcCountry ? calcCountry.value : 'USA';
-            window.openDrawerWithContext('calculator', { country: countryVal });
-            trackEvent('calc_lead_click', { country: countryVal });
+            window.location.href = 'contact.html';
         });
     }
 
@@ -955,10 +683,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const btn = e.target.closest('.sch-cta-btn');
             if (btn) {
                 e.preventDefault();
-                e.stopPropagation(); // Prevent bubbling up to document click close listener
-                const schName = btn.getAttribute('data-name');
-                const schCountry = btn.getAttribute('data-country');
-                window.openDrawerWithContext('scholarship', { scholarshipName: schName, scholarshipCountry: schCountry });
+                window.location.href = 'contact.html';
             }
         });
     }
@@ -966,150 +691,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initial load
     renderScholarships();
 
-    // 6. Sliding Floating Drawer Logic
-    const drawerToggle = document.getElementById('drawer-toggle');
-    const drawerClose = document.getElementById('drawer-close');
-    const drawer = document.getElementById('quick-match-drawer');
-
-    if (drawerToggle && drawer && drawerClose) {
-        drawerToggle.addEventListener('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation(); // Prevent bubbling up to document click close listener
-            if (drawer.classList.contains('open')) {
-                drawer.classList.remove('open');
-            } else {
-                window.openDrawerWithContext('drawer');
-            }
-            trackEvent('drawer_toggle', { action: drawer.classList.contains('open') ? 'open' : 'close' });
-        });
-
-        drawerClose.addEventListener('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            drawer.classList.remove('open');
-        });
-
-        // Close drawer when clicking outside, ignoring clicks on drawer triggers (which handle their own open/close)
-        document.addEventListener('click', function (e) {
-            if (drawer.classList.contains('open') && 
-                !drawer.contains(e.target) && 
-                !drawerToggle.contains(e.target) &&
-                !e.target.closest('#calc-lead-trigger') &&
-                !e.target.closest('.sch-cta-btn')) {
-                drawer.classList.remove('open');
-            }
-        });
-    }
-
-    // Drawer form submission handling encapsulated in a re-bindable function
-    function bindDrawerFormSubmit() {
-        const drawerForm = document.getElementById('drawerForm');
-        if (!drawerForm) return;
-
-        drawerForm.addEventListener('submit', async function (e) {
-            e.preventDefault();
-
-            const name = document.getElementById('drawer-name').value.trim();
-            const phone = document.getElementById('drawer-phone').value.trim();
-            const destination = document.getElementById('drawer-destination').value;
-            const gpa = document.getElementById('drawer-gpa').value.trim();
-            const degree = document.getElementById('drawer-degree').value;
-
-            if (!name || !phone || !gpa) {
-                alert('Please fill in all details to get your results!');
-                return;
-            }
-
-            const submitBtn = drawerForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:8px;"><svg width="18" height="18" viewBox="0 0 24 24" style="animation:spin 0.8s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="31.4 31.4" stroke-linecap="round"/></svg> Submitting...</span>';
-            submitBtn.disabled = true;
-
-            // Generate context-aware metadata for the lead submission
-            let courseName = `${degree} Matched via Drawer`;
-            let logMsg = `Matched via Floating Assessment Drawer. GPA/Context: ${gpa}. Intended degree: ${degree}. Preferred country: ${destination}`;
-            
-            if (leadSource === 'calculator') {
-                const totalCostVal = calcTotal ? calcTotal.textContent : 'N/A';
-                courseName = `${degree} Cost Inquiry (${destination})`;
-                logMsg = `Cost Calculator Lead. Destination: ${destination}. Course: ${degree}. Total Est Cost: ${totalCostVal}. GPA/Context: ${gpa}.`;
-            } else if (leadSource === 'scholarship') {
-                courseName = `Scholarship Inquiry: ${selectedScholarshipName}`;
-                logMsg = `Scholarship Eligibility Check. Scholarship: ${selectedScholarshipName}. Destination: ${destination}. GPA: ${gpa}. Degree: ${degree}.`;
-            }
-
-            const payload = {
-                name: name,
-                email: 'no-email-drawer@evoverseas.com',
-                phone: phone,
-                destination: destination,
-                course: courseName,
-                message: logMsg
-            };
-
-            try {
-                // Submit to Google Sheets in background
-                submitFormToGoogleSheets(payload).catch(error => console.error(error));
-
-                // Show elegant, context-specific success screen in drawer body
-                const drawerBody = document.querySelector('.drawer-body');
-                if (drawerBody) {
-                    let successTitle = "Matches Found Successfully!";
-                    let successText = `Your profile matches <strong>6 top universities</strong> in ${destination} for a ${degree} program.`;
-                    let whatsappBtnText = "Get Matches list on WhatsApp";
-                    let whatsappText = `Hi, I just completed the profile evaluation on your website. My name is ${encodeURIComponent(name)}. GPA is ${encodeURIComponent(gpa)}. Please share my matched universities list.`;
-
-                    if (leadSource === 'calculator') {
-                        const totalCostVal = calcTotal ? calcTotal.textContent : 'N/A';
-                        successTitle = "📄 PDF is Ready!";
-                        successText = `Your personalized expense analysis for <strong>${destination}</strong> (estimated at <strong>${totalCostVal}/year</strong>) has been compiled.`;
-                        whatsappBtnText = "Get Expense PDF on WhatsApp";
-                        whatsappText = `Hi, I just calculated my study cost for ${destination} on your website. The estimated annual cost is ${encodeURIComponent(totalCostVal)}. Please share my detailed Expense PDF on WhatsApp. My name is ${encodeURIComponent(name)}.`;
-                    } else if (leadSource === 'scholarship') {
-                        successTitle = "🎓 Eligibility Approved!";
-                        successText = `Based on your academic score (<strong>${gpa}</strong>), you have a <strong>high chance</strong> of securing the <strong>${selectedScholarshipName}</strong> in ${destination}.`;
-                        whatsappBtnText = "Get Scholarship Guide PDF";
-                        whatsappText = `Hi, I want to check my eligibility for the ${encodeURIComponent(selectedScholarshipName)} scholarship in ${destination}. My GPA is ${encodeURIComponent(gpa)}. Please share the eligibility details and application guide. My name is ${encodeURIComponent(name)}.`;
-                    }
-
-                    drawerBody.innerHTML = `
-                        <div style="text-align: center; padding: 40px 10px; animation: fadeIn 0.4s ease;">
-                            <div style="font-size: 4rem; margin-bottom: 20px;">${leadSource === 'calculator' ? '📄' : (leadSource === 'scholarship' ? '🎓' : '🎉')}</div>
-                            <h3 style="font-family:var(--font-heading); color:var(--color-primary); font-size:var(--text-xl); margin-bottom:12px;">${successTitle}</h3>
-                            <p style="font-size:var(--text-sm); color:var(--color-gray-600); margin-bottom:24px;">${successText}</p>
-                            
-                            <a href="https://wa.me/919666963756?text=${whatsappText}" 
-                               target="_blank" 
-                               class="btn btn--primary" 
-                               style="background: #25D366; width: 100%; border-color:transparent; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:8px;">
-                                <i class="fab fa-whatsapp"></i> ${whatsappBtnText}
-                            </a>
-                            
-                            <button class="btn btn--outline reset-drawer-btn" style="width: 100%; margin-top: 12px;">Evaluate Another Profile</button>
-                        </div>
-                    `;
-
-                    // Bind event listener to reset button (to restore the form without page reload!)
-                    const resetBtn = drawerBody.querySelector('.reset-drawer-btn');
-                    if (resetBtn) {
-                        resetBtn.addEventListener('click', function () {
-                            if (originalDrawerBodyHtml) {
-                                drawerBody.innerHTML = originalDrawerBodyHtml;
-                                bindDrawerFormSubmit();
-                            }
-                        });
-                    }
-                }
-            } catch (err) {
-                console.error(err);
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }
-        });
-    }
-
-    // Initial binding on DOM load
-    bindDrawerFormSubmit();
+    // Helper for direct redirection to contact.html
+    window.openDrawerWithContext = function () {
+        window.location.href = 'contact.html';
+    };
 });
 
 // Improved form validation

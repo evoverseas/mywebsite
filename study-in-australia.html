@@ -215,24 +215,25 @@
                 </a>
                 <div class="nav-brand-text">
                     <a href="index.html#home" class="nav-logo">EV Overseas</a>
-                    <span class="nav-tagline">Your Automated Path to a Global Career</span>
+                    <span class="nav-tagline">Honest study abroad advice</span>
                 </div>
             </div>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html#home" class="nav-link">Home</a></li>
                 <li><a href="index.html#about" class="nav-link">About</a></li>
                 <li><a href="index.html#services" class="nav-link">Services</a></li>
-                <li><a href="index.html#destinations" class="nav-link">Destinations</a></li>
+                <li><a href="index.html#destinations" class="nav-link active">Destinations</a></li>
                 <li><a href="index.html#blog" class="nav-link">Blog</a></li>
                 <li><a href="index.html#faq" class="nav-link">FAQ</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
             <div class="nav-actions">
-                <a href="dashboard.html" class="btn btn--black btn--sm nav-dashboard-btn" style="text-decoration:none;">Dashboard</a>
-                <a href="contact.html" class="btn btn--primary nav-cta" style="text-decoration:none;">Get Free Roadmap</a>
+                <a href="dashboard.html" class="btn btn--black btn--sm nav-dashboard-btn">Dashboard</a>
             </div>
             <div class="hamburger" id="hamburger">
-                <span></span><span></span><span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </nav>
@@ -555,73 +556,31 @@
         </div>
     </footer>
 
-    <!-- Floating Call Button -->
+    <!-- Floating Call Button (Desktop) -->
     <a href="tel:+919666963756" class="call-float" id="call-float" aria-label="Call us">
         <i class="fas fa-phone-alt"></i>
     </a>
 
-    <!-- Floating WhatsApp Button -->
+    <!-- Floating WhatsApp Button (Desktop) -->
     <a href="https://wa.me/919666963756" target="_blank" class="whatsapp-float" id="whatsapp-float"
         aria-label="WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- ============================================
-         FLOATING DRAWER FOR QUICK ELIGIBILITY CHECK
-         ============================================ -->
-    <button id="drawer-toggle" class="drawer-toggle-btn">
-        <i class="fas fa-magic"></i> 45s Profile Matcher
-    </button>
-
-    <div id="quick-match-drawer" class="quick-match-drawer">
-        <div class="drawer-header">
-            <h3>45s Eligibility Check</h3>
-            <button class="drawer-close-btn" id="drawer-close" aria-label="Close drawer">×</button>
-        </div>
-        <div class="drawer-body">
-            <span class="free-badge">🔥 100% FREE MATCHING</span>
-            <p style="font-size: var(--text-sm); margin-bottom: 20px; color: var(--color-gray-600);">Get matched to top international universities in less than 45 seconds.</p>
-            
-            <form id="drawerForm" class="drawer-form" novalidate>
-                <div class="quiz-form-group">
-                    <label for="drawer-name">Full Name</label>
-                    <input type="text" id="drawer-name" placeholder="Enter your full name" class="quiz-input" required>
-                </div>
-                <div class="quiz-form-group">
-                    <label for="drawer-phone">WhatsApp Number</label>
-                    <input type="tel" id="drawer-phone" placeholder="Enter your phone number" class="quiz-input" required>
-                </div>
-                <div class="quiz-form-group">
-                    <label for="drawer-destination">Preferred Country</label>
-                    <select id="drawer-destination" class="quiz-select">
-                        <option value="USA">USA</option>
-                        <option value="UK">UK</option>
-                        <option value="Germany">Germany</option>
-                        <option value="Australia" selected>Australia</option>
-                    </select>
-                </div>
-                <div class="quiz-form-group">
-                    <label for="drawer-gpa">Current CGPA / Percentage</label>
-                    <input type="text" id="drawer-gpa" placeholder="e.g. 8.5 CGPA or 78%" class="quiz-input" required>
-                </div>
-                <div class="quiz-form-group">
-                    <label for="drawer-degree">Intended Course Degree</label>
-                    <select id="drawer-degree" class="quiz-select">
-                        <option value="Masters">Masters / PG</option>
-                        <option value="Bachelors">Bachelors / UG</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="btn btn--primary">Get Matching Universities</button>
-            </form>
-
-            <div class="drawer-promo">
-                <p><strong>Over 500+ successful matches</strong> processed this month with a 97% visa success rate.</p>
-            </div>
-        </div>
+    <!-- Mobile Fixed Bottom Action Bar (50/50 Call & WhatsApp) -->
+    <div class="mobile-bottom-bar" id="mobile-bottom-bar">
+        <a href="tel:+919666963756" class="mobile-bar-btn call-btn" aria-label="Call Us Now">
+            <i class="fas fa-phone-alt"></i>
+            <span>Call Us</span>
+        </a>
+        <a href="https://wa.me/919666963756" target="_blank" class="mobile-bar-btn whatsapp-btn" aria-label="Chat on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span>WhatsApp</span>
+        </a>
     </div>
 
     <!-- Scripts -->
     <script src="app.js" defer></script>
 </body>
+
 </html>
