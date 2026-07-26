@@ -134,22 +134,28 @@ function loadDemoMode() {
     renderDashboard();
 }
 
+// ── Global Clerk Sign-In Trigger ───────────────────────────
+window.triggerClerkSignIn = function () {
+    const clerkContainer = document.getElementById('clerk-sign-in-container');
+
+    if (window.Clerk && window.Clerk.openSignIn) {
+        window.Clerk.openSignIn();
+    } else if (window.Clerk && window.Clerk.redirectToSignIn) {
+        window.Clerk.redirectToSignIn();
+    } else if (clerkContainer && clerkContainer.children.length > 0) {
+        clerkContainer.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        window.location.href = 'https://clerk.evoverseas.com/sign-in';
+    }
+};
+
 // ── Clerk Authentication Initializer ───────────────────────
 async function initClerkAuth() {
     const customSignInBtn = document.getElementById('customGoogleBtn');
     const clerkContainer = document.getElementById('clerk-sign-in-container');
 
-    // Attach custom button click listener immediately
     if (customSignInBtn) {
-        customSignInBtn.onclick = function () {
-            if (window.Clerk && window.Clerk.openSignIn) {
-                window.Clerk.openSignIn();
-            } else if (clerkContainer) {
-                clerkContainer.scrollIntoView({ behavior: 'smooth' });
-            } else {
-                alert('Authentication service is initializing. Please wait a moment.');
-            }
-        };
+        customSignInBtn.onclick = window.triggerClerkSignIn;
     }
 
     try {
