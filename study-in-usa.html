@@ -145,73 +145,20 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="./images/favicon.png">
 
-    <!-- Fonts and CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Fonts (Consolidated 2-Font High-Performance Stack) -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <style>
-        .destination-hero {
-            padding: 160px 0 80px;
-            background: linear-gradient(135deg, rgba(10,35,66,0.95) 0%, rgba(26,58,92,0.9) 100%), url('https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&q=80') center/cover;
-            color: white;
-            text-align: center;
-        }
-        .destination-hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 20px;
-        }
-        .content-section {
-            padding: 80px 0;
-            background: var(--color-white);
-        }
-        .content-section.alt {
-            background: #f8fafc;
-        }
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        .info-card {
-            background: white;
-            padding: 30px;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--color-border);
-        }
-        .info-card h3 {
-            color: var(--color-primary);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .university-list {
-            list-style: none;
-            padding: 0;
-        }
-        .university-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid var(--color-border);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .university-list li i {
-            color: var(--color-accent);
-        }
-    </style>
 </head>
 
 <body>
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
+        <div class="scroll-progress-bar" id="scrollProgressBar"></div>
         <div class="nav-container">
             <div class="nav-brand">
                 <a href="index.html#home" class="nav-brand-link">
-                    <img src="./images/favicon.png" alt="EV Overseas" class="nav-logo-img" fetchpriority="high">
+                    <img src="./images/favicon.png" alt="EV Overseas - Study in USA from Hyderabad" class="nav-logo-img" width="44" height="44" fetchpriority="high">
                 </a>
                 <div class="nav-brand-text">
                     <a href="index.html#home" class="nav-logo">EV Overseas</a>
@@ -238,86 +185,326 @@
         </div>
     </nav>
 
-    <!-- Announcement Banner -->
+    <!-- Announcement Banner (Dynamic & Interactive) -->
     <div class="announce-banner" id="announceBanner" data-enabled="true">
         <div class="announce-content">
-            <div class="announce-message">
-                <span class="announce-icon">🎓</span>
-                <span class="announce-icon">🚀</span>
-                <span class="announce-text">Fall 2026 Admissions Open! Secure your spot now!</span>
+            <div class="announce-badge">
+                <span class="pulse-dot"></span>
+                <span class="badge-text">USA INTAKE</span>
             </div>
-            <a href="contact.html" class="announce-cta">
-                Get in Touch →
-            </a>
+            <div class="announce-slider" id="announceSlider">
+                <div class="announce-slide active">
+                    <span class="slide-icon">🚀</span>
+                    <span class="announce-text"><strong>Fall 2026 USA Admissions Open!</strong> Priority MS, MBA &amp; STEM deadlines approaching</span>
+                </div>
+                <div class="announce-slide">
+                    <span class="slide-icon">🎯</span>
+                    <span class="announce-text"><strong>100% Free Profile Evaluation &amp; F-1 Visa Mock Interviews</strong> in Hyderabad</span>
+                </div>
+                <div class="announce-slide">
+                    <span class="slide-icon">💵</span>
+                    <span class="announce-text"><strong>Scholarships &amp; Assistantships:</strong> Unlock high ROI options at top US universities</span>
+                </div>
+            </div>
+            <div class="announce-actions">
+                <div class="announce-dots" id="announceDots">
+                    <button class="announce-dot active" data-slide="0" aria-label="Slide 1"></button>
+                    <button class="announce-dot" data-slide="1" aria-label="Slide 2"></button>
+                    <button class="announce-dot" data-slide="2" aria-label="Slide 3"></button>
+                </div>
+                <a href="contact.html" class="announce-cta">
+                    <span>Apply to USA</span>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
         </div>
-        <button class="announce-close" onclick="closeAnnounceBanner()" aria-label="Close banner">×</button>
+        <button class="announce-close" onclick="closeAnnounceBanner()" aria-label="Close banner">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
     </div>
 
     <!-- Hero Section -->
     <section class="destination-hero">
         <div class="container">
+            <span class="dest-intake-badge"><span class="pulse-dot"></span> Fall 2026 Admissions Open • Priority Deadlines Approaching</span>
             <h1>Study in the USA from Hyderabad</h1>
-            <p style="font-size: 1.25rem; max-width: 800px; margin: 0 auto;">Experience the EV Overseas Glass Box Process. Unlimited applications, 97% visa success, and no hidden fees for your American Dream.</p>
-            <a href="contact.html" class="btn btn--primary" style="margin-top: 30px; text-decoration: none; display: inline-block;">Start Your USA Journey</a>
+            <p>Experience the EV Overseas Glass Box Process. Unlimited applications, 97% visa success, and no hidden fees for your American Dream.</p>
+            <a href="contact.html" class="btn btn--primary" style="text-decoration: none; display: inline-block;">Start Your USA Journey</a>
+
+            <!-- 4-Point Frosted Quick-Stats Strip -->
+            <div class="dest-quick-stats-strip">
+                <div class="quick-stat-item">
+                    <div class="qs-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="qs-content">
+                        <span class="qs-label">Avg. MS Tuition</span>
+                        <span class="qs-value">₹18L – ₹32L/yr</span>
+                    </div>
+                </div>
+                <div class="quick-stat-item">
+                    <div class="qs-icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="qs-content">
+                        <span class="qs-label">Post-Study Work</span>
+                        <span class="qs-value">3 Years (STEM OPT)</span>
+                    </div>
+                </div>
+                <div class="quick-stat-item">
+                    <div class="qs-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="qs-content">
+                        <span class="qs-label">Avg. Starting Salary</span>
+                        <span class="qs-value">$85k – $125k/yr</span>
+                    </div>
+                </div>
+                <div class="quick-stat-item">
+                    <div class="qs-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="qs-content">
+                        <span class="qs-label">Min. Criteria</span>
+                        <span class="qs-value">6.0+ CGPA (Backlogs OK)</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Why USA -->
+    <!-- 1. Why USA - Strategic Advantages -->
     <section class="content-section">
         <div class="container">
             <div class="section-header">
                 <h2>Why Study in the USA?</h2>
-                <p>The Land of Innovation and Opportunity</p>
+                <p>The global epicenter of tech innovation, research funding, and career acceleration.</p>
             </div>
             <div class="info-grid">
                 <div class="info-card">
-                    <h3><i class="fas fa-laptop-code"></i> STEM OPT Extension</h3>
-                    <p>International students in STEM fields can apply for a 24-month extension of their Optional Practical Training (OPT), allowing for up to 3 years of work experience in the US after graduation.</p>
+                    <h3><i class="fas fa-laptop-code" style="color:var(--color-accent);"></i> 3-Year STEM OPT Work Rights</h3>
+                    <p>Graduate from a STEM-designated degree (MS CS, Data Science, AI, Business Analytics) and gain up to <strong>36 months of lawful full-time employment</strong> in the US with direct H-1B sponsorship opportunities.</p>
                 </div>
                 <div class="info-card">
-                    <h3><i class="fas fa-university"></i> World-Class Education</h3>
-                    <p>The US is home to the majority of the world's top-ranked universities, offering cutting-edge research facilities, flexible curriculums, and unparalleled academic prestige.</p>
+                    <h3><i class="fas fa-chart-line" style="color:#10B981;"></i> High Starting Salaries ($85k–$125k)</h3>
+                    <p>US graduates secure the highest global return on investment. Major tech hubs across Silicon Valley, Seattle, Austin, and Dallas recruit directly through on-campus career fairs and university networks.</p>
                 </div>
                 <div class="info-card">
-                    <h3><i class="fas fa-chart-line"></i> Incredible Career ROI</h3>
-                    <p>With major tech hubs like Silicon Valley, Seattle, and Austin, studying in the US provides direct access to internships and jobs at the world's largest companies.</p>
+                    <h3><i class="fas fa-shield-alt" style="color:var(--color-urgency);"></i> 97% Visa Approval Rate</h3>
+                    <p>EV Overseas conducts rigorous 1-on-1 F-1 visa mock interviews with authentic VO question banks, DS-160 auditing, and financial profile structuring tailored specifically for the Hyderabad US Consulate.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Top Universities & Quick Requirements -->
+    <!-- 2. Curated US University Tiers Matrix (Dream, Target, Safe) -->
     <section class="content-section alt">
         <div class="container">
             <div class="section-header">
-                <h2>Top US Partner Universities</h2>
-                <p>We partner with hundreds of prestigious institutions across America.</p>
+                <h2>Top US Universities by Profile Tier</h2>
+                <p>Curated shortlist framework to balance high ranking aspirations with guaranteed admits.</p>
             </div>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3>Top Choices for MS in USA</h3>
-                    <ul class="university-list">
-                        <li><i class="fas fa-check-circle"></i> California State University (Multiple Campuses)</li>
-                        <li><i class="fas fa-check-circle"></i> Southeast Missouri State University</li>
-                        <li><i class="fas fa-check-circle"></i> University of Texas at Arlington</li>
-                        <li><i class="fas fa-check-circle"></i> Arizona State University</li>
-                        <li><i class="fas fa-check-circle"></i> San Jose State University</li>
-                    </ul>
+            <div class="uni-tier-grid">
+                <!-- Tier 1: Dream -->
+                <div class="uni-tier-card">
+                    <div class="uni-card-top">
+                        <span class="uni-tier-tag tag-dream"><i class="fas fa-star"></i> Tier 1 • Dream</span>
+                        <span class="uni-rank-badge">QS Top 150</span>
+                    </div>
+                    <h3 class="uni-title">Arizona State University</h3>
+                    <div class="uni-location"><i class="fas fa-map-marker-alt"></i> Tempe, Arizona</div>
+                    <div class="uni-programs-row">
+                        <span class="uni-programs-label">Popular Programs</span>
+                        <div class="uni-tags-wrap">
+                            <span class="uni-prog-pill">MS CS</span>
+                            <span class="uni-prog-pill">Data Science</span>
+                            <span class="uni-prog-pill">Industrial Engg</span>
+                            <span class="uni-prog-pill">Robotics</span>
+                        </div>
+                    </div>
+                    <div class="uni-meta-bar">
+                        <div>
+                            <span class="meta-item-label">Avg. Tuition</span>
+                            <div class="meta-item-val">$32k – $38k/yr</div>
+                        </div>
+                        <div>
+                            <span class="meta-item-label">Min. Profile</span>
+                            <div class="meta-item-val">7.2+ CGPA • GRE 305+</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="info-card">
-                    <h3>Estimated Costs & Requirements</h3>
-                    <ul class="university-list">
-                        <li><i class="fas fa-coins"></i> <strong>Tuition:</strong> $15,000 - $35,000 / year</li>
-                        <li><i class="fas fa-home"></i> <strong>Living:</strong> $10,000 - $15,000 / year</li>
-                        <li><i class="fas fa-file-alt"></i> <strong>Exams:</strong> GRE (optional for many), IELTS/TOEFL</li>
-                        <li><i class="fas fa-briefcase"></i> <strong>Work:</strong> 20 hrs/week on-campus</li>
-                    </ul>
+
+                <!-- Tier 2: Target -->
+                <div class="uni-tier-card">
+                    <div class="uni-card-top">
+                        <span class="uni-tier-tag tag-target"><i class="fas fa-bullseye"></i> Tier 2 • Target</span>
+                        <span class="uni-rank-badge">Top Public Tech</span>
+                    </div>
+                    <h3 class="uni-title">University of Texas at Arlington</h3>
+                    <div class="uni-location"><i class="fas fa-map-marker-alt"></i> Arlington, Texas</div>
+                    <div class="uni-programs-row">
+                        <span class="uni-programs-label">Popular Programs</span>
+                        <div class="uni-tags-wrap">
+                            <span class="uni-prog-pill">MS CS</span>
+                            <span class="uni-prog-pill">Info Systems</span>
+                            <span class="uni-prog-pill">Mechanical</span>
+                            <span class="uni-prog-pill">Biomedical</span>
+                        </div>
+                    </div>
+                    <div class="uni-meta-bar">
+                        <div>
+                            <span class="meta-item-label">Avg. Tuition</span>
+                            <div class="meta-item-val">$22k – $28k/yr</div>
+                        </div>
+                        <div>
+                            <span class="meta-item-label">Min. Profile</span>
+                            <div class="meta-item-val">6.5+ CGPA • GRE Optional</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tier 3: Safe / High Scholarship -->
+                <div class="uni-tier-card">
+                    <div class="uni-card-top">
+                        <span class="uni-tier-tag tag-safe"><i class="fas fa-award"></i> Tier 3 • High ROI</span>
+                        <span class="uni-rank-badge">Up to $8k Grant</span>
+                    </div>
+                    <h3 class="uni-title">Southeast Missouri State University</h3>
+                    <div class="uni-location"><i class="fas fa-map-marker-alt"></i> Cape Girardeau, Missouri</div>
+                    <div class="uni-programs-row">
+                        <span class="uni-programs-label">Popular Programs</span>
+                        <div class="uni-tags-wrap">
+                            <span class="uni-prog-pill">MS Applied CS</span>
+                            <span class="uni-prog-pill">Cybersecurity</span>
+                            <span class="uni-prog-pill">MBA</span>
+                            <span class="uni-prog-pill">Tech Mgmt</span>
+                        </div>
+                    </div>
+                    <div class="uni-meta-bar">
+                        <div>
+                            <span class="meta-item-label">Avg. Tuition</span>
+                            <div class="meta-item-val">$14k – $18k/yr</div>
+                        </div>
+                        <div>
+                            <span class="meta-item-label">Min. Profile</span>
+                            <div class="meta-item-val">6.0+ CGPA • No GRE Req.</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- USA INTERACTIVE STUDY HUB (Cost Calculator & Scholarships) -->
+    <!-- 3. Step-by-Step Admission & Visa Roadmap -->
+    <section class="content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Your 5-Stage Roadmap to the USA</h2>
+                <p>The transparent EV Overseas Glass Box workflow from Hyderabad to your US campus.</p>
+            </div>
+            <div class="roadmap-stepper-grid">
+                <div class="roadmap-step-card">
+                    <div class="step-num-bubble">1</div>
+                    <h3 class="step-title">Profile Audit</h3>
+                    <p class="step-desc">Free evaluation of GPA, backlogs, and GRE/IELTS waivers to build a realistic Dream-Target-Safe shortlist.</p>
+                </div>
+                <div class="roadmap-step-card">
+                    <div class="step-num-bubble">2</div>
+                    <h3 class="step-title">Document Crafting</h3>
+                    <p class="step-desc">Custom SOPs, LORs, and CV architecture written without plagiarism or generic templates.</p>
+                </div>
+                <div class="roadmap-step-card">
+                    <div class="step-num-bubble">3</div>
+                    <h3 class="step-title">App Submissions</h3>
+                    <p class="step-desc">Unlimited applications handled with direct application fee waivers and scholarship tracking.</p>
+                </div>
+                <div class="roadmap-step-card">
+                    <div class="step-num-bubble">4</div>
+                    <h3 class="step-title">I-20 & Finances</h3>
+                    <p class="step-desc">Seamless I-20 issuance, collateral/non-collateral loan sanctioning, and CA/financial evaluation.</p>
+                </div>
+                <div class="roadmap-step-card">
+                    <div class="step-num-bubble">5</div>
+                    <h3 class="step-title">F-1 Visa Mocks</h3>
+                    <p class="step-desc">5+ live mock interviews with Hyderabad consulate-specific question drills and documentation check.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. High-Demand Programs & Career ROI -->
+    <section class="content-section alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>High-ROI Master's Programs in the USA</h2>
+                <p>Top STEM specializations with maximum post-graduation salaries and employer demand.</p>
+            </div>
+            <div class="career-roi-grid">
+                <div class="roi-card">
+                    <div class="roi-header">
+                        <div class="roi-icon"><i class="fas fa-brain"></i></div>
+                        <h3 class="roi-title">MS in Computer Science & AI</h3>
+                    </div>
+                    <div class="roi-salary-chip">
+                        <span>Avg. Starting Salary</span>
+                        <span>$115,000 / yr</span>
+                    </div>
+                    <p class="roi-roles"><strong>Key Roles:</strong> Machine Learning Engineer, Software Architect, Cloud Systems Developer.</p>
+                </div>
+                <div class="roi-card">
+                    <div class="roi-header">
+                        <div class="roi-icon"><i class="fas fa-database"></i></div>
+                        <h3 class="roi-title">MS in Data Analytics & Data Science</h3>
+                    </div>
+                    <div class="roi-salary-chip">
+                        <span>Avg. Starting Salary</span>
+                        <span>$102,000 / yr</span>
+                    </div>
+                    <p class="roi-roles"><strong>Key Roles:</strong> Data Scientist, Business Intelligence Lead, Big Data Quantitative Analyst.</p>
+                </div>
+                <div class="roi-card">
+                    <div class="roi-header">
+                        <div class="roi-icon"><i class="fas fa-tasks"></i></div>
+                        <h3 class="roi-title">MS in Engineering Management (MEM)</h3>
+                    </div>
+                    <div class="roi-salary-chip">
+                        <span>Avg. Starting Salary</span>
+                        <span>$96,000 / yr</span>
+                    </div>
+                    <p class="roi-roles"><strong>Key Roles:</strong> Technical Product Manager, Scrum Master, Operations & Supply Chain Director.</p>
+                </div>
+            </div>
+
+            <!-- Hyderabad Admit Spotlight -->
+            <div class="admit-spotlight-box">
+                <div class="spotlight-grid">
+                    <div>
+                        <span class="spotlight-badge"><i class="fas fa-shield-alt"></i> Hyderabad Student Spotlight</span>
+                        <p class="spotlight-quote">"Other consultancies told me I couldn't get into a top university with 6 backlogs and 68%. EV Overseas restructured my SOP and helped me secure an admit to ASU with a $5,000 Dean's Scholarship and F-1 visa approved on the first attempt at Hyderabad consulate!"</p>
+                        <div class="spotlight-author">
+                            <div class="spotlight-avatar">R</div>
+                            <div class="author-info">
+                                <h4>Rahul Varma K.</h4>
+                                <span>CBIT Hyderabad (ECE) ➔ MS CS at Arizona State University</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spotlight-metrics-card">
+                        <div class="spotlight-metric-item">
+                            <span class="sm-label">Undergrad GPA</span>
+                            <span class="sm-val">6.8 CGPA (6 Backlogs)</span>
+                        </div>
+                        <div class="spotlight-metric-item">
+                            <span class="sm-label">Scholarship</span>
+                            <span class="sm-val">$5,000 Merit Award</span>
+                        </div>
+                        <div class="spotlight-metric-item">
+                            <span class="sm-label">GRE / IELTS</span>
+                            <span class="sm-val">GRE 308 • IELTS 7.0</span>
+                        </div>
+                        <div class="spotlight-metric-item">
+                            <span class="sm-label">F-1 Visa Status</span>
+                            <span class="sm-val">Approved (Hyd) ✅</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. USA INTERACTIVE STUDY HUB (Cost Calculator & Scholarships) -->
     <section id="country-hub" class="abroad-hub-section" style="padding: var(--space-section-large-desktop); border-top: 1px solid var(--color-border); background: #f8fafc;">
         <div class="container">
             <div class="section-header">
@@ -353,8 +540,8 @@
                                 </div>
 
                                 <div class="quiz-form-group">
-                                    <label for="calc-tuition">Estimated Annual Tuition (INR)<span id="calc-tuition-val" class="quiz-range-val">₹25 Lakhs</span></label>
-                                    <input type="range" id="calc-tuition" min="0" max="50" step="1" value="25" class="quiz-input" style="padding:0; height:6px;">
+                                    <label for="calc-tuition">Estimated Annual Tuition (INR)<span id="calc-tuition-val" class="quiz-range-val">₹24 Lakhs</span></label>
+                                    <input type="range" id="calc-tuition" min="0" max="60" step="1" value="24" class="quiz-input" style="padding:0; height:6px;">
                                 </div>
 
                                 <div class="quiz-form-group">
@@ -380,52 +567,74 @@
                             <div class="calc-results-panel">
                                 <div class="calc-results-header">
                                     <h3>Total Annual USA Cost Estimate</h3>
-                                    <span id="calc-total" class="calc-total-amount">₹32.4 Lakhs</span>
-                                    <p style="font-size: var(--text-xs); color: var(--color-gray-500); margin-top: 4px;">Convertible to Education Loan with Low Interest Rate</p>
+                                    <span id="calc-total" class="calc-total-amount">₹35.0 Lakhs</span>
+                                    <div class="stacked-budget-bar" id="stackedBudgetBar">
+                                        <div class="budget-segment seg-tuition" id="segTuition" style="width: 68%;" title="Tuition"></div>
+                                        <div class="budget-segment seg-living" id="segLiving" style="width: 24%;" title="Living &amp; Rent"></div>
+                                        <div class="budget-segment seg-overhead" id="segOverhead" style="width: 8%;" title="Visa &amp; Insurance"></div>
+                                    </div>
+                                    <div class="stacked-budget-legend">
+                                        <span><span class="legend-dot dot-tuition"></span> Tuition</span>
+                                        <span><span class="legend-dot dot-living"></span> Living &amp; Rent</span>
+                                        <span><span class="legend-dot dot-overhead"></span> Visa &amp; Flight</span>
+                                    </div>
+                                    <p id="calc-total-note" style="font-size: var(--text-xs); color: var(--color-gray-500); margin-top: 4px;">Convertible to Education Loan with Low Interest Rate</p>
                                 </div>
 
                                 <div class="cost-breakdown-list">
                                     <!-- Tuition -->
                                     <div class="cost-item">
                                         <div class="cost-item-header">
-                                            <span>University Tuition Fees</span>
-                                            <span id="item-tuition">₹25.0 Lakhs</span>
+                                            <div class="cost-item-title">
+                                                <span>University Tuition Fees</span>
+                                                <span class="cost-item-desc" id="desc-tuition">Annual tuition for US public & private universities</span>
+                                            </div>
+                                            <span id="item-tuition">₹24.0 Lakhs</span>
                                         </div>
                                         <div class="cost-progress-bar">
-                                            <div class="cost-progress-fill fill-tuition" id="bar-tuition" style="width: 77%;"></div>
+                                            <div class="cost-progress-fill fill-tuition" id="bar-tuition" style="width: 69%;"></div>
                                         </div>
                                     </div>
 
                                     <!-- Rent -->
                                     <div class="cost-item">
                                         <div class="cost-item-header">
-                                            <span>Rent & Accommodation</span>
-                                            <span id="item-rent">₹4.2 Lakhs</span>
+                                            <div class="cost-item-title">
+                                                <span>Rent & Accommodation</span>
+                                                <span class="cost-item-desc" id="desc-rent">Off-campus shared student apartment (saver tier)</span>
+                                            </div>
+                                            <span id="item-rent">₹5.1 Lakhs</span>
                                         </div>
                                         <div class="cost-progress-bar">
-                                            <div class="cost-progress-fill fill-rent" id="bar-rent" style="width: 13%;"></div>
+                                            <div class="cost-progress-fill fill-rent" id="bar-rent" style="width: 15%;"></div>
                                         </div>
                                     </div>
 
                                     <!-- Food & Living -->
                                     <div class="cost-item">
                                         <div class="cost-item-header">
-                                            <span>Food & Living Expenses</span>
-                                            <span id="item-living">₹2.4 Lakhs</span>
+                                            <div class="cost-item-title">
+                                                <span>Food & Living Expenses</span>
+                                                <span class="cost-item-desc" id="desc-living">Groceries, utilities, transit & daily essentials</span>
+                                            </div>
+                                            <span id="item-living">₹2.9 Lakhs</span>
                                         </div>
                                         <div class="cost-progress-bar">
-                                            <div class="cost-progress-fill fill-living" id="bar-living" style="width: 7%;"></div>
+                                            <div class="cost-progress-fill fill-living" id="bar-living" style="width: 8%;"></div>
                                         </div>
                                     </div>
 
                                     <!-- Visa & Insurance -->
                                     <div class="cost-item">
                                         <div class="cost-item-header">
-                                            <span>Insurance, Visas & Airfare</span>
-                                            <span id="item-insurance">₹0.8 Lakhs</span>
+                                            <div class="cost-item-title">
+                                                <span>Insurance, Visas & Airfare</span>
+                                                <span class="cost-item-desc" id="desc-insurance">F-1 Visa ($185), SEVIS fee ($350), Mandatory Health Insurance & Flights</span>
+                                            </div>
+                                            <span id="item-insurance">₹3.0 Lakhs</span>
                                         </div>
                                         <div class="cost-progress-bar">
-                                            <div class="cost-progress-fill fill-insurance" id="bar-insurance" style="width: 3%;"></div>
+                                            <div class="cost-progress-fill fill-insurance" id="bar-insurance" style="width: 8%;"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -443,15 +652,20 @@
                     <div class="hub-glass-card">
                         <!-- Filters -->
                         <div class="scholarship-filter-bar">
-                            <input type="text" id="sch-search" placeholder="Search USA scholarships..." class="sch-search-input">
+                            <input type="text" id="sch-search" placeholder="Search USA scholarships &amp; assistantships..." class="sch-search-input">
                             <select id="sch-country" class="quiz-select" style="display: none;">
                                 <option value="USA" selected>USA</option>
                             </select>
                             <select id="sch-type" class="quiz-select">
-                                <option value="all" selected>All Types</option>
-                                <option value="government">Government</option>
-                                <option value="university">University-Specific</option>
-                                <option value="external">Private Trust</option>
+                                <option value="all" selected>All Award Types</option>
+                                <option value="government">Govt / Fulbright</option>
+                                <option value="university">University &amp; Assistantships</option>
+                                <option value="external">Indian Trusts (Tata/Inlaks)</option>
+                            </select>
+                            <select id="sch-coverage" class="quiz-select">
+                                <option value="all" selected>All Funding Amounts</option>
+                                <option value="full">★ 100% Full-Ride</option>
+                                <option value="partial">🏷️ Tuition Fee Waivers</option>
                             </select>
                         </div>
 
@@ -465,36 +679,44 @@
         </div>
     </section>
 
-    <!-- USA Application Timeline -->
+    <!-- 6. USA F-1 Visa & Admissions FAQs -->
     <section class="content-section">
         <div class="container">
             <div class="section-header">
-                <h2>Your Journey to the USA</h2>
-                <p>A transparent, step-by-step process</p>
+                <h2>USA Admissions & Visa FAQs</h2>
+                <p>Everything you need to know about STEM OPT, backlogs, GRE waivers, and F-1 appointments.</p>
             </div>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3>1. Profile Evaluation (Month 1)</h3>
-                    <p>We evaluate your academic background, test scores, and career goals to shortlist universities where you have the highest probability of admission and scholarships.</p>
-                </div>
-                <div class="info-card">
-                    <h3>2. Applications (Month 2-3)</h3>
-                    <p>We handle your SOPs, LORs, and university applications. With EV Overseas, you can apply to an unlimited number of universities.</p>
-                </div>
-                <div class="info-card">
-                    <h3>3. I-20 & Visa (Month 4-6)</h3>
-                    <p>Once you receive your I-20, our experts guide you through the SEVIS fee payment, DS-160 filling, and conduct rigorous mock interviews for your F-1 Visa.</p>
-                </div>
+            <div class="country-faq-grid">
+                <details class="faq-card-item" open>
+                    <summary>Is GRE mandatory for MS programs in the USA for Fall 2026?</summary>
+                    <p>No, over 70% of leading US universities now offer GRE waivers or test-optional policies for STEM MS programs (e.g., MS in Computer Science, Data Analytics, Cybersecurity). However, submitting a 310+ GRE score can significantly strengthen scholarship chances for competitive applicants.</p>
+                </details>
+                <details class="faq-card-item">
+                    <summary>How many backlogs are accepted by US universities?</summary>
+                    <p>Most reputable US public and private universities accept up to 10–15 backlogs if your overall undergraduate percentage is 60%+ (or CGPA 6.2+) and you demonstrate strong technical projects, research, or relevant work experience.</p>
+                </details>
+                <details class="faq-card-item">
+                    <summary>How does the 3-Year STEM OPT extension work?</summary>
+                    <p>International graduates with an F-1 visa who complete a qualifying STEM degree can work in the United States for up to 36 months (12 months standard OPT + 24 months STEM extension) without requiring an immediate H-1B work visa.</p>
+                </details>
+                <details class="faq-card-item">
+                    <summary>When should I start my application process for Fall 2026?</summary>
+                    <p>US university priority deadlines open in September 2025 and run through January 2026. Applying early ensures maximum eligibility for university department scholarships, Graduate Assistantships (GA/TA), and preferred F-1 visa interview slot availability at the Hyderabad consulate.</p>
+                </details>
+                <details class="faq-card-item">
+                    <summary>How does EV Overseas prepare students for F-1 visa interviews?</summary>
+                    <p>We provide 5+ realistic mock interviews covering financial questions, intent to return, university justification, and academic readiness tailored specifically to the latest visa officer trends at the US Consulate in Nanakramguda, Hyderabad.</p>
+                </details>
             </div>
         </div>
     </section>
 
     <!-- Footer CTA Section -->
-    <section class="footer-cta" style="margin-top: 40px;">
+    <section class="footer-cta" style="margin-top: 20px;">
         <div class="container">
             <h2>Ready to start your American Dream?</h2>
-            <p>Talk to a Career Architect today and get your free, transparent roadmap to the USA.</p>
-            <a href="contact.html" class="btn btn--urgency btn--lg">Book Free Consultation</a>
+            <p>Speak directly with our transparency-first mentors in Hyderabad for your 100% free profile evaluation and roadmap.</p>
+            <a href="contact.html" class="btn btn--urgency btn--lg">Book Free 1-on-1 Consultation</a>
         </div>
     </section>
 

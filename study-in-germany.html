@@ -125,7 +125,7 @@
               "name": "What is the blocked account requirement for German Student Visa?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "As of the latest regulations, international students need a blocked account with €11,208 per year deposited to cover living costs in Germany. EV Overseas assists in setting up blocked accounts via Coracle, Expatrio, or Fintiba."
+                "text": "As of current regulations, international students need a blocked account with €11,904 per year (€992/month) deposited to cover living costs in Germany. EV Overseas assists in setting up blocked accounts via Coracle, Expatrio, or Fintiba."
               }
             },
             {
@@ -145,73 +145,20 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="./images/favicon.png">
 
-    <!-- Fonts and CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Fonts (Consolidated 2-Font High-Performance Stack) -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <style>
-        .destination-hero {
-            padding: 160px 0 80px;
-            background: linear-gradient(135deg, rgba(10,35,66,0.95) 0%, rgba(26,58,92,0.9) 100%), url('https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&q=80') center/cover;
-            color: white;
-            text-align: center;
-        }
-        .destination-hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 20px;
-        }
-        .content-section {
-            padding: 80px 0;
-            background: var(--color-white);
-        }
-        .content-section.alt {
-            background: #f8fafc;
-        }
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        .info-card {
-            background: white;
-            padding: 30px;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--color-border);
-        }
-        .info-card h3 {
-            color: var(--color-primary);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .university-list {
-            list-style: none;
-            padding: 0;
-        }
-        .university-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid var(--color-border);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .university-list li i {
-            color: var(--color-accent);
-        }
-    </style>
 </head>
 
 <body>
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
+        <div class="scroll-progress-bar" id="scrollProgressBar"></div>
         <div class="nav-container">
             <div class="nav-brand">
                 <a href="index.html#home" class="nav-brand-link">
-                    <img src="./images/favicon.png" alt="EV Overseas" class="nav-logo-img" fetchpriority="high">
+                    <img src="./images/favicon.png" alt="EV Overseas - Study in Germany from Hyderabad" class="nav-logo-img" width="44" height="44" fetchpriority="high">
                 </a>
                 <div class="nav-brand-text">
                     <a href="index.html#home" class="nav-logo">EV Overseas</a>
@@ -238,91 +185,331 @@
         </div>
     </nav>
 
-    <!-- Announcement Banner -->
+    <!-- Announcement Banner (Dynamic & Interactive) -->
     <div class="announce-banner" id="announceBanner" data-enabled="true">
         <div class="announce-content">
-            <div class="announce-message">
-                <span class="announce-icon">🎓</span>
-                <span class="announce-icon">🚀</span>
-                <span class="announce-text">Fall 2026 Admissions Open! Secure your spot now!</span>
+            <div class="announce-badge">
+                <span class="pulse-dot"></span>
+                <span class="badge-text">GERMANY INTAKE</span>
             </div>
-            <a href="contact.html" class="announce-cta">
-                Get in Touch →
-            </a>
+            <div class="announce-slider" id="announceSlider">
+                <div class="announce-slide active">
+                    <span class="slide-icon">🚀</span>
+                    <span class="announce-text"><strong>Winter 2026 Germany Admissions Open!</strong> €0 Tuition Public University Guidance</span>
+                </div>
+                <div class="announce-slide">
+                    <span class="slide-icon">⚡</span>
+                    <span class="announce-text"><strong>Fast-Track APS Certificate &amp; Blocked Account (€11,904)</strong> Support in Hyderabad</span>
+                </div>
+                <div class="announce-slide">
+                    <span class="slide-icon">🎓</span>
+                    <span class="announce-text"><strong>English-Taught Master's</strong> in AI, Mechanical, Data Science &amp; Management</span>
+                </div>
+            </div>
+            <div class="announce-actions">
+                <div class="announce-dots" id="announceDots">
+                    <button class="announce-dot active" data-slide="0" aria-label="Slide 1"></button>
+                    <button class="announce-dot" data-slide="1" aria-label="Slide 2"></button>
+                    <button class="announce-dot" data-slide="2" aria-label="Slide 3"></button>
+                </div>
+                <a href="contact.html" class="announce-cta">
+                    <span>Apply to Germany</span>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
         </div>
-        <button class="announce-close" onclick="closeAnnounceBanner()" aria-label="Close banner">×</button>
+        <button class="announce-close" onclick="closeAnnounceBanner()" aria-label="Close banner">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
     </div>
 
     <!-- Hero Section -->
     <section class="destination-hero">
         <div class="container">
+            <span class="dest-intake-badge"><span class="pulse-dot"></span> Fall 2026 Admissions Open • APS Fast-Track Support</span>
             <h1>Study in Germany from Hyderabad</h1>
-            <p style="font-size: 1.25rem; max-width: 800px; margin: 0 auto;">Zero tuition fees, world-class engineering & technology programs, and extensive post-study work opportunities. We simplify the APS and blocked account process.</p>
-            <a href="contact.html" class="btn btn--primary" style="margin-top: 30px; text-decoration: none; display: inline-block;">Start Your Germany Journey</a>
+            <p>Zero tuition fees, world-class engineering & technology programs, and extensive post-study work opportunities. We simplify the APS and blocked account process.</p>
+            <a href="contact.html" class="btn btn--primary" style="text-decoration: none; display: inline-block;">Start Your Germany Journey</a>
+
+            <!-- 4-Point Frosted Quick-Stats Strip -->
+            <div class="dest-quick-stats-strip">
+                <div class="quick-stat-item">
+                    <div class="qs-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="qs-content">
+                        <span class="qs-label">Tuition Cost</span>
+                        <span class="qs-value">€0 (Public Universities)</span>
+                    </div>
+                </div>
+                <div class="quick-stat-item">
+                    <div class="qs-icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="qs-content">
+                        <span class="qs-label">Job Seeker Visa</span>
+                        <span class="qs-value">18 Months Post-Study</span>
+                    </div>
+                </div>
+                <div class="quick-stat-item">
+                    <div class="qs-icon"><i class="fas fa-euro-sign"></i></div>
+                    <div class="qs-content">
+                        <span class="qs-label">Avg. Starting Salary</span>
+                        <span class="qs-value">€55k – €72k/yr</span>
+                    </div>
+                </div>
+                <div class="quick-stat-item">
+                    <div class="qs-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="qs-content">
+                        <span class="qs-label">Core Requirement</span>
+                        <span class="qs-value">APS + €11,904 Blocked A/C</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Why Germany -->
+       <!-- 1. Why Germany - Strategic Advantages -->
     <section class="content-section">
         <div class="container">
             <div class="section-header">
                 <h2>Why Study in Germany?</h2>
-                <p>The Engineering and Innovation Hub of Europe</p>
+                <p>Europe's economic powerhouse offering world-class engineering with zero tuition fees.</p>
             </div>
             <div class="info-grid">
                 <div class="info-card">
-                    <h3><i class="fas fa-piggy-bank"></i> Zero or Low Tuition Fees</h3>
-                    <p>Most public universities in Germany charge no tuition fees for domestic and international students alike. You only pay a small semester contribution (usually €150-€300).</p>
+                    <h3><i class="fas fa-euro-sign" style="color:#10B981;"></i> €0 Tuition at Public Universities</h3>
+                    <p>Over 300 public universities in Germany charge <strong>zero tuition fees</strong> for international students. You only pay a minor semester contribution (€150–€350) which includes free public transit.</p>
                 </div>
                 <div class="info-card">
-                    <h3><i class="fas fa-cogs"></i> English Taught Programs</h3>
-                    <p>While learning German is helpful for living, hundreds of master's degree programs—especially in STEM fields—are taught entirely in English.</p>
+                    <h3><i class="fas fa-industry" style="color:var(--color-accent);"></i> 18-Month Job Seeker Visa & EU Blue Card</h3>
+                    <p>Graduates receive an <strong>18-month post-study work visa</strong>. With massive engineering and IT shortages, securing a role leads quickly to permanent residency under the new EU Blue Card laws.</p>
                 </div>
                 <div class="info-card">
-                    <h3><i class="fas fa-industry"></i> 18-Month Job Seeker Visa</h3>
-                    <p>After graduating from a German university, you are entitled to an 18-month job seeker visa to find employment related to your field of study in Europe's largest economy.</p>
+                    <h3><i class="fas fa-language" style="color:var(--color-urgency);"></i> 1,000+ English-Taught Programs</h3>
+                    <p>You do not need prior German fluency to begin your Master's degree. Top technical universities offer comprehensive English-taught programs in Computer Science, Automotive, AI, and Renewable Energy.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Top Universities & Quick Requirements -->
+    <!-- 2. Curated German University Tiers Matrix (Dream, Target, Safe) -->
     <section class="content-section alt">
         <div class="container">
             <div class="section-header">
-                <h2>Top German Universities</h2>
-                <p>We provide extensive guidance on securing admission to highly competitive German institutions.</p>
+                <h2>Top German Universities by Profile Tier</h2>
+                <p>Curated shortlist framework to navigate Uni-Assist and direct portal admissions.</p>
             </div>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3>Popular Technical Universities (TU9)</h3>
-                    <ul class="university-list">
-                        <li><i class="fas fa-check-circle"></i> Technical University of Munich (TUM)</li>
-                        <li><i class="fas fa-check-circle"></i> RWTH Aachen University</li>
-                        <li><i class="fas fa-check-circle"></i> University of Stuttgart</li>
-                        <li><i class="fas fa-check-circle"></i> TU Berlin</li>
-                        <li><i class="fas fa-check-circle"></i> KIT (Karlsruhe Institute of Technology)</li>
-                    </ul>
+            <div class="uni-tier-grid">
+                <!-- Tier 1: Dream -->
+                <div class="uni-tier-card">
+                    <div class="uni-card-top">
+                        <span class="uni-tier-tag tag-dream"><i class="fas fa-star"></i> Tier 1 • TU9 Excellence</span>
+                        <span class="uni-rank-badge">QS Top 50</span>
+                    </div>
+                    <h3 class="uni-title">TU Munich (TUM) / RWTH Aachen</h3>
+                    <div class="uni-location"><i class="fas fa-map-marker-alt"></i> Bavaria / North Rhine-Westphalia</div>
+                    <div class="uni-programs-row">
+                        <span class="uni-programs-label">Popular Programs</span>
+                        <div class="uni-tags-wrap">
+                            <span class="uni-prog-pill">MSc Informatics (CS)</span>
+                            <span class="uni-prog-pill">Automotive Engg</span>
+                            <span class="uni-prog-pill">Data Engg</span>
+                            <span class="uni-prog-pill">Robotics</span>
+                        </div>
+                    </div>
+                    <div class="uni-meta-bar">
+                        <div>
+                            <span class="meta-item-label">Tuition</span>
+                            <div class="meta-item-val">€0 (Free) or Minimal</div>
+                        </div>
+                        <div>
+                            <span class="meta-item-label">Min. Profile</span>
+                            <div class="meta-item-val">7.8+ CGPA • Strong Math ECTS</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="info-card">
-                    <h3>Estimated Costs & Requirements</h3>
-                    <ul class="university-list">
-                        <li><i class="fas fa-coins"></i> <strong>Tuition:</strong> €0 - €3,000 / year (Public)</li>
-                        <li><i class="fas fa-home"></i> <strong>Living (Blocked Account):</strong> €11,208 / year</li>
-                        <li><i class="fas fa-file-alt"></i> <strong>Requirements:</strong> APS Certificate is Mandatory</li>
-                        <li><i class="fas fa-language"></i> <strong>Language:</strong> IELTS for English programs</li>
-                    </ul>
+
+                <!-- Tier 2: Target -->
+                <div class="uni-tier-card">
+                    <div class="uni-card-top">
+                        <span class="uni-tier-tag tag-target"><i class="fas fa-bullseye"></i> Tier 2 • Top Tech Univ</span>
+                        <span class="uni-rank-badge">High Admit Rate</span>
+                    </div>
+                    <h3 class="uni-title">University of Stuttgart / TU Chemnitz</h3>
+                    <div class="uni-location"><i class="fas fa-map-marker-alt"></i> Baden-Württemberg / Saxony</div>
+                    <div class="uni-programs-row">
+                        <span class="uni-programs-label">Popular Programs</span>
+                        <div class="uni-tags-wrap">
+                            <span class="uni-prog-pill">MSc Embedded Systems</span>
+                            <span class="uni-prog-pill">Mechanical Engg</span>
+                            <span class="uni-prog-pill">Software Tech</span>
+                            <span class="uni-prog-pill">AI</span>
+                        </div>
+                    </div>
+                    <div class="uni-meta-bar">
+                        <div>
+                            <span class="meta-item-label">Tuition</span>
+                            <div class="meta-item-val">€0 / €1,500 semester</div>
+                        </div>
+                        <div>
+                            <span class="meta-item-label">Min. Profile</span>
+                            <div class="meta-item-val">7.0+ CGPA • IELTS 6.5</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tier 3: Safe / Fast Admission -->
+                <div class="uni-tier-card">
+                    <div class="uni-card-top">
+                        <span class="uni-tier-tag tag-safe"><i class="fas fa-award"></i> Tier 3 • Applied Sciences</span>
+                        <span class="uni-rank-badge">Industry Direct</span>
+                    </div>
+                    <h3 class="uni-title">Deggendorf Institute / Schmalkalden</h3>
+                    <div class="uni-location"><i class="fas fa-map-marker-alt"></i> Bavaria / Thuringia</div>
+                    <div class="uni-programs-row">
+                        <span class="uni-programs-label">Popular Programs</span>
+                        <div class="uni-tags-wrap">
+                            <span class="uni-prog-pill">Applied CS</span>
+                            <span class="uni-prog-pill">Smart Sensors</span>
+                            <span class="uni-prog-pill">Tech Mgmt</span>
+                            <span class="uni-prog-pill">Mechatronics</span>
+                        </div>
+                    </div>
+                    <div class="uni-meta-bar">
+                        <div>
+                            <span class="meta-item-label">Tuition</span>
+                            <div class="meta-item-val">€0 (100% Free)</div>
+                        </div>
+                        <div>
+                            <span class="meta-item-label">Min. Profile</span>
+                            <div class="meta-item-val">6.2+ CGPA • Backlogs Accepted</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- GERMANY INTERACTIVE STUDY HUB (Cost Calculator & Scholarships) -->
+    <!-- 3. Step-by-Step Admission & Visa Roadmap -->
+    <section class="content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Your 5-Stage Roadmap to Germany</h2>
+                <p>The transparent EV Overseas Glass Box workflow from Hyderabad to your German campus.</p>
+            </div>
+            <div class="roadmap-stepper-grid">
+                <div class="roadmap-step-card">
+                    <div class="step-num-bubble">1</div>
+                    <h3 class="step-title">APS Certificate</h3>
+                    <p class="step-desc">Document verification & fast-track submission to the Academic Evaluation Centre (APS) New Delhi.</p>
+                </div>
+                <div class="roadmap-step-card">
+                    <div class="step-num-bubble">2</div>
+                    <h3 class="step-title">ECTS Curriculum Match</h3>
+                    <p class="step-desc">Course credit mapping against German university module handbooks to prevent credit mismatch rejections.</p>
+                </div>
+                <div class="roadmap-step-card">
+                    <div class="step-num-bubble">3</div>
+                    <h3 class="step-title">Uni-Assist & Direct Apps</h3>
+                    <p class="step-desc">VPD applications and direct university submissions with tailored German-standard Europass CV & SOP.</p>
+                </div>
+                <div class="roadmap-step-card">
+                    <div class="step-num-bubble">4</div>
+                    <h3 class="step-title">Blocked Account Setup</h3>
+                    <p class="step-desc">Assistance opening your mandatory €11,904 blocked account with official providers (Expatrio/Coracle/Fintiba).</p>
+                </div>
+                <div class="roadmap-step-card">
+                    <div class="step-num-bubble">5</div>
+                    <h3 class="step-title">German Visa (VFS)</h3>
+                    <p class="step-desc">Appointment slot booking at VFS Hyderabad/Chennai and preparation for German Embassy checklist compliance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. High-Demand Programs & Career ROI -->
+    <section class="content-section alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>High-ROI Master's Programs in Germany</h2>
+                <p>Top STEM fields with high employer demand across Munich, Stuttgart, Berlin, and Frankfurt.</p>
+            </div>
+            <div class="career-roi-grid">
+                <div class="roi-card">
+                    <div class="roi-header">
+                        <div class="roi-icon"><i class="fas fa-microchip"></i></div>
+                        <h3 class="roi-title">MSc in Automotive & Embedded Systems</h3>
+                    </div>
+                    <div class="roi-salary-chip">
+                        <span>Avg. Starting Salary</span>
+                        <span>€65,000 / yr</span>
+                    </div>
+                    <p class="roi-roles"><strong>Key Employers:</strong> BMW, Mercedes-Benz, Bosch, Porsche, Siemens, Continental.</p>
+                </div>
+                <div class="roi-card">
+                    <div class="roi-header">
+                        <div class="roi-icon"><i class="fas fa-server"></i></div>
+                        <h3 class="roi-title">MSc in Informatics & Data Science</h3>
+                    </div>
+                    <div class="roi-salary-chip">
+                        <span>Avg. Starting Salary</span>
+                        <span>€68,000 / yr</span>
+                    </div>
+                    <p class="roi-roles"><strong>Key Employers:</strong> SAP, Zalando, Amazon Berlin, Allianz Technology, Delivery Hero.</p>
+                </div>
+                <div class="roi-card">
+                    <div class="roi-header">
+                        <div class="roi-icon"><i class="fas fa-solar-panel"></i></div>
+                        <h3 class="roi-title">MSc in Renewable Energy & Power Engg</h3>
+                    </div>
+                    <div class="roi-salary-chip">
+                        <span>Avg. Starting Salary</span>
+                        <span>€62,000 / yr</span>
+                    </div>
+                    <p class="roi-roles"><strong>Key Employers:</strong> Siemens Energy, RWE, E.ON, SMA Solar Technology.</p>
+                </div>
+            </div>
+
+            <!-- Hyderabad Admit Spotlight -->
+            <div class="admit-spotlight-box">
+                <div class="spotlight-grid">
+                    <div>
+                        <span class="spotlight-badge"><i class="fas fa-shield-alt"></i> Hyderabad Student Spotlight</span>
+                        <p class="spotlight-quote">"German admissions are extremely strict about ECTS credit requirements. EV Overseas meticulously mapped my JNTU transcripts and guided my APS verification. I got into TU Chemnitz with €0 tuition and received my German visa without a single query!"</p>
+                        <div class="spotlight-author">
+                            <div class="spotlight-avatar">V</div>
+                            <div class="author-info">
+                                <h4>Vikram Chary P.</h4>
+                                <span>JNTUH Hyderabad (Mechanical) ➔ MSc Automotive Engg at TU Chemnitz</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spotlight-metrics-card">
+                        <div class="spotlight-metric-item">
+                            <span class="sm-label">Tuition Paid</span>
+                            <span class="sm-val">€0 (100% Free)</span>
+                        </div>
+                        <div class="spotlight-metric-item">
+                            <span class="sm-label">APS Processing</span>
+                            <span class="sm-val">Verified in 24 Days</span>
+                        </div>
+                        <div class="spotlight-metric-item">
+                            <span class="sm-label">Undergrad CGPA</span>
+                            <span class="sm-val">7.4 CGPA (JNTU)</span>
+                        </div>
+                        <div class="spotlight-metric-item">
+                            <span class="sm-label">National Visa</span>
+                            <span class="sm-val">Approved (VFS Hyd) ✅</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. GERMANY INTERACTIVE STUDY HUB (Cost Calculator & Scholarships) -->
     <section id="country-hub" class="abroad-hub-section" style="padding: var(--space-section-large-desktop); border-top: 1px solid var(--color-border); background: #f8fafc;">
         <div class="container">
             <div class="section-header">
                 <h2>Smart Germany Student Planner</h2>
-                <p>Calculate realistic study budgets and search active German scholarships instantly.</p>
+                <p>Calculate realistic living budgets and search active German scholarships instantly.</p>
             </div>
 
             <!-- Tab Buttons -->
@@ -354,7 +541,7 @@
 
                                 <div class="quiz-form-group">
                                     <label for="calc-tuition">Estimated Annual Tuition (INR)<span id="calc-tuition-val" class="quiz-range-val">€0 (Tuition Free Public)</span></label>
-                                    <input type="range" id="calc-tuition" min="0" max="20" step="1" value="0" class="quiz-input" style="padding:0; height:6px;">
+                                    <input type="range" id="calc-tuition" min="0" max="25" step="1" value="0" class="quiz-input" style="padding:0; height:6px;">
                                 </div>
 
                                 <div class="quiz-form-group">
@@ -380,15 +567,28 @@
                             <div class="calc-results-panel">
                                 <div class="calc-results-header">
                                     <h3>Total Annual Germany Cost Estimate</h3>
-                                    <span id="calc-total" class="calc-total-amount">₹6.6 Lakhs</span>
-                                    <p style="font-size: var(--text-xs); color: var(--color-gray-500); margin-top: 4px;">Primarily covers Blocked Account requirements for Visa</p>
+                                    <span id="calc-total" class="calc-total-amount">₹12.5 Lakhs</span>
+                                    <div class="stacked-budget-bar" id="stackedBudgetBar">
+                                        <div class="budget-segment seg-tuition" id="segTuition" style="width: 5%;" title="Tuition"></div>
+                                        <div class="budget-segment seg-living" id="segLiving" style="width: 75%;" title="Living &amp; Rent"></div>
+                                        <div class="budget-segment seg-overhead" id="segOverhead" style="width: 20%;" title="Blocked A/C &amp; Flight"></div>
+                                    </div>
+                                    <div class="stacked-budget-legend">
+                                        <span><span class="legend-dot dot-tuition"></span> €0 Tuition</span>
+                                        <span><span class="legend-dot dot-living"></span> Blocked Living</span>
+                                        <span><span class="legend-dot dot-overhead"></span> APS &amp; Visa</span>
+                                    </div>
+                                    <p id="calc-total-note" style="font-size: var(--text-xs); color: var(--color-gray-500); margin-top: 4px;">Convertible to Education Loan with Low Interest Rate</p>
                                 </div>
 
                                 <div class="cost-breakdown-list">
                                     <!-- Tuition -->
                                     <div class="cost-item">
                                         <div class="cost-item-header">
-                                            <span>University Tuition Fees</span>
+                                            <div class="cost-item-title">
+                                                <span>University Tuition Fees</span>
+                                                <span class="cost-item-desc" id="desc-tuition">€0 tuition at German public universities</span>
+                                            </div>
                                             <span id="item-tuition">€0 (Public)</span>
                                         </div>
                                         <div class="cost-progress-bar">
@@ -399,33 +599,42 @@
                                     <!-- Rent -->
                                     <div class="cost-item">
                                         <div class="cost-item-header">
-                                            <span>Rent & Accommodation</span>
-                                            <span id="item-rent">₹3.0 Lakhs</span>
+                                            <div class="cost-item-title">
+                                                <span>Rent & Accommodation</span>
+                                                <span class="cost-item-desc" id="desc-rent">Student WG (shared flat) outside major metros</span>
+                                            </div>
+                                            <span id="item-rent">₹4.5 Lakhs</span>
                                         </div>
                                         <div class="cost-progress-bar">
-                                            <div class="cost-progress-fill fill-rent" id="bar-rent" style="width: 45%;"></div>
+                                            <div class="cost-progress-fill fill-rent" id="bar-rent" style="width: 36%;"></div>
                                         </div>
                                     </div>
 
                                     <!-- Food & Living -->
                                     <div class="cost-item">
                                         <div class="cost-item-header">
-                                            <span>Food & Living Expenses</span>
-                                            <span id="item-living">₹1.5 Lakhs</span>
+                                            <div class="cost-item-title">
+                                                <span>Food & Living Expenses</span>
+                                                <span class="cost-item-desc" id="desc-living">Monthly groceries, health insurance & public transport</span>
+                                            </div>
+                                            <span id="item-living">₹5.2 Lakhs</span>
                                         </div>
                                         <div class="cost-progress-bar">
-                                            <div class="cost-progress-fill fill-living" id="bar-living" style="width: 23%;"></div>
+                                            <div class="cost-progress-fill fill-living" id="bar-living" style="width: 42%;"></div>
                                         </div>
                                     </div>
 
                                     <!-- Visa & Insurance -->
                                     <div class="cost-item">
                                         <div class="cost-item-header">
-                                            <span>Insurance, Visas & Airfare</span>
-                                            <span id="item-insurance">₹0.8 Lakhs</span>
+                                            <div class="cost-item-title">
+                                                <span>APS, Blocked A/C & Flights</span>
+                                                <span class="cost-item-desc" id="desc-insurance">APS Verification (₹18k), National Visa (€75) & Flights</span>
+                                            </div>
+                                            <span id="item-insurance">₹2.8 Lakhs</span>
                                         </div>
                                         <div class="cost-progress-bar">
-                                            <div class="cost-progress-fill fill-insurance" id="bar-insurance" style="width: 12%;"></div>
+                                            <div class="cost-progress-fill fill-insurance" id="bar-insurance" style="width: 22%;"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -443,15 +652,20 @@
                     <div class="hub-glass-card">
                         <!-- Filters -->
                         <div class="scholarship-filter-bar">
-                            <input type="text" id="sch-search" placeholder="Search Germany scholarships..." class="sch-search-input">
+                            <input type="text" id="sch-search" placeholder="Search DAAD &amp; Deutschlandstipendium scholarships..." class="sch-search-input">
                             <select id="sch-country" class="quiz-select" style="display: none;">
                                 <option value="Germany" selected>Germany</option>
                             </select>
                             <select id="sch-type" class="quiz-select">
-                                <option value="all" selected>All Types</option>
-                                <option value="government">Government</option>
-                                <option value="university">University-Specific</option>
-                                <option value="external">Private Trust</option>
+                                <option value="all" selected>All Award Types</option>
+                                <option value="government">DAAD / Govt Funded</option>
+                                <option value="university">Deutschlandstipendium (€300/mo)</option>
+                                <option value="external">Erasmus+ / Foundation Grants</option>
+                            </select>
+                            <select id="sch-coverage" class="quiz-select">
+                                <option value="all" selected>All Funding Amounts</option>
+                                <option value="full">★ 100% Full-Ride / DAAD</option>
+                                <option value="partial">💵 Monthly Stipends (€300–€934/mo)</option>
                             </select>
                         </div>
 
@@ -465,36 +679,44 @@
         </div>
     </section>
 
-    <!-- Germany Application Timeline -->
+    <!-- 6. Germany Admissions & Visa FAQs -->
     <section class="content-section">
         <div class="container">
             <div class="section-header">
-                <h2>Your Journey to Germany</h2>
-                <p>A transparent, step-by-step process</p>
+                <h2>Germany Admissions & Visa FAQs</h2>
+                <p>Everything you need to know about APS certification, blocked accounts, ECTS credits, and post-study visas.</p>
             </div>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3>1. APS Certification (Month 1-2)</h3>
-                    <p>The APS certificate is mandatory for Indian students applying to Germany. We guide you through the exact documentation required to get this certified without delays.</p>
-                </div>
-                <div class="info-card">
-                    <h3>2. University Applications (Month 3-4)</h3>
-                    <p>We help you navigate the complex uni-assist portal and direct university applications, ensuring your SOPs and academic credits align with German standards.</p>
-                </div>
-                <div class="info-card">
-                    <h3>3. Blocked Account & Visa (Month 5-6)</h3>
-                    <p>Once admitted, we assist in setting up your Coracle, Expatrio, or Fintiba Blocked Account, securing travel insurance, and filing your National Visa application.</p>
-                </div>
+            <div class="country-faq-grid">
+                <details class="faq-card-item" open>
+                    <summary>Is the APS Certificate mandatory for Indian students?</summary>
+                    <p>Yes, since November 2022, the Academic Evaluation Centre (APS) certificate issued by the German Embassy in New Delhi is strictly mandatory for all Indian applicants before applying for a German student visa or enrolling in most German universities.</p>
+                </details>
+                <details class="faq-card-item">
+                    <summary>What is a Blocked Account and how much money is required?</summary>
+                    <p>A Blocked Account (Sperrkonto) is proof of financial resources for your stay in Germany. For 2026, you must deposit <strong>€11,904</strong> (approx. ₹10.8 Lakhs), from which you can withdraw €992 per month for your daily living expenses once in Germany.</p>
+                </details>
+                <details class="faq-card-item">
+                    <summary>Do I need to learn German to study an English-taught Master's?</summary>
+                    <p>No, you can be admitted to 1,000+ English-taught Master's programs with just an IELTS/TOEFL score. However, learning conversational German (A1/A2 level) is highly recommended for daily social life, student jobs, and internships.</p>
+                </details>
+                <details class="faq-card-item">
+                    <summary>Can I work part-time while studying in Germany?</summary>
+                    <p>Yes, under updated German immigration regulations, international students can work up to <strong>140 full days or 280 half days per year</strong> (equivalent to 20 hours/week). Working student (Werkstudent) roles often pay €13–€18/hour.</p>
+                </details>
+                <details class="faq-card-item">
+                    <summary>How does the 18-Month Job Seeker Visa work?</summary>
+                    <p>After graduating, you can extend your residence permit for up to 18 months to seek employment commensurate with your degree. Once you obtain a job offer with an appropriate salary, you can transition directly into an EU Blue Card or work permit.</p>
+                </details>
             </div>
         </div>
     </section>
 
     <!-- Footer CTA Section -->
-    <section class="footer-cta" style="margin-top: 40px;">
+    <section class="footer-cta" style="margin-top: 20px;">
         <div class="container">
-            <h2>Ready to start your Germany Journey?</h2>
-            <p>Talk to a Career Architect today and get your free, transparent roadmap to Germany.</p>
-            <a href="contact.html" class="btn btn--urgency btn--lg">Book Free Consultation</a>
+            <h2>Ready to study in Germany with €0 Tuition?</h2>
+            <p>Speak directly with our transparency-first mentors in Hyderabad for your 100% free profile evaluation and roadmap.</p>
+            <a href="contact.html" class="btn btn--urgency btn--lg">Book Free 1-on-1 Consultation</a>
         </div>
     </section>
 

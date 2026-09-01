@@ -145,73 +145,20 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="./images/favicon.png">
 
-    <!-- Fonts and CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Fonts (Consolidated 2-Font High-Performance Stack) -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <style>
-        .destination-hero {
-            padding: 160px 0 80px;
-            background: linear-gradient(135deg, rgba(10,35,66,0.95) 0%, rgba(26,58,92,0.9) 100%), url('https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&q=80') center/cover;
-            color: white;
-            text-align: center;
-        }
-        .destination-hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 20px;
-        }
-        .content-section {
-            padding: 80px 0;
-            background: var(--color-white);
-        }
-        .content-section.alt {
-            background: #f8fafc;
-        }
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        .info-card {
-            background: white;
-            padding: 30px;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--color-border);
-        }
-        .info-card h3 {
-            color: var(--color-primary);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .university-list {
-            list-style: none;
-            padding: 0;
-        }
-        .university-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid var(--color-border);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .university-list li i {
-            color: var(--color-accent);
-        }
-    </style>
 </head>
 
 <body>
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
+        <div class="scroll-progress-bar" id="scrollProgressBar"></div>
         <div class="nav-container">
             <div class="nav-brand">
                 <a href="index.html#home" class="nav-brand-link">
-                    <img src="./images/favicon.png" alt="EV Overseas" class="nav-logo-img" fetchpriority="high">
+                    <img src="./images/favicon.png" alt="EV Overseas - Study in Australia from Hyderabad" class="nav-logo-img" width="44" height="44" fetchpriority="high">
                 </a>
                 <div class="nav-brand-text">
                     <a href="index.html#home" class="nav-logo">EV Overseas</a>
@@ -238,86 +185,326 @@
         </div>
     </nav>
 
-    <!-- Announcement Banner -->
+    <!-- Announcement Banner (Dynamic & Interactive) -->
     <div class="announce-banner" id="announceBanner" data-enabled="true">
         <div class="announce-content">
-            <div class="announce-message">
-                <span class="announce-icon">🎓</span>
-                <span class="announce-icon">🚀</span>
-                <span class="announce-text">Fall 2026 Admissions Open! Secure your spot now!</span>
+            <div class="announce-badge">
+                <span class="pulse-dot"></span>
+                <span class="badge-text">AUS INTAKE</span>
             </div>
-            <a href="contact.html" class="announce-cta">
-                Get in Touch →
-            </a>
+            <div class="announce-slider" id="announceSlider">
+                <div class="announce-slide active">
+                    <span class="slide-icon">🚀</span>
+                    <span class="announce-text"><strong>Semester 2 (July) &amp; Feb 2026 Admissions Open!</strong> Direct Group of Eight &amp; CRICOS universities</span>
+                </div>
+                <div class="announce-slide">
+                    <span class="slide-icon">🎯</span>
+                    <span class="announce-text"><strong>Genuine Student (GS) &amp; Subclass 500 Visa Guidance</strong> with 97% success rate</span>
+                </div>
+                <div class="announce-slide">
+                    <span class="slide-icon">💰</span>
+                    <span class="announce-text"><strong>Up to 25%–50% International Merit Scholarships</strong> available across top universities</span>
+                </div>
+            </div>
+            <div class="announce-actions">
+                <div class="announce-dots" id="announceDots">
+                    <button class="announce-dot active" data-slide="0" aria-label="Slide 1"></button>
+                    <button class="announce-dot" data-slide="1" aria-label="Slide 2"></button>
+                    <button class="announce-dot" data-slide="2" aria-label="Slide 3"></button>
+                </div>
+                <a href="contact.html" class="announce-cta">
+                    <span>Apply to Aus</span>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
         </div>
-        <button class="announce-close" onclick="closeAnnounceBanner()" aria-label="Close banner">×</button>
+        <button class="announce-close" onclick="closeAnnounceBanner()" aria-label="Close banner">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
     </div>
 
     <!-- Hero Section -->
     <section class="destination-hero">
         <div class="container">
+            <span class="dest-intake-badge"><span class="pulse-dot"></span> Fall 2026 Admissions Open • Genuine Student (GS) Support</span>
             <h1>Study in Australia from Hyderabad</h1>
-            <p style="font-size: 1.25rem; max-width: 800px; margin: 0 auto;">High quality of life, exceptional education, and post-study work rights up to 4 years. EV Overseas simplifies your Australian visa and application process.</p>
-            <a href="contact.html" class="btn btn--primary" style="margin-top: 30px; text-decoration: none; display: inline-block;">Start Your Australia Journey</a>
+            <p>High quality of life, exceptional education, and post-study work rights up to 4 years. EV Overseas simplifies your Australian visa and application process.</p>
+            <a href="contact.html" class="btn btn--primary" style="text-decoration: none; display: inline-block;">Start Your Australia Journey</a>
+
+            <!-- 4-Point Frosted Quick-Stats Strip -->
+            <div class="dest-quick-stats-strip">
+                <div class="quick-stat-item">
+                    <div class="qs-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="qs-content">
+                        <span class="qs-label">Avg. MS Tuition</span>
+                        <span class="qs-value">AUD $22k – $45k/yr</span>
+                    </div>
+                </div>
+                <div class="quick-stat-item">
+                    <div class="qs-icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="qs-content">
+                        <span class="qs-label">Post-Study Work</span>
+                        <span class="qs-value">2 to 4 Years (Subclass 485)</span>
+                    </div>
+                </div>
+                <div class="quick-stat-item">
+                    <div class="qs-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="qs-content">
+                        <span class="qs-label">Avg. Starting Salary</span>
+                        <span class="qs-value">AUD $75k – $95k/yr</span>
+                    </div>
+                </div>
+                <div class="quick-stat-item">
+                    <div class="qs-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="qs-content">
+                        <span class="qs-label">Compliance</span>
+                        <span class="qs-value">GS Assessment + OSHC</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Why Australia -->
+    <!-- 1. Why Australia - Strategic Advantages -->
     <section class="content-section">
         <div class="container">
             <div class="section-header">
                 <h2>Why Study in Australia?</h2>
-                <p>A Premier Destination for Global Students</p>
+                <p>World-class education, high part-time wages, and extensive post-study work rights.</p>
             </div>
             <div class="info-grid">
                 <div class="info-card">
-                    <h3><i class="fas fa-briefcase"></i> Post-Study Work Visa (PSWR)</h3>
-                    <p>International graduates can apply for a Temporary Graduate Visa, allowing them to work in Australia for 2 to 4 years depending on their qualification and regional location.</p>
+                    <h3><i class="fas fa-passport" style="color:var(--color-accent);"></i> 2 to 4 Years Post-Study Work (Subclass 485)</h3>
+                    <p>International graduates from Australian master's programs receive <strong>2 to 4 years of Temporary Graduate Visa rights</strong>, with extended durations for regional university campuses like Adelaide and Perth.</p>
                 </div>
                 <div class="info-card">
-                    <h3><i class="fas fa-sun"></i> Quality of Life</h3>
-                    <p>Australian cities like Melbourne, Sydney, and Brisbane consistently rank among the top most livable cities in the world, offering a safe, multicultural environment with a great climate.</p>
+                    <h3><i class="fas fa-dollar-sign" style="color:#10B981;"></i> Highest Minimum Wage & 48-Hr Fortnight</h3>
+                    <p>Australia offers the world's highest student minimum wage (<strong>AUD $24.10/hour</strong>). Students can legally work 48 hours per fortnight during semesters to comfortably offset their living costs.</p>
                 </div>
                 <div class="info-card">
-                    <h3><i class="fas fa-hand-holding-usd"></i> High Part-Time Wages</h3>
-                    <p>Australia has one of the highest minimum wages in the world. International students can comfortably cover their living expenses while working part-time (up to 48 hours per fortnight).</p>
+                    <h3><i class="fas fa-award" style="color:var(--color-urgency);"></i> 20% to 30% International Scholarships</h3>
+                    <p>Australian partner universities offer high-value guaranteed merit scholarships ranging from <strong>AUD $5,000 to AUD $15,000 annually</strong> for Indian students with 65%+ undergraduate scores.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Top Universities & Quick Requirements -->
+    <!-- 2. Curated Australian University Tiers Matrix (Dream, Target, Safe) -->
     <section class="content-section alt">
         <div class="container">
             <div class="section-header">
-                <h2>Top Australian Partner Universities</h2>
-                <p>We partner with leading institutions across all major Australian states and regional areas.</p>
+                <h2>Top Australian Universities by Profile Tier</h2>
+                <p>Curated shortlist framework to balance high ranking aspirations with guaranteed admits.</p>
             </div>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3>Popular Universities</h3>
-                    <ul class="university-list">
-                        <li><i class="fas fa-check-circle"></i> Charles Darwin University</li>
-                        <li><i class="fas fa-check-circle"></i> University of Canberra</li>
-                        <li><i class="fas fa-check-circle"></i> Federation University Australia</li>
-                        <li><i class="fas fa-check-circle"></i> Deakin University</li>
-                        <li><i class="fas fa-check-circle"></i> Griffith University</li>
-                    </ul>
+            <div class="uni-tier-grid">
+                <!-- Tier 1: Dream -->
+                <div class="uni-tier-card">
+                    <div class="uni-card-top">
+                        <span class="uni-tier-tag tag-dream"><i class="fas fa-star"></i> Tier 1 • Group of Eight (Go8)</span>
+                        <span class="uni-rank-badge">QS Top 50</span>
+                    </div>
+                    <h3 class="uni-title">UNSW Sydney / Univ of Melbourne</h3>
+                    <div class="uni-location"><i class="fas fa-map-marker-alt"></i> Sydney / Melbourne, Australia</div>
+                    <div class="uni-programs-row">
+                        <span class="uni-programs-label">Popular Programs</span>
+                        <div class="uni-tags-wrap">
+                            <span class="uni-prog-pill">Master of IT / CS</span>
+                            <span class="uni-prog-pill">Data Science</span>
+                            <span class="uni-prog-pill">Civil Engg</span>
+                            <span class="uni-prog-pill">FinTech</span>
+                        </div>
+                    </div>
+                    <div class="uni-meta-bar">
+                        <div>
+                            <span class="meta-item-label">Avg. Tuition</span>
+                            <div class="meta-item-val">AUD $42k – $49k/yr</div>
+                        </div>
+                        <div>
+                            <span class="meta-item-label">Min. Profile</span>
+                            <div class="meta-item-val">7.2+ CGPA • IELTS 6.5</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="info-card">
-                    <h3>Estimated Costs & Requirements</h3>
-                    <ul class="university-list">
-                        <li><i class="fas fa-coins"></i> <strong>Tuition:</strong> AUD 25,000 - 45,000 / year</li>
-                        <li><i class="fas fa-home"></i> <strong>Living:</strong> AUD 24,000 / year (Required for Visa)</li>
-                        <li><i class="fas fa-file-alt"></i> <strong>Exams:</strong> IELTS/PTE (Mandatory)</li>
-                        <li><i class="fas fa-briefcase"></i> <strong>Work:</strong> 48 hours per fortnight</li>
-                    </ul>
+
+                <!-- Tier 2: Target -->
+                <div class="uni-tier-card">
+                    <div class="uni-card-top">
+                        <span class="uni-tier-tag tag-target"><i class="fas fa-bullseye"></i> Tier 2 • Tech Innovation</span>
+                        <span class="uni-rank-badge">High Employability</span>
+                    </div>
+                    <h3 class="uni-title">Deakin University / UTS Sydney</h3>
+                    <div class="uni-location"><i class="fas fa-map-marker-alt"></i> Melbourne / Sydney, Australia</div>
+                    <div class="uni-programs-row">
+                        <span class="uni-programs-label">Popular Programs</span>
+                        <div class="uni-tags-wrap">
+                            <span class="uni-prog-pill">MSc Cyber Security</span>
+                            <span class="uni-prog-pill">Business Analytics</span>
+                            <span class="uni-prog-pill">AI</span>
+                            <span class="uni-prog-pill">Health Informatics</span>
+                        </div>
+                    </div>
+                    <div class="uni-meta-bar">
+                        <div>
+                            <span class="meta-item-label">Avg. Tuition</span>
+                            <div class="meta-item-val">AUD $32k – $38k/yr</div>
+                        </div>
+                        <div>
+                            <span class="meta-item-label">Min. Profile</span>
+                            <div class="meta-item-val">65%+ • 20% Scholarship</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tier 3: Safe / Regional PR Advantage -->
+                <div class="uni-tier-card">
+                    <div class="uni-card-top">
+                        <span class="uni-tier-tag tag-safe"><i class="fas fa-award"></i> Tier 3 • Regional & PR Fast</span>
+                        <span class="uni-rank-badge">+1 Yr Extra PSW</span>
+                    </div>
+                    <h3 class="uni-title">Charles Darwin / Univ of Canberra</h3>
+                    <div class="uni-location"><i class="fas fa-map-marker-alt"></i> Darwin / Canberra, Australia</div>
+                    <div class="uni-programs-row">
+                        <span class="uni-programs-label">Popular Programs</span>
+                        <div class="uni-tags-wrap">
+                            <span class="uni-prog-pill">Master of IT</span>
+                            <span class="uni-prog-pill">Professional Accounting</span>
+                            <span class="uni-prog-pill">Data Analytics</span>
+                            <span class="uni-prog-pill">MBA</span>
+                        </div>
+                    </div>
+                    <div class="uni-meta-bar">
+                        <div>
+                            <span class="meta-item-label">Avg. Tuition</span>
+                            <div class="meta-item-val">AUD $24k – $30k/yr</div>
+                        </div>
+                        <div>
+                            <span class="meta-item-label">Min. Profile</span>
+                            <div class="meta-item-val">60%+ • Backlogs Accepted</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- AUSTRALIA INTERACTIVE STUDY HUB (Cost Calculator & Scholarships) -->
+    <!-- 3. Step-by-Step Admission & Visa Roadmap -->
+    <section class="content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Your 5-Stage Roadmap to Australia</h2>
+                <p>The transparent EV Overseas Glass Box workflow from Hyderabad to your Australian campus.</p>
+            </div>
+            <div class="roadmap-stepper-grid">
+                <div class="roadmap-step-card">
+                    <div class="step-num-bubble">1</div>
+                    <h3 class="step-title">GS Profile Audit</h3>
+                    <p class="step-desc">Thorough assessment under the new Genuine Student (GS) assessment criteria and financial viability check.</p>
+                </div>
+                <div class="roadmap-step-card">
+                    <div class="step-num-bubble">2</div>
+                    <h3 class="step-title">Offer Letter</h3>
+                    <p class="step-desc">Rapid application to Level 1 Australian partner universities to obtain Conditional and Unconditional Offers.</p>
+                </div>
+                <div class="roadmap-step-card">
+                    <div class="step-num-bubble">3</div>
+                    <h3 class="step-title">GS Statement & GTE</h3>
+                    <p class="step-desc">Strategic drafting of your targeted answers explaining course choice, career value in India, and ties.</p>
+                </div>
+                <div class="roadmap-step-card">
+                    <div class="step-num-bubble">4</div>
+                    <h3 class="step-title">CoE & OSHC</h3>
+                    <p class="step-desc">Tuition deposit payment, Overseas Student Health Cover (OSHC) activation, and electronic Confirmation of Enrolment.</p>
+                </div>
+                <div class="roadmap-step-card">
+                    <div class="step-num-bubble">5</div>
+                    <h3 class="step-title">Subclass 500 Visa</h3>
+                    <p class="step-desc">Flawless electronic visa lodging with the Department of Home Affairs (DHA) and biometrics at VFS Hyderabad.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. High-Demand Programs & Career ROI -->
+    <section class="content-section alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>High-ROI Master's Programs in Australia</h2>
+                <p>Top degrees aligned with Australia's Medium and Long-term Strategic Skills List (MLTSSL).</p>
+            </div>
+            <div class="career-roi-grid">
+                <div class="roi-card">
+                    <div class="roi-header">
+                        <div class="roi-icon"><i class="fas fa-shield-virus"></i></div>
+                        <h3 class="roi-title">Master of Information Tech & Cybersecurity</h3>
+                    </div>
+                    <div class="roi-salary-chip">
+                        <span>Avg. Starting Salary</span>
+                        <span>AUD $92,000 / yr</span>
+                    </div>
+                    <p class="roi-roles"><strong>Key Roles:</strong> Cyber Security Consultant, Cloud Engineer, Network Architect across Sydney & Melbourne.</p>
+                </div>
+                <div class="roi-card">
+                    <div class="roi-header">
+                        <div class="roi-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3 class="roi-title">Master of Business Analytics & Data</h3>
+                    </div>
+                    <div class="roi-salary-chip">
+                        <span>Avg. Starting Salary</span>
+                        <span>AUD $88,000 / yr</span>
+                    </div>
+                    <p class="roi-roles"><strong>Key Roles:</strong> Business Intelligence Lead, Quantitative Modeler, Strategy Analytics Consultant.</p>
+                </div>
+                <div class="roi-card">
+                    <div class="roi-header">
+                        <div class="roi-icon"><i class="fas fa-hard-hat"></i></div>
+                        <h3 class="roi-title">Master of Professional Engineering</h3>
+                    </div>
+                    <div class="roi-salary-chip">
+                        <span>Avg. Starting Salary</span>
+                        <span>AUD $85,000 / yr</span>
+                    </div>
+                    <p class="roi-roles"><strong>Key Roles:</strong> Civil Project Engineer, Renewable Energy Engineer, Mining & Resources Specialist.</p>
+                </div>
+            </div>
+
+            <!-- Hyderabad Admit Spotlight -->
+            <div class="admit-spotlight-box">
+                <div class="spotlight-grid">
+                    <div>
+                        <span class="spotlight-badge"><i class="fas fa-shield-alt"></i> Hyderabad Student Spotlight</span>
+                        <p class="spotlight-quote">"Given the new strict GS visa rules for Australia, I was anxious about visa refusal. EV Overseas drafted my GS statements with concrete career ROI data and got me admitted to Deakin University with a 25% STEM scholarship. My Subclass 500 visa was approved in 14 days!"</p>
+                        <div class="spotlight-author">
+                            <div class="spotlight-avatar">P</div>
+                            <div class="author-info">
+                                <h4>Pranitha G.</h4>
+                                <span>Vasavi College Hyderabad ➔ Master of IT at Deakin University</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spotlight-metrics-card">
+                        <div class="spotlight-metric-item">
+                            <span class="sm-label">Undergrad CGPA</span>
+                            <span class="sm-val">7.6 CGPA (CSE)</span>
+                        </div>
+                        <div class="spotlight-metric-item">
+                            <span class="sm-label">Scholarship</span>
+                            <span class="sm-val">25% Merit Waiver</span>
+                        </div>
+                        <div class="spotlight-metric-item">
+                            <span class="sm-label">English Test</span>
+                            <span class="sm-val">PTE 68 Overall</span>
+                        </div>
+                        <div class="spotlight-metric-item">
+                            <span class="sm-label">Subclass 500 Visa</span>
+                            <span class="sm-val">Granted in 14 Days ✅</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. AUSTRALIA INTERACTIVE STUDY HUB (Cost Calculator & Scholarships) -->
     <section id="country-hub" class="abroad-hub-section" style="padding: var(--space-section-large-desktop); border-top: 1px solid var(--color-border); background: #f8fafc;">
         <div class="container">
             <div class="section-header">
@@ -353,8 +540,8 @@
                                 </div>
 
                                 <div class="quiz-form-group">
-                                    <label for="calc-tuition">Estimated Annual Tuition (INR)<span id="calc-tuition-val" class="quiz-range-val">₹18 Lakhs</span></label>
-                                    <input type="range" id="calc-tuition" min="0" max="50" step="1" value="18" class="quiz-input" style="padding:0; height:6px;">
+                                    <label for="calc-tuition">Estimated Annual Tuition (INR)<span id="calc-tuition-val" class="quiz-range-val">₹20 Lakhs</span></label>
+                                    <input type="range" id="calc-tuition" min="0" max="55" step="1" value="20" class="quiz-input" style="padding:0; height:6px;">
                                 </div>
 
                                 <div class="quiz-form-group">
@@ -380,52 +567,74 @@
                             <div class="calc-results-panel">
                                 <div class="calc-results-header">
                                     <h3>Total Annual Australia Cost Estimate</h3>
-                                    <span id="calc-total" class="calc-total-amount">₹26.8 Lakhs</span>
-                                    <p style="font-size: var(--text-xs); color: var(--color-gray-500); margin-top: 4px;">Convertible to Education Loan with Low Interest Rate</p>
+                                    <span id="calc-total" class="calc-total-amount">₹32.5 Lakhs</span>
+                                    <div class="stacked-budget-bar" id="stackedBudgetBar">
+                                        <div class="budget-segment seg-tuition" id="segTuition" style="width: 62%;" title="Tuition"></div>
+                                        <div class="budget-segment seg-living" id="segLiving" style="width: 28%;" title="Living &amp; Rent"></div>
+                                        <div class="budget-segment seg-overhead" id="segOverhead" style="width: 10%;" title="OSHC &amp; Visa"></div>
+                                    </div>
+                                    <div class="stacked-budget-legend">
+                                        <span><span class="legend-dot dot-tuition"></span> Tuition</span>
+                                        <span><span class="legend-dot dot-living"></span> Living &amp; Rent</span>
+                                        <span><span class="legend-dot dot-overhead"></span> OSHC &amp; Visa</span>
+                                    </div>
+                                    <p id="calc-total-note" style="font-size: var(--text-xs); color: var(--color-gray-500); margin-top: 4px;">Convertible to Education Loan with Low Interest Rate</p>
                                 </div>
 
                                 <div class="cost-breakdown-list">
                                     <!-- Tuition -->
                                     <div class="cost-item">
                                         <div class="cost-item-header">
-                                            <span>University Tuition Fees</span>
-                                            <span id="item-tuition">₹18.0 Lakhs</span>
+                                            <div class="cost-item-title">
+                                                <span>University Tuition Fees</span>
+                                                <span class="cost-item-desc" id="desc-tuition">Annual tuition for Australian universities</span>
+                                            </div>
+                                            <span id="item-tuition">₹20.0 Lakhs</span>
                                         </div>
                                         <div class="cost-progress-bar">
-                                            <div class="cost-progress-fill fill-tuition" id="bar-tuition" style="width: 67%;"></div>
+                                            <div class="cost-progress-fill fill-tuition" id="bar-tuition" style="width: 62%;"></div>
                                         </div>
                                     </div>
 
                                     <!-- Rent -->
                                     <div class="cost-item">
                                         <div class="cost-item-header">
-                                            <span>Rent & Accommodation</span>
-                                            <span id="item-rent">₹5.0 Lakhs</span>
+                                            <div class="cost-item-title">
+                                                <span>Rent & Accommodation</span>
+                                                <span class="cost-item-desc" id="desc-rent">Shared student apartment in outer suburbs</span>
+                                            </div>
+                                            <span id="item-rent">₹5.5 Lakhs</span>
                                         </div>
                                         <div class="cost-progress-bar">
-                                            <div class="cost-progress-fill fill-rent" id="bar-rent" style="width: 19%;"></div>
+                                            <div class="cost-progress-fill fill-rent" id="bar-rent" style="width: 17%;"></div>
                                         </div>
                                     </div>
 
                                     <!-- Food & Living -->
                                     <div class="cost-item">
                                         <div class="cost-item-header">
-                                            <span>Food & Living Expenses</span>
-                                            <span id="item-living">₹2.8 Lakhs</span>
+                                            <div class="cost-item-title">
+                                                <span>Food & Living Expenses</span>
+                                                <span class="cost-item-desc" id="desc-living">Groceries, transit & mobile utilities</span>
+                                            </div>
+                                            <span id="item-living">₹3.5 Lakhs</span>
                                         </div>
                                         <div class="cost-progress-bar">
-                                            <div class="cost-progress-fill fill-living" id="bar-living" style="width: 10%;"></div>
+                                            <div class="cost-progress-fill fill-living" id="bar-living" style="width: 11%;"></div>
                                         </div>
                                     </div>
 
                                     <!-- Visa & Insurance -->
                                     <div class="cost-item">
                                         <div class="cost-item-header">
-                                            <span>Insurance, Visas & Airfare</span>
-                                            <span id="item-insurance">₹1.0 Lakhs</span>
+                                            <div class="cost-item-title">
+                                                <span>OSHC, Visa & Flights</span>
+                                                <span class="cost-item-desc" id="desc-insurance">Subclass 500 Visa ($1,600 AUD), OSHC Health Cover ($1,200 AUD) & Flights</span>
+                                            </div>
+                                            <span id="item-insurance">₹3.5 Lakhs</span>
                                         </div>
                                         <div class="cost-progress-bar">
-                                            <div class="cost-progress-fill fill-insurance" id="bar-insurance" style="width: 4%;"></div>
+                                            <div class="cost-progress-fill fill-insurance" id="bar-insurance" style="width: 10%;"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -443,15 +652,20 @@
                     <div class="hub-glass-card">
                         <!-- Filters -->
                         <div class="scholarship-filter-bar">
-                            <input type="text" id="sch-search" placeholder="Search Australia scholarships..." class="sch-search-input">
+                            <input type="text" id="sch-search" placeholder="Search Australia scholarships &amp; waivers..." class="sch-search-input">
                             <select id="sch-country" class="quiz-select" style="display: none;">
                                 <option value="Australia" selected>Australia</option>
                             </select>
                             <select id="sch-type" class="quiz-select">
-                                <option value="all" selected>All Types</option>
-                                <option value="government">Government</option>
-                                <option value="university">University-Specific</option>
-                                <option value="external">Private Trust</option>
+                                <option value="all" selected>All Award Types</option>
+                                <option value="government">Australia Awards / Govt</option>
+                                <option value="university">International Vice-Chancellor Merit (20-30%)</option>
+                                <option value="external">Destination Australia Grants ($15k/yr)</option>
+                            </select>
+                            <select id="sch-coverage" class="quiz-select">
+                                <option value="all" selected>All Funding Amounts</option>
+                                <option value="full">★ 100% Full-Ride</option>
+                                <option value="partial">🏷️ Tuition Fee Waivers (20-30%)</option>
                             </select>
                         </div>
 
@@ -465,36 +679,44 @@
         </div>
     </section>
 
-    <!-- Australia Application Timeline -->
+    <!-- 6. Australia Admissions & Visa FAQs -->
     <section class="content-section">
         <div class="container">
             <div class="section-header">
-                <h2>Your Journey to Australia</h2>
-                <p>A transparent, step-by-step process</p>
+                <h2>Australia Admissions & Visa FAQs</h2>
+                <p>Everything you need to know about the Genuine Student (GS) test, financial thresholds, and Post-Study Work rights.</p>
             </div>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3>1. Course & University Selection (Month 1)</h3>
-                    <p>We match your academic profile and career goals with CRICOS-registered courses and universities across Australia.</p>
-                </div>
-                <div class="info-card">
-                    <h3>2. Offer & GTE Clearance (Month 2-3)</h3>
-                    <p>After receiving an offer, we guide you through the Genuine Temporary Entrant (GTE) or Genuine Student (GS) requirement, ensuring your financials and statements meet strict Australian standards.</p>
-                </div>
-                <div class="info-card">
-                    <h3>3. CoE & Visa (Month 4-5)</h3>
-                    <p>Once you pay the initial deposit and receive your Confirmation of Enrolment (CoE), we help arrange your OSHC (health cover) and file your Subclass 500 Student Visa application.</p>
-                </div>
+            <div class="country-faq-grid">
+                <details class="faq-card-item" open>
+                    <summary>What is the new Genuine Student (GS) requirement for Australian Visas?</summary>
+                    <p>The Australian Government replaced the old GTE statement with the <strong>Genuine Student (GS) assessment</strong>. Applicants must answer specific targeted questions demonstrating their genuine intent to study, past academic trajectory, and how the course delivers significant economic value upon returning to India.</p>
+                </details>
+                <details class="faq-card-item">
+                    <summary>How much living funds must I show for the Australian Subclass 500 Visa?</summary>
+                    <p>As per the latest Department of Home Affairs (DHA) update, international students must demonstrate evidence of financial capacity of at least <strong>AUD $29,710/year</strong> (approx. ₹16.5 Lakhs) for living expenses, in addition to 1 year of tuition fees.</p>
+                </details>
+                <details class="faq-card-item">
+                    <summary>What are the part-time work limits in Australia for students?</summary>
+                    <p>International students holding a valid Subclass 500 visa can work up to <strong>48 hours per fortnight</strong> during academic terms and unlimited hours during recognized course vacations and semester breaks.</p>
+                </details>
+                <details class="faq-card-item">
+                    <summary>What is the duration of the Temporary Graduate Visa (Subclass 485)?</summary>
+                    <p>Graduates from master's degree programs receive <strong>2 years of Post-Study Work Rights</strong> in major cities (Sydney, Melbourne, Brisbane), and up to <strong>3 to 4 years</strong> if studying in designated regional university locations (like Adelaide, Perth, Darwin, or Gold Coast).</p>
+                </details>
+                <details class="faq-card-item">
+                    <summary>Which English language tests are accepted for Australia?</summary>
+                    <p>The Department of Home Affairs accepts IELTS Academic (min 6.0–6.5) and PTE Academic (min 58–64 score). EV Overseas provides end-to-end test preparation coaching to hit top score bands.</p>
+                </details>
             </div>
         </div>
     </section>
 
     <!-- Footer CTA Section -->
-    <section class="footer-cta" style="margin-top: 40px;">
+    <section class="footer-cta" style="margin-top: 20px;">
         <div class="container">
-            <h2>Ready to start your Australia Journey?</h2>
-            <p>Talk to a Career Architect today and get your free, transparent roadmap to Australia.</p>
-            <a href="contact.html" class="btn btn--urgency btn--lg">Book Free Consultation</a>
+            <h2>Ready to start your Australian Journey?</h2>
+            <p>Speak directly with our transparency-first mentors in Hyderabad for your 100% free profile evaluation and roadmap.</p>
+            <a href="contact.html" class="btn btn--urgency btn--lg">Book Free 1-on-1 Consultation</a>
         </div>
     </section>
 

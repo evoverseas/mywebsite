@@ -145,73 +145,20 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="./images/favicon.png">
 
-    <!-- Fonts and CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Fonts (Consolidated 2-Font High-Performance Stack) -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <style>
-        .destination-hero {
-            padding: 160px 0 80px;
-            background: linear-gradient(135deg, rgba(10,35,66,0.95) 0%, rgba(26,58,92,0.9) 100%), url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&q=80') center/cover;
-            color: white;
-            text-align: center;
-        }
-        .destination-hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 20px;
-        }
-        .content-section {
-            padding: 80px 0;
-            background: var(--color-white);
-        }
-        .content-section.alt {
-            background: #f8fafc;
-        }
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        .info-card {
-            background: white;
-            padding: 30px;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--color-border);
-        }
-        .info-card h3 {
-            color: var(--color-primary);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .university-list {
-            list-style: none;
-            padding: 0;
-        }
-        .university-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid var(--color-border);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .university-list li i {
-            color: var(--color-accent);
-        }
-    </style>
 </head>
 
 <body>
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
+        <div class="scroll-progress-bar" id="scrollProgressBar"></div>
         <div class="nav-container">
             <div class="nav-brand">
                 <a href="index.html#home" class="nav-brand-link">
-                    <img src="./images/favicon.png" alt="EV Overseas" class="nav-logo-img" fetchpriority="high">
+                    <img src="./images/favicon.png" alt="EV Overseas - Study in UK from Hyderabad" class="nav-logo-img" width="44" height="44" fetchpriority="high">
                 </a>
                 <div class="nav-brand-text">
                     <a href="index.html#home" class="nav-logo">EV Overseas</a>
@@ -238,86 +185,326 @@
         </div>
     </nav>
 
-    <!-- Announcement Banner -->
+    <!-- Announcement Banner (Dynamic & Interactive) -->
     <div class="announce-banner" id="announceBanner" data-enabled="true">
         <div class="announce-content">
-            <div class="announce-message">
-                <span class="announce-icon">🎓</span>
-                <span class="announce-icon">🚀</span>
-                <span class="announce-text">Fall 2026 Admissions Open! Secure your spot now!</span>
+            <div class="announce-badge">
+                <span class="pulse-dot"></span>
+                <span class="badge-text">UK INTAKE</span>
             </div>
-            <a href="contact.html" class="announce-cta">
-                Get in Touch →
-            </a>
+            <div class="announce-slider" id="announceSlider">
+                <div class="announce-slide active">
+                    <span class="slide-icon">🚀</span>
+                    <span class="announce-text"><strong>Fall 2026 UK Admissions Open!</strong> 1-Year Master's + 2-Year Graduate Visa (PSW)</span>
+                </div>
+                <div class="announce-slide">
+                    <span class="slide-icon">🎯</span>
+                    <span class="announce-text"><strong>Without IELTS Options Available</strong> with 70%+ in 12th English at Top UK Universities</span>
+                </div>
+                <div class="announce-slide">
+                    <span class="slide-icon">💰</span>
+                    <span class="announce-text"><strong>Up to £10,000 GREAT &amp; Merit Scholarships</strong> Open for Indian Students</span>
+                </div>
+            </div>
+            <div class="announce-actions">
+                <div class="announce-dots" id="announceDots">
+                    <button class="announce-dot active" data-slide="0" aria-label="Slide 1"></button>
+                    <button class="announce-dot" data-slide="1" aria-label="Slide 2"></button>
+                    <button class="announce-dot" data-slide="2" aria-label="Slide 3"></button>
+                </div>
+                <a href="contact.html" class="announce-cta">
+                    <span>Apply to UK</span>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
         </div>
-        <button class="announce-close" onclick="closeAnnounceBanner()" aria-label="Close banner">×</button>
+        <button class="announce-close" onclick="closeAnnounceBanner()" aria-label="Close banner">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
     </div>
 
     <!-- Hero Section -->
     <section class="destination-hero">
         <div class="container">
+            <span class="dest-intake-badge"><span class="pulse-dot"></span> Fall 2026 Admissions Open • CAS Priority Processing</span>
             <h1>Study in the UK from Hyderabad</h1>
-            <p style="font-size: 1.25rem; max-width: 800px; margin: 0 auto;">Fast-track your career with 1-Year Master's degrees, 2-Year Post Study Work Visas, and seamless applications handled by EV Overseas.</p>
-            <a href="contact.html" class="btn btn--primary" style="margin-top: 30px; text-decoration: none; display: inline-block;">Start Your UK Journey</a>
+            <p>Fast-track your career with 1-Year Master's degrees, 2-Year Post Study Work Visas, and seamless applications handled by EV Overseas.</p>
+            <a href="contact.html" class="btn btn--primary" style="text-decoration: none; display: inline-block;">Start Your UK Journey</a>
+
+            <!-- 4-Point Frosted Quick-Stats Strip -->
+            <div class="dest-quick-stats-strip">
+                <div class="quick-stat-item">
+                    <div class="qs-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="qs-content">
+                        <span class="qs-label">Avg. MS Tuition</span>
+                        <span class="qs-value">£13k – £26k (1-Yr MS)</span>
+                    </div>
+                </div>
+                <div class="quick-stat-item">
+                    <div class="qs-icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="qs-content">
+                        <span class="qs-label">Graduate Visa</span>
+                        <span class="qs-value">2 Years Post-Study Work</span>
+                    </div>
+                </div>
+                <div class="quick-stat-item">
+                    <div class="qs-icon"><i class="fas fa-pound-sign"></i></div>
+                    <div class="qs-content">
+                        <span class="qs-label">Avg. Starting Salary</span>
+                        <span class="qs-value">£38k – £55k/yr</span>
+                    </div>
+                </div>
+                <div class="quick-stat-item">
+                    <div class="qs-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="qs-content">
+                        <span class="qs-label">Language / Tests</span>
+                        <span class="qs-value">IELTS Waivers Available</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Why UK -->
+   <!-- 1. Why UK - Strategic Advantages -->
     <section class="content-section">
         <div class="container">
             <div class="section-header">
                 <h2>Why Study in the UK?</h2>
-                <p>A Legacy of Academic Excellence</p>
+                <p>Fast-track your global career with 1-Year Master's degrees and guaranteed 2-Year Graduate Visas.</p>
             </div>
             <div class="info-grid">
                 <div class="info-card">
-                    <h3><i class="fas fa-history"></i> 1-Year Master's Degrees</h3>
-                    <p>Unlike most countries, standard Master's programs in the UK take only one year to complete. This saves you significant tuition and living costs and gets you into the workforce faster.</p>
+                    <h3><i class="fas fa-bolt" style="color:var(--color-urgency);"></i> 1-Year Master's (Save 50% Time & Living)</h3>
+                    <p>Complete your entire Master's degree in just <strong>12 calendar months</strong>. Save an entire year of living expenses and enter the UK and global job market 12 months ahead of peers.</p>
                 </div>
                 <div class="info-card">
-                    <h3><i class="fas fa-passport"></i> 2-Year Graduate Route Visa</h3>
-                    <p>International students who successfully complete an undergraduate or master's degree can stay in the UK for two years to work or look for work, gaining valuable international experience.</p>
+                    <h3><i class="fas fa-passport" style="color:var(--color-accent);"></i> 2-Year Graduate Route (PSW) Visa</h3>
+                    <p>All Indian graduates from recognized UK universities automatically qualify for the <strong>2-year unsponsored Graduate Visa</strong> to work across London, Manchester, Birmingham, and Edinburgh.</p>
                 </div>
                 <div class="info-card">
-                    <h3><i class="fas fa-stethoscope"></i> Free Healthcare</h3>
-                    <p>By paying the Immigration Health Surcharge (IHS) during your visa application, you gain access to the UK's National Health Service (NHS), providing free medical care during your studies.</p>
+                    <h3><i class="fas fa-file-invoice-dollar" style="color:#10B981;"></i> Generous Scholarships & IELTS Waivers</h3>
+                    <p>Unlock up to <strong>£3,000–£10,000 automatic fee discounts</strong>. Many top UK partner universities waive IELTS if you scored 70%+ in your 12th standard English CBSE/State Board exams.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Top Universities -->
+    <!-- 2. Curated UK University Tiers Matrix (Dream, Target, Safe) -->
     <section class="content-section alt">
         <div class="container">
             <div class="section-header">
-                <h2>Top UK Partner Universities</h2>
-                <p>We partner with prestigious institutions across England, Scotland, Wales, and Northern Ireland.</p>
+                <h2>Top UK Universities by Profile Tier</h2>
+                <p>Curated shortlist framework to balance high ranking aspirations with guaranteed admits.</p>
             </div>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3>Top Choices for Indian Students</h3>
-                    <ul class="university-list">
-                        <li><i class="fas fa-check-circle"></i> Teesside University</li>
-                        <li><i class="fas fa-check-circle"></i> University of Chester</li>
-                        <li><i class="fas fa-check-circle"></i> University of Cumbria</li>
-                        <li><i class="fas fa-check-circle"></i> Coventry University</li>
-                        <li><i class="fas fa-check-circle"></i> University of East London</li>
-                    </ul>
+            <div class="uni-tier-grid">
+                <!-- Tier 1: Dream -->
+                <div class="uni-tier-card">
+                    <div class="uni-card-top">
+                        <span class="uni-tier-tag tag-dream"><i class="fas fa-star"></i> Tier 1 • Russell Group</span>
+                        <span class="uni-rank-badge">QS Top 120</span>
+                    </div>
+                    <h3 class="uni-title">University of Birmingham / Warwick</h3>
+                    <div class="uni-location"><i class="fas fa-map-marker-alt"></i> West Midlands, UK</div>
+                    <div class="uni-programs-row">
+                        <span class="uni-programs-label">Popular Programs</span>
+                        <div class="uni-tags-wrap">
+                            <span class="uni-prog-pill">MSc CS</span>
+                            <span class="uni-prog-pill">Data Analytics</span>
+                            <span class="uni-prog-pill">Finance & Tech</span>
+                            <span class="uni-prog-pill">AI</span>
+                        </div>
+                    </div>
+                    <div class="uni-meta-bar">
+                        <div>
+                            <span class="meta-item-label">Avg. Tuition</span>
+                            <div class="meta-item-val">£24k – £31k (1-Yr)</div>
+                        </div>
+                        <div>
+                            <span class="meta-item-label">Min. Profile</span>
+                            <div class="meta-item-val">68%+ First Class • IELTS 6.5</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="info-card">
-                    <h3>Estimated Costs & Requirements</h3>
-                    <ul class="university-list">
-                        <li><i class="fas fa-coins"></i> <strong>Tuition:</strong> £14,000 - £25,000 / year</li>
-                        <li><i class="fas fa-home"></i> <strong>Living:</strong> £12,000 - £15,000 / year</li>
-                        <li><i class="fas fa-file-alt"></i> <strong>Exams:</strong> IELTS (Waivers available), PTE</li>
-                        <li><i class="fas fa-briefcase"></i> <strong>Work:</strong> 20 hrs/week on-campus</li>
-                    </ul>
+
+                <!-- Tier 2: Target -->
+                <div class="uni-tier-card">
+                    <div class="uni-card-top">
+                        <span class="uni-tier-tag tag-target"><i class="fas fa-bullseye"></i> Tier 2 • High Industry Links</span>
+                        <span class="uni-rank-badge">Top Tech Careers</span>
+                    </div>
+                    <h3 class="uni-title">Coventry University / Aston</h3>
+                    <div class="uni-location"><i class="fas fa-map-marker-alt"></i> Coventry / Birmingham, UK</div>
+                    <div class="uni-programs-row">
+                        <span class="uni-programs-label">Popular Programs</span>
+                        <div class="uni-tags-wrap">
+                            <span class="uni-prog-pill">MSc Cybersecurity</span>
+                            <span class="uni-prog-pill">Automotive Engg</span>
+                            <span class="uni-prog-pill">MBA</span>
+                            <span class="uni-prog-pill">Health Mgmt</span>
+                        </div>
+                    </div>
+                    <div class="uni-meta-bar">
+                        <div>
+                            <span class="meta-item-label">Avg. Tuition</span>
+                            <div class="meta-item-val">£16k – £20k (1-Yr)</div>
+                        </div>
+                        <div>
+                            <span class="meta-item-label">Min. Profile</span>
+                            <div class="meta-item-val">60%+ • IELTS Waiver Avail.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tier 3: Safe / High Scholarship -->
+                <div class="uni-tier-card">
+                    <div class="uni-card-top">
+                        <span class="uni-tier-tag tag-safe"><i class="fas fa-award"></i> Tier 3 • High ROI & Fast CAS</span>
+                        <span class="uni-rank-badge">Up to £4k Grant</span>
+                    </div>
+                    <h3 class="uni-title">Teesside / Chester University</h3>
+                    <div class="uni-location"><i class="fas fa-map-marker-alt"></i> Middlesbrough / Chester, UK</div>
+                    <div class="uni-programs-row">
+                        <span class="uni-programs-label">Popular Programs</span>
+                        <div class="uni-tags-wrap">
+                            <span class="uni-prog-pill">MSc Computing</span>
+                            <span class="uni-prog-pill">Project Mgmt</span>
+                            <span class="uni-prog-pill">Data Science</span>
+                            <span class="uni-prog-pill">FinTech</span>
+                        </div>
+                    </div>
+                    <div class="uni-meta-bar">
+                        <div>
+                            <span class="meta-item-label">Avg. Tuition</span>
+                            <div class="meta-item-val">£13k – £16k (1-Yr)</div>
+                        </div>
+                        <div>
+                            <span class="meta-item-label">Min. Profile</span>
+                            <div class="meta-item-val">55%+ • Backlogs Accepted</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- UK INTERACTIVE STUDY HUB (Cost Calculator & Scholarships) -->
+    <!-- 3. Step-by-Step Admission & Visa Roadmap -->
+    <section class="content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Your 5-Stage Roadmap to the UK</h2>
+                <p>The transparent EV Overseas Glass Box workflow from Hyderabad to your UK campus.</p>
+            </div>
+            <div class="roadmap-stepper-grid">
+                <div class="roadmap-step-card">
+                    <div class="step-num-bubble">1</div>
+                    <h3 class="step-title">Profile Evaluation</h3>
+                    <p class="step-desc">Academic check & 12th English score audit to claim immediate IELTS waivers and fee discount eligibility.</p>
+                </div>
+                <div class="roadmap-step-card">
+                    <div class="step-num-bubble">2</div>
+                    <h3 class="step-title">Direct Applications</h3>
+                    <p class="step-desc">Fast-track direct application processing with priority conditional offer turnaround in 48–72 hours.</p>
+                </div>
+                <div class="roadmap-step-card">
+                    <div class="step-num-bubble">3</div>
+                    <h3 class="step-title">CAS Credibility Prep</h3>
+                    <p class="step-desc">1-on-1 university Pre-CAS interview training to ensure 100% first-attempt CAS letter clearance.</p>
+                </div>
+                <div class="roadmap-step-card">
+                    <div class="step-num-bubble">4</div>
+                    <h3 class="step-title">28-Day Bank Funds</h3>
+                    <p class="step-desc">Guidance on 28-day maintenance funds, education loan sanction, and TB test booking at authorized centers.</p>
+                </div>
+                <div class="roadmap-step-card">
+                    <div class="step-num-bubble">5</div>
+                    <h3 class="step-title">Student Visa Filing</h3>
+                    <p class="step-desc">VFS Global Hyderabad appointment booking, biometrics prep, and rapid 3-week priority visa turnaround.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. High-Demand Programs & Career ROI -->
+    <section class="content-section alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>High-ROI Master's Programs in the UK</h2>
+                <p>Top 1-year specializations with strong London and regional UK hiring demand.</p>
+            </div>
+            <div class="career-roi-grid">
+                <div class="roi-card">
+                    <div class="roi-header">
+                        <div class="roi-icon"><i class="fas fa-code-branch"></i></div>
+                        <h3 class="roi-title">MSc in Advanced Computer Science & AI</h3>
+                    </div>
+                    <div class="roi-salary-chip">
+                        <span>Avg. Starting Salary</span>
+                        <span>£48,000 / yr</span>
+                    </div>
+                    <p class="roi-roles"><strong>Key Roles:</strong> Full-Stack Engineer, AI Specialist, DevOps Lead at UK tech scale-ups.</p>
+                </div>
+                <div class="roi-card">
+                    <div class="roi-header">
+                        <div class="roi-icon"><i class="fas fa-chart-pie"></i></div>
+                        <h3 class="roi-title">MSc in Financial Technology (FinTech)</h3>
+                    </div>
+                    <div class="roi-salary-chip">
+                        <span>Avg. Starting Salary</span>
+                        <span>£52,000 / yr</span>
+                    </div>
+                    <p class="roi-roles"><strong>Key Roles:</strong> Quantitative Analyst, Risk Lead, Blockchain Consultant in the City of London.</p>
+                </div>
+                <div class="roi-card">
+                    <div class="roi-header">
+                        <div class="roi-icon"><i class="fas fa-briefcase"></i></div>
+                        <h3 class="roi-title">MSc in International Business & Analytics</h3>
+                    </div>
+                    <div class="roi-salary-chip">
+                        <span>Avg. Starting Salary</span>
+                        <span>£42,000 / yr</span>
+                    </div>
+                    <p class="roi-roles"><strong>Key Roles:</strong> Business Consultant, Operations Lead, Supply Chain Strategy Manager.</p>
+                </div>
+            </div>
+
+            <!-- Hyderabad Admit Spotlight -->
+            <div class="admit-spotlight-box">
+                <div class="spotlight-grid">
+                    <div>
+                        <span class="spotlight-badge"><i class="fas fa-shield-alt"></i> Hyderabad Student Spotlight</span>
+                        <p class="spotlight-quote">"EV Overseas saved me from giving IELTS because my 12th English was 85%. I got into Coventry University MSc Data Science with a £3,000 scholarship within 3 days, and my UK student visa came in just 10 days from VFS Hyderabad!"</p>
+                        <div class="spotlight-author">
+                            <div class="spotlight-avatar">S</div>
+                            <div class="author-info">
+                                <h4>Sneha Reddy M.</h4>
+                                <span>VNR VJIET Hyderabad ➔ MSc Data Science at Coventry University</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spotlight-metrics-card">
+                        <div class="spotlight-metric-item">
+                            <span class="sm-label">Undergrad GPA</span>
+                            <span class="sm-val">7.1 CGPA (IT)</span>
+                        </div>
+                        <div class="spotlight-metric-item">
+                            <span class="sm-label">Scholarship</span>
+                            <span class="sm-val">£3,000 Early Grant</span>
+                        </div>
+                        <div class="spotlight-metric-item">
+                            <span class="sm-label">IELTS Requirement</span>
+                            <span class="sm-val">Waived (12th 85%) ✅</span>
+                        </div>
+                        <div class="spotlight-metric-item">
+                            <span class="sm-label">Visa Processing</span>
+                            <span class="sm-val">Approved in 10 Days</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. UK INTERACTIVE STUDY HUB (Cost Calculator & Scholarships) -->
     <section id="country-hub" class="abroad-hub-section" style="padding: var(--space-section-large-desktop); border-top: 1px solid var(--color-border); background: #f8fafc;">
         <div class="container">
             <div class="section-header">
@@ -380,52 +567,74 @@
                             <div class="calc-results-panel">
                                 <div class="calc-results-header">
                                     <h3>Total Annual UK Cost Estimate</h3>
-                                    <span id="calc-total" class="calc-total-amount">₹26.3 Lakhs</span>
-                                    <p style="font-size: var(--text-xs); color: var(--color-gray-500); margin-top: 4px;">Convertible to Education Loan with Low Interest Rate</p>
+                                    <span id="calc-total" class="calc-total-amount">₹29.5 Lakhs</span>
+                                    <div class="stacked-budget-bar" id="stackedBudgetBar">
+                                        <div class="budget-segment seg-tuition" id="segTuition" style="width: 61%;" title="Tuition"></div>
+                                        <div class="budget-segment seg-living" id="segLiving" style="width: 29%;" title="Living &amp; Rent"></div>
+                                        <div class="budget-segment seg-overhead" id="segOverhead" style="width: 10%;" title="Visa, IHS &amp; Flight"></div>
+                                    </div>
+                                    <div class="stacked-budget-legend">
+                                        <span><span class="legend-dot dot-tuition"></span> Tuition</span>
+                                        <span><span class="legend-dot dot-living"></span> Living &amp; Rent</span>
+                                        <span><span class="legend-dot dot-overhead"></span> Visa &amp; IHS</span>
+                                    </div>
+                                    <p id="calc-total-note" style="font-size: var(--text-xs); color: var(--color-gray-500); margin-top: 4px;">Convertible to Education Loan with Low Interest Rate</p>
                                 </div>
 
                                 <div class="cost-breakdown-list">
                                     <!-- Tuition -->
                                     <div class="cost-item">
                                         <div class="cost-item-header">
-                                            <span>University Tuition Fees</span>
+                                            <div class="cost-item-title">
+                                                <span>University Tuition Fees</span>
+                                                <span class="cost-item-desc" id="desc-tuition">Full 1-Year UK Master's tuition</span>
+                                            </div>
                                             <span id="item-tuition">₹18.0 Lakhs</span>
                                         </div>
                                         <div class="cost-progress-bar">
-                                            <div class="cost-progress-fill fill-tuition" id="bar-tuition" style="width: 68%;"></div>
+                                            <div class="cost-progress-fill fill-tuition" id="bar-tuition" style="width: 61%;"></div>
                                         </div>
                                     </div>
 
                                     <!-- Rent -->
                                     <div class="cost-item">
                                         <div class="cost-item-header">
-                                            <span>Rent & Accommodation</span>
+                                            <div class="cost-item-title">
+                                                <span>Rent & Accommodation</span>
+                                                <span class="cost-item-desc" id="desc-rent">Student flat outside London (saver tier)</span>
+                                            </div>
                                             <span id="item-rent">₹4.8 Lakhs</span>
                                         </div>
                                         <div class="cost-progress-bar">
-                                            <div class="cost-progress-fill fill-rent" id="bar-rent" style="width: 18%;"></div>
+                                            <div class="cost-progress-fill fill-rent" id="bar-rent" style="width: 16%;"></div>
                                         </div>
                                     </div>
 
                                     <!-- Food & Living -->
                                     <div class="cost-item">
                                         <div class="cost-item-header">
-                                            <span>Food & Living Expenses</span>
-                                            <span id="item-living">₹2.6 Lakhs</span>
+                                            <div class="cost-item-title">
+                                                <span>Food & Living Expenses</span>
+                                                <span class="cost-item-desc" id="desc-living">Groceries, transit & utilities</span>
+                                            </div>
+                                            <span id="item-living">₹3.2 Lakhs</span>
                                         </div>
                                         <div class="cost-progress-bar">
-                                            <div class="cost-progress-fill fill-living" id="bar-living" style="width: 10%;"></div>
+                                            <div class="cost-progress-fill fill-living" id="bar-living" style="width: 11%;"></div>
                                         </div>
                                     </div>
 
                                     <!-- Visa & Insurance -->
                                     <div class="cost-item">
                                         <div class="cost-item-header">
-                                            <span>Insurance, Visas & Airfare</span>
-                                            <span id="item-insurance">₹0.9 Lakhs</span>
+                                            <div class="cost-item-title">
+                                                <span>Visa, IHS & Flights</span>
+                                                <span class="cost-item-desc" id="desc-insurance">Student Visa (£490), NHS Health Surcharge (£776) & Flights</span>
+                                            </div>
+                                            <span id="item-insurance">₹3.5 Lakhs</span>
                                         </div>
                                         <div class="cost-progress-bar">
-                                            <div class="cost-progress-fill fill-insurance" id="bar-insurance" style="width: 4%;"></div>
+                                            <div class="cost-progress-fill fill-insurance" id="bar-insurance" style="width: 12%;"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -443,15 +652,20 @@
                     <div class="hub-glass-card">
                         <!-- Filters -->
                         <div class="scholarship-filter-bar">
-                            <input type="text" id="sch-search" placeholder="Search UK scholarships..." class="sch-search-input">
+                            <input type="text" id="sch-search" placeholder="Search UK scholarships &amp; bursaries..." class="sch-search-input">
                             <select id="sch-country" class="quiz-select" style="display: none;">
                                 <option value="UK" selected>UK</option>
                             </select>
                             <select id="sch-type" class="quiz-select">
-                                <option value="all" selected>All Types</option>
-                                <option value="government">Government</option>
-                                <option value="university">University-Specific</option>
-                                <option value="external">Private Trust</option>
+                                <option value="all" selected>All Award Types</option>
+                                <option value="government">Govt / Chevening / Commonwealth</option>
+                                <option value="university">University Merit Bursaries</option>
+                                <option value="external">GREAT Scholarships India</option>
+                            </select>
+                            <select id="sch-coverage" class="quiz-select">
+                                <option value="all" selected>All Funding Amounts</option>
+                                <option value="full">★ 100% Full-Ride</option>
+                                <option value="partial">🏷️ Tuition Fee Waivers</option>
                             </select>
                         </div>
 
@@ -465,36 +679,44 @@
         </div>
     </section>
 
-    <!-- UK Application Timeline -->
+    <!-- 6. UK Admissions & Visa FAQs -->
     <section class="content-section">
         <div class="container">
             <div class="section-header">
-                <h2>Your Journey to the UK</h2>
-                <p>A transparent, step-by-step process</p>
+                <h2>UK Admissions & Visa FAQs</h2>
+                <p>Everything you need to know about 1-year degrees, CAS requirements, IELTS waivers, and the 2-Year Graduate Route.</p>
             </div>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3>1. University Selection (Month 1)</h3>
-                    <p>We analyze your profile to find the perfect UK universities that match your academic background, budget, and career ambitions.</p>
-                </div>
-                <div class="info-card">
-                    <h3>2. Admissions & Offers (Month 2-3)</h3>
-                    <p>We process your applications. Once you receive a conditional or unconditional offer, we help you secure your Confirmation of Acceptance for Studies (CAS).</p>
-                </div>
-                <div class="info-card">
-                    <h3>3. Visa & IHS (Month 4)</h3>
-                    <p>We handle your Student Route visa application, including financial documentation checks, TB test guidance, and the Immigration Health Surcharge payment.</p>
-                </div>
+            <div class="country-faq-grid">
+                <details class="faq-card-item" open>
+                    <summary>Is the 1-Year UK Master's degree valid in India and globally?</summary>
+                    <p>Yes, UK Master's degrees awarded by recognized universities are globally accredited and officially recognized in India by the Association of Indian Universities (AIU) under the UK-India mutual recognition of educational qualifications agreement.</p>
+                </details>
+                <details class="faq-card-item">
+                    <summary>How can I get an IELTS waiver for UK universities?</summary>
+                    <p>Most UK partner universities grant an English language waiver if you scored 70% or higher in 12th standard English (CBSE, ICSE, or State Board) or if your undergraduate degree was taught entirely in English (Medium of Instruction letter provided).</p>
+                </details>
+                <details class="faq-card-item">
+                    <summary>How much maintenance funds do I need for my UK Student Visa?</summary>
+                    <p>UK Visas and Immigration (UKVI) requires you to show unpaid tuition fees plus 9 months of living expenses: <strong>£1,483/month for Inner London</strong> (£13,348 total) or <strong>£1,136/month for Outside London</strong> (£10,224 total), held in a bank account for a continuous 28-day period.</p>
+                </details>
+                <details class="faq-card-item">
+                    <summary>Can I work part-time while studying in the UK?</summary>
+                    <p>Yes, international students holding a valid Student Route visa are legally permitted to work up to <strong>20 hours per week during term time</strong> and full-time (40 hours/week) during official university vacation periods.</p>
+                </details>
+                <details class="faq-card-item">
+                    <summary>How does the 2-Year Graduate Route (PSW) work?</summary>
+                    <p>Upon successfully passing your 1-year master's course, you can apply from within the UK for the Graduate Route Visa. It grants 2 years of unrestricted work authorization without needing an employer sponsor or minimum salary threshold.</p>
+                </details>
             </div>
         </div>
     </section>
 
     <!-- Footer CTA Section -->
-    <section class="footer-cta" style="margin-top: 40px;">
+    <section class="footer-cta" style="margin-top: 20px;">
         <div class="container">
-            <h2>Ready to start your UK Journey?</h2>
-            <p>Talk to a Career Architect today and get your free, transparent roadmap to the UK.</p>
-            <a href="contact.html" class="btn btn--urgency btn--lg">Book Free Consultation</a>
+            <h2>Ready to fast-track your UK Career?</h2>
+            <p>Speak directly with our transparency-first mentors in Hyderabad for your 100% free profile evaluation and roadmap.</p>
+            <a href="contact.html" class="btn btn--urgency btn--lg">Book Free 1-on-1 Consultation</a>
         </div>
     </section>
 

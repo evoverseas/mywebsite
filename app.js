@@ -43,11 +43,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }, countersObserverOptions);
 
-    // Observe stats section
-    const statsSection = document.querySelector('.hero-stats');
-    if (statsSection) {
-        countersObserver.observe(statsSection);
-    }
+    // Observe stats & tile grid section
+    const statsSections = document.querySelectorAll('.hero-tiles-grid, .hero-stats');
+    statsSections.forEach(section => {
+        countersObserver.observe(section);
+    });
 
     // Mobile Navigation
     const hamburger = document.getElementById('hamburger');
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Navbar scroll effect
+    // Navbar scroll effect & Luxury 2.5px Progress Indicator
     if (navbar) {
         window.addEventListener('scroll', function () {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -80,6 +80,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
+            }
+
+            // Update Progress Bar
+            const progressBar = document.getElementById('scrollProgressBar');
+            if (progressBar) {
+                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+                progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
             }
         });
     }
@@ -414,14 +422,313 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     const scholarships = [
-        { name: "Fulbright Foreign Student Program", country: "USA", amount: "100% Tuition & Living Cost", type: "government", gpa: "8.0+ CGPA", test: "IELTS 7.0+ / TOEFL 100+" },
-        { name: "Chevening Scholarships", country: "UK", amount: "Full Tuition + Living Costs", type: "government", gpa: "7.5+ CGPA", test: "IELTS 6.5+" },
-        { name: "DAAD Postgraduate Scholarships", country: "Germany", amount: "Full €934/mo + Travel", type: "government", gpa: "8.0+ CGPA", test: "IELTS 6.0+ or B2 German" },
-        { name: "Australia Awards Scholarships", country: "Australia", amount: "100% Tuition, Travel & Living", type: "government", gpa: "7.5+ CGPA", test: "IELTS 6.5+" },
-        { name: "GREAT Scholarships", country: "UK", amount: "Up to £10,000 Tuition Waiver", type: "government", gpa: "7.0+ CGPA", test: "IELTS 6.5+" },
-        { name: "CSU President's Merit Award", country: "USA", amount: "$5,000 - $12,000 Annual Waiver", type: "university", gpa: "8.5+ CGPA", test: "IELTS 6.5+ / GRE 305+" },
-        { name: "Heinrich Böll Foundation Grants", country: "Germany", amount: "€850/mo + Health Cover", type: "external", gpa: "8.2+ CGPA", test: "IELTS 6.0+" },
-        { name: "Deakin International Scholarship", country: "Australia", amount: "25% Tuition Fee Waiver", type: "university", gpa: "7.0+ CGPA", test: "IELTS 6.0+" }
+        // ==================== USA SCHOLARSHIPS ====================
+        {
+            id: "fulbright-nehru",
+            name: "Fulbright-Nehru Master's Fellowships",
+            country: "USA",
+            amount: "100% Tuition + Living + Flights + Insurance",
+            coverageType: "full",
+            type: "government",
+            typeLabel: "Govt / USIEF",
+            degree: "Master's (Select Fields)",
+            gpa: "7.5+ CGPA (55%+ Minimum)",
+            test: "IELTS 6.5+ / TOEFL 90+ (GRE Optional)",
+            deadline: "Mid-May (Annual Cycle for Next Fall)",
+            mode: "Separate USIEF Portal + Interview",
+            description: "Prestigious US government fellowship for outstanding Indian graduates with 3+ years professional work experience."
+        },
+        {
+            id: "us-graduate-assistantships",
+            name: "Graduate Assistantships (TA / RA / GA)",
+            country: "USA",
+            amount: "50%–100% Tuition Waiver + $1,400–$2,400/mo Stipend",
+            coverageType: "full",
+            type: "university",
+            typeLabel: "University Dept",
+            degree: "Master's / MS / PhD",
+            gpa: "7.5+ CGPA",
+            test: "IELTS 6.5+ / TOEFL 95+ (GRE 310+ advantageous)",
+            deadline: "Dec–Feb (Early Priority Deadlines)",
+            mode: "Departmental Assessment with Application",
+            description: "Teaching and Research Assistantships offering full or partial tuition waivers and monthly stipends for 20 hrs/week academic work."
+        },
+        {
+            id: "csu-merit",
+            name: "CSU & Public University Merit Awards",
+            country: "USA",
+            amount: "$4,000 – $12,000 / year Tuition Waiver",
+            coverageType: "partial",
+            type: "university",
+            typeLabel: "University Merit",
+            degree: "Master's & Bachelor's",
+            gpa: "7.0+ CGPA",
+            test: "IELTS 6.0+ / Duolingo 105+",
+            deadline: "Rolling with University Application",
+            mode: "Automatic Consideration with Offer",
+            description: "Merit-based international tuition fee reduction automatically applied based on undergraduate academic performance."
+        },
+        {
+            id: "northeastern-dean-merit",
+            name: "Northeastern Dean's Scholarship",
+            country: "USA",
+            amount: "$5,000 – $15,000 Total Tuition Credit",
+            coverageType: "partial",
+            type: "university",
+            typeLabel: "University Merit",
+            degree: "Master's (STEM / Management)",
+            gpa: "7.8+ CGPA",
+            test: "IELTS 6.5+ / TOEFL 90+",
+            deadline: "Priority Application Windows",
+            mode: "Automatic with Admission Offer",
+            description: "Competitive merit scholarship awarded by top-tier US universities based on holistic academic and leadership profile."
+        },
+        {
+            id: "inlaks-scholarship",
+            name: "Inlaks Shivdasani Foundation Grants",
+            country: "USA",
+            amount: "Up to $100,000 (Tuition + Living + Travel)",
+            coverageType: "full",
+            type: "external",
+            typeLabel: "Private Trust",
+            degree: "Master's / Postgraduate",
+            gpa: "8.0+ CGPA",
+            test: "IELTS 7.0+ / High Academic Standing",
+            deadline: "March (Annual Cycle)",
+            mode: "Separate Foundation Application",
+            description: "Premier Indian private foundation funding exceptional young Indians admitted to top US, UK, and European institutions."
+        },
+        {
+            id: "jn-tata-endowment",
+            name: "JN Tata Endowment Loan Scholarship",
+            country: "USA",
+            amount: "₹1.0 Lakh – ₹10.0 Lakhs + Gift Grants",
+            coverageType: "partial",
+            type: "external",
+            typeLabel: "Indian Trust",
+            degree: "Master's / PhD",
+            gpa: "6.5+ CGPA (60%+ minimum)",
+            test: "Standard Admission Requirements",
+            deadline: "March–April Annually",
+            mode: "Online Application + Interview",
+            description: "Prestigious Tata Trust grant supporting Indian students going abroad for higher education; includes gift scholarship component."
+        },
+
+        // ==================== UK SCHOLARSHIPS ====================
+        {
+            id: "chevening-uk",
+            name: "Chevening Scholarships (UK Government)",
+            country: "UK",
+            amount: "100% Tuition Fees + £1,300/mo Living + Flights",
+            coverageType: "full",
+            type: "government",
+            typeLabel: "UK FCDO Govt",
+            degree: "1-Year Master's (Any University)",
+            gpa: "7.5+ CGPA (Upper Second Class)",
+            test: "IELTS 6.5+ (Met by university requirement)",
+            deadline: "Early November Annually",
+            mode: "Chevening Online Portal",
+            description: "The UK government's flagship global scholarship program for future leaders with minimum 2 years (2,800 hours) work experience."
+        },
+        {
+            id: "great-scholarships",
+            name: "GREAT Scholarships (British Council & UK Govt)",
+            country: "UK",
+            amount: "Minimum £10,000 Tuition Fee Waiver",
+            coverageType: "partial",
+            type: "government",
+            typeLabel: "British Council",
+            degree: "1-Year Taught Master's",
+            gpa: "7.0+ CGPA",
+            test: "IELTS 6.5+ / University English Test",
+            deadline: "March–May (Varies by University)",
+            mode: "Separate Portal via Partner UK Univ",
+            description: "Jointly funded by the UK Government's GREAT Britain Campaign and partner UK universities for Indian passport holders."
+        },
+        {
+            id: "commonwealth-master",
+            name: "Commonwealth Master's Scholarships",
+            country: "UK",
+            amount: "100% Tuition + Monthly Stipend + Airfare",
+            coverageType: "full",
+            type: "government",
+            typeLabel: "Commonwealth CSFP",
+            degree: "1-Year Master's",
+            gpa: "7.5+ CGPA (First Class Degree)",
+            test: "IELTS 6.5+",
+            deadline: "October–December Annually",
+            mode: "National Nominating Agency (MHRD)",
+            description: "Full-ride development scholarship for Indian students who cannot otherwise afford to study in the UK."
+        },
+        {
+            id: "uk-vc-excellence",
+            name: "Vice-Chancellor's International Excellence Award",
+            country: "UK",
+            amount: "£2,500 – £6,000 Direct Fee Deduction",
+            coverageType: "partial",
+            type: "university",
+            typeLabel: "University Merit",
+            degree: "Master's & Undergraduate",
+            gpa: "6.5+ CGPA",
+            test: "IELTS 6.0+ / 70%+ in 12th English",
+            deadline: "Rolling with Admission Offer",
+            mode: "Automatic Assessment upon Admission",
+            description: "Direct fee reduction awarded to high-achieving Indian applicants upon receiving an offer from partner UK universities."
+        },
+        {
+            id: "charles-wallace-trust",
+            name: "Charles Wallace India Trust (CWIT) Grants",
+            country: "UK",
+            amount: "£1,400/mo Living Grant + Travel & Fees",
+            coverageType: "stipend",
+            type: "external",
+            typeLabel: "Private Trust",
+            degree: "Master's / Doctoral / Research",
+            gpa: "7.0+ CGPA",
+            test: "IELTS 6.5+",
+            deadline: "November Annually",
+            mode: "British Council India Portal",
+            description: "Supports Indian students and early-to-mid-career professionals undertaking postgraduate studies in the UK."
+        },
+
+        // ==================== GERMANY SCHOLARSHIPS ====================
+        {
+            id: "daad-postgrad",
+            name: "DAAD Study Scholarships & EPOS",
+            country: "Germany",
+            amount: "€934/month Living Allowance + Travel + Health Insurance",
+            coverageType: "stipend",
+            type: "government",
+            typeLabel: "German DAAD",
+            degree: "Master's Degree (Public Univ)",
+            gpa: "7.8+ CGPA (Top 20% of class)",
+            test: "IELTS 6.0+ / TOEFL 80+ or German B2",
+            deadline: "September–October Annually",
+            mode: "DAAD Online Portal",
+            description: "Premier German government grant providing full monthly living stipend and health coverage at tuition-free public universities."
+        },
+        {
+            id: "deutschlandstipendium",
+            name: "Deutschlandstipendium (National Scholarship)",
+            country: "Germany",
+            amount: "€3,600 / year (€300 / month Direct Cash)",
+            coverageType: "stipend",
+            type: "government",
+            typeLabel: "Federal Govt & Univ",
+            degree: "Bachelor's & Master's",
+            gpa: "7.5+ CGPA",
+            test: "University Admission English/German",
+            deadline: "June–August / Upon Enrollment",
+            mode: "Enrolled University Portal",
+            description: "Co-funded by the German Federal Government and private sponsors, open to all international students after university enrollment."
+        },
+        {
+            id: "heinrich-boll",
+            name: "Heinrich Böll Foundation Scholarships",
+            country: "Germany",
+            amount: "€934/month + €100/mo Book Allowance",
+            coverageType: "stipend",
+            type: "external",
+            typeLabel: "German Political Trust",
+            degree: "Master's / PhD",
+            gpa: "8.0+ CGPA",
+            test: "German B2 / DSH or English IELTS 6.5+",
+            deadline: "March 1 & September 1 Annually",
+            mode: "Online Portal + Interview",
+            description: "Supports international students with stellar academic records and strong commitment to social, environmental, and civic values."
+        },
+        {
+            id: "erasmus-mundus-de",
+            name: "Erasmus Mundus Joint Master Degrees",
+            country: "Germany",
+            amount: "100% Tuition Waiver + €1,400/mo Stipend + Travel",
+            coverageType: "full",
+            type: "government",
+            typeLabel: "European Union",
+            degree: "Joint Master's (Germany + EU)",
+            gpa: "8.0+ CGPA",
+            test: "IELTS 6.5+ / TOEFL 90+",
+            deadline: "Jan–Feb (Annual Consortium Deadlines)",
+            mode: "Consortium Application",
+            description: "Prestigious EU-funded scholarships allowing students to study across top German and European partner universities with all expenses covered."
+        },
+
+        // ==================== AUSTRALIA SCHOLARSHIPS ====================
+        {
+            id: "australia-awards",
+            name: "Australia Awards Scholarships (DFAT)",
+            country: "Australia",
+            amount: "100% Tuition + Living Stipend + Return Flights + OSHC",
+            coverageType: "full",
+            type: "government",
+            typeLabel: "DFAT Australian Govt",
+            degree: "Master's & PhD",
+            gpa: "7.5+ CGPA (65%+ minimum)",
+            test: "IELTS 6.5+ (minimum 6.0 in each band)",
+            deadline: "End of April Annually",
+            mode: "OASIS Online Portal",
+            description: "Prestigious Australian government scholarships covering all tuition, full living allowance, medical cover, and establishment grants."
+        },
+        {
+            id: "destination-australia",
+            name: "Destination Australia Scholarships",
+            country: "Australia",
+            amount: "Up to AUD $15,000 / year Cash Grant",
+            coverageType: "partial",
+            type: "government",
+            typeLabel: "Australian Govt (Regional)",
+            degree: "Bachelor's & Master's",
+            gpa: "7.0+ CGPA",
+            test: "IELTS 6.5+",
+            deadline: "Nov–Jan (Semester 1) / May (Semester 2)",
+            mode: "Participating Regional University",
+            description: "Government initiative providing substantial funding to international students studying at regional campus universities in Australia."
+        },
+        {
+            id: "deakin-vice-chancellor",
+            name: "Vice-Chancellor's Meritorious Scholarship",
+            country: "Australia",
+            amount: "50% or 100% Full Tuition Fee Waiver",
+            coverageType: "full",
+            type: "university",
+            typeLabel: "University Excellence",
+            degree: "Postgraduate & Undergraduate",
+            gpa: "8.5+ CGPA",
+            test: "IELTS 6.5+ / PTE 58+",
+            deadline: "Priority Deadlines per Intake",
+            mode: "Separate University Scholarship Form",
+            description: "High-distinction award recognizing outstanding Indian students with comprehensive tuition coverage for entire course duration."
+        },
+        {
+            id: "sydney-international-award",
+            name: "Sydney International Student Award",
+            country: "Australia",
+            amount: "20% Tuition Fee Reduction for Course Duration",
+            coverageType: "partial",
+            type: "university",
+            typeLabel: "University Merit",
+            degree: "CRICOS Undergraduate & Postgraduate",
+            gpa: "7.0+ CGPA",
+            test: "IELTS 6.5+",
+            deadline: "Rolling with University Admissions",
+            mode: "Assessed with Expression of Interest",
+            description: "Direct fee waiver automatically assessed for eligible Indian passport holders admitted into CRICOS accredited degree programs."
+        },
+        {
+            id: "australian-rtp",
+            name: "Research Training Program (RTP) Stipend",
+            country: "Australia",
+            amount: "100% Tuition Fee Offset + AUD $32,000/yr Living Allowance",
+            coverageType: "full",
+            type: "government",
+            typeLabel: "Govt Research (RTP)",
+            degree: "Master's by Research & PhD",
+            gpa: "8.0+ CGPA",
+            test: "IELTS 6.5+ / Research Proposal",
+            deadline: "August–October (Main Round)",
+            mode: "University Research Portal",
+            description: "Provides full tuition coverage and high-value annual living stipend for postgraduate research candidates at Australian universities."
+        }
     ];
 
     // 2. Hub Tab Navigation Logic
@@ -459,54 +766,105 @@ document.addEventListener('DOMContentLoaded', function () {
     const calcLifestyle = document.getElementById('calc-lifestyle');
     const calcTotal = document.getElementById('calc-total');
 
+    // Country baseline configurations (Research-calibrated 2025/2026 for Indian Students)
+    const countryCostProfiles = {
+        USA: {
+            baseRent: 6.4,          // Shared ~5.1L, Studio ~8.0L, Campus ~10.2L
+            baseLiving: 3.6,        // Budget ~2.9L, Moderate ~4.3L, Comfort ~5.8L
+            insuranceVisa: 3.0,     // F-1 Visa ($185) + SEVIS ($350) + Mandatory Health Insurance ($1.8k) + Airfare (~85k) + Essentials
+            defaultTuition: 24,
+            maxTuition: 60,
+            tuitionDesc: "Annual tuition for US public & private universities",
+            insuranceDesc: "F-1 Visa ($185), SEVIS fee ($350), Mandatory Health Insurance & Flights",
+            totalNote: "Convertible to Education Loan with Low Interest Rate"
+        },
+        UK: {
+            baseRent: 6.0,          // Shared ~4.8L, Studio ~7.5L, Campus ~9.6L
+            baseLiving: 3.5,        // Budget ~2.8L, Moderate ~4.2L, Comfort ~5.6L
+            insuranceVisa: 2.6,     // Student Visa (£490) + Mandatory NHS Health Surcharge (IHS £776/yr) + Airfare (~60k) + TB/VFS
+            defaultTuition: 18,
+            maxTuition: 50,
+            tuitionDesc: "Annual tuition (standard 1-year Master's or per-year UG)",
+            insuranceDesc: "Tier 4 Visa (£490), Mandatory NHS Surcharge (IHS £776/yr) & Flights",
+            totalNote: "1-Year Master's structure significantly saves overall living cost"
+        },
+        Germany: {
+            baseRent: 5.0,          // Shared WG ~4.0L, Studio ~6.2L, Campus ~8.0L
+            baseLiving: 3.6,        // Budget ~2.9L, Moderate ~4.3L, Comfort ~5.8L (Aligns with €11,904/yr Sperrkonto requirement)
+            insuranceVisa: 2.5,     // National Visa + APS Verification (₹18k) + Mandatory TK Health Insurance (€130/mo) + Flights (~55k)
+            defaultTuition: 0,
+            maxTuition: 25,
+            tuitionDesc: "€0 for top Public Universities (or ₹8-15L for Private Universities)",
+            insuranceDesc: "National Visa, APS Verification, Mandatory TK Health Cover & Flights",
+            totalNote: "Primarily covers Blocked Account (€11,904/yr) + Pre-departure requirements"
+        },
+        Australia: {
+            baseRent: 6.5,          // Shared ~5.2L, Studio ~8.1L, Campus ~10.4L
+            baseLiving: 3.8,        // Budget ~3.0L, Moderate ~4.6L, Comfort ~6.1L
+            insuranceVisa: 2.8,     // Student Visa Subclass 500 (AUD 1,600) + Mandatory OSHC Cover (AUD 750/yr) + Airfare (~70k) + Medicals
+            defaultTuition: 20,
+            maxTuition: 55,
+            tuitionDesc: "Annual tuition for CRICOS accredited Australian universities",
+            insuranceDesc: "Subclass 500 Visa (AUD 1,600), Mandatory OSHC Insurance & Flights",
+            totalNote: "Aligns with official DHA annual financial proof requirements"
+        }
+    };
+
+    let lastSelectedCountry = calcCountry ? calcCountry.value : 'USA';
+
+    function handleCountryChange() {
+        if (!calcCountry || !calcTuition) return;
+        const newCountry = calcCountry.value;
+        const profile = countryCostProfiles[newCountry] || countryCostProfiles.USA;
+
+        calcTuition.max = profile.maxTuition;
+
+        // If switching from or to Germany, adjust tuition value sensibly
+        if (newCountry === 'Germany' && (calcTuition.value >= 18 || lastSelectedCountry !== 'Germany')) {
+            calcTuition.value = profile.defaultTuition;
+        } else if (lastSelectedCountry === 'Germany' && calcTuition.value == 0) {
+            calcTuition.value = profile.defaultTuition;
+        }
+
+        lastSelectedCountry = newCountry;
+        updateCostCalculator();
+    }
+
     function updateCostCalculator() {
         if (!calcCountry) return;
 
         const country = calcCountry.value;
-        let tuitionVal = parseInt(calcTuition.value);
+        const profile = countryCostProfiles[country] || countryCostProfiles.USA;
+        let tuitionVal = parseInt(calcTuition ? calcTuition.value : profile.defaultTuition, 10);
+        if (isNaN(tuitionVal)) tuitionVal = profile.defaultTuition;
 
         // Render tuition value dynamic label
         if (calcTuitionVal) {
-            calcTuitionVal.textContent = country === 'Germany' && tuitionVal === 0 
-                ? '€0 (Tuition Free Public)' 
-                : `₹${tuitionVal} Lakhs`;
+            if (country === 'Germany') {
+                calcTuitionVal.textContent = tuitionVal === 0 
+                    ? '€0 (Tuition Free Public)' 
+                    : `₹${tuitionVal} Lakhs (Private Univ)`;
+            } else {
+                calcTuitionVal.textContent = `₹${tuitionVal} Lakhs`;
+            }
         }
 
         // Establish Cost parameters in INR Lakhs per Year
-        let baseRent = 4.2; // Default Standard
-        let baseLiving = 2.4; // Default Standard
-        let insuranceVisa = 0.8; // Default Standard
-
-        if (country === 'USA') {
-            baseRent = 5.4;
-            baseLiving = 3.0;
-            insuranceVisa = 1.0;
-        } else if (country === 'UK') {
-            baseRent = 4.8;
-            baseLiving = 2.6;
-            insuranceVisa = 0.9;
-        } else if (country === 'Germany') {
-            baseRent = 4.0;
-            baseLiving = 2.0;
-            insuranceVisa = 0.8;
-            // Snapping cap removed as requested to allow smooth sliding up to 20L+ for Germany
-        } else if (country === 'Australia') {
-            baseRent = 5.0;
-            baseLiving = 2.8;
-            insuranceVisa = 1.0;
-        }
+        const baseRent = profile.baseRent;
+        const baseLiving = profile.baseLiving;
+        const insuranceVisa = profile.insuranceVisa;
 
         // Apply accommodation tier multipliers
-        const rentTier = calcRent.value;
-        let rentMultiplier = 1.0;
-        if (rentTier === 'shared') rentMultiplier = 0.75;
+        const rentTier = calcRent ? calcRent.value : 'shared';
+        let rentMultiplier = 0.8; // Default shared saver
+        if (rentTier === 'private') rentMultiplier = 1.25;
         if (rentTier === 'campus') rentMultiplier = 1.6;
         const totalRent = baseRent * rentMultiplier;
 
         // Apply lifestyle multipliers
-        const lifestyleTier = calcLifestyle.value;
-        let lifestyleMultiplier = 1.0;
-        if (lifestyleTier === 'budget') lifestyleMultiplier = 0.75;
+        const lifestyleTier = calcLifestyle ? calcLifestyle.value : 'budget';
+        let lifestyleMultiplier = 0.8; // Default budget
+        if (lifestyleTier === 'moderate') lifestyleMultiplier = 1.2;
         if (lifestyleTier === 'comfort') lifestyleMultiplier = 1.6;
         const totalLiving = baseLiving * lifestyleMultiplier;
 
@@ -524,10 +882,20 @@ document.addEventListener('DOMContentLoaded', function () {
         const itemLivingEl = document.getElementById('item-living');
         const itemInsuranceEl = document.getElementById('item-insurance');
 
-        if (itemTuitionEl) itemTuitionEl.textContent = country === 'Germany' && tuitionVal === 0 ? '€0 (Public)' : `₹${tuitionVal.toFixed(1)} Lakhs`;
+        const descTuitionEl = document.getElementById('desc-tuition');
+        const descInsuranceEl = document.getElementById('desc-insurance');
+        const calcTotalNoteEl = document.getElementById('calc-total-note');
+
+        if (itemTuitionEl) {
+            itemTuitionEl.textContent = country === 'Germany' && tuitionVal === 0 ? '€0 (Public)' : `₹${tuitionVal.toFixed(1)} Lakhs`;
+        }
         if (itemRentEl) itemRentEl.textContent = `₹${totalRent.toFixed(1)} Lakhs`;
         if (itemLivingEl) itemLivingEl.textContent = `₹${totalLiving.toFixed(1)} Lakhs`;
         if (itemInsuranceEl) itemInsuranceEl.textContent = `₹${insuranceVisa.toFixed(1)} Lakhs`;
+
+        if (descTuitionEl) descTuitionEl.textContent = profile.tuitionDesc;
+        if (descInsuranceEl) descInsuranceEl.textContent = profile.insuranceDesc;
+        if (calcTotalNoteEl && profile.totalNote) calcTotalNoteEl.textContent = profile.totalNote;
 
         // Calculate progress percentage widths
         const barTuition = document.getElementById('bar-tuition');
@@ -539,14 +907,23 @@ document.addEventListener('DOMContentLoaded', function () {
         if (barRent) barRent.style.width = `${(totalRent / computedTotal) * 100}%`;
         if (barLiving) barLiving.style.width = `${(totalLiving / computedTotal) * 100}%`;
         if (barInsurance) barInsurance.style.width = `${(insuranceVisa / computedTotal) * 100}%`;
+
+        // Update Real-Time Stacked Visual Budget Ratio Segments
+        const segTuition = document.getElementById('segTuition');
+        const segLiving = document.getElementById('segLiving');
+        const segOverhead = document.getElementById('segOverhead');
+
+        if (segTuition) segTuition.style.width = `${Math.max(4, (tuitionVal / computedTotal) * 100)}%`;
+        if (segLiving) segLiving.style.width = `${Math.max(4, ((totalRent + totalLiving) / computedTotal) * 100)}%`;
+        if (segOverhead) segOverhead.style.width = `${Math.max(4, (insuranceVisa / computedTotal) * 100)}%`;
     }
 
     // Attach Calculator Event Listeners
     if (calcCountry) {
-        calcCountry.addEventListener('change', updateCostCalculator);
-        calcTuition.addEventListener('input', updateCostCalculator);
-        calcRent.addEventListener('change', updateCostCalculator);
-        calcLifestyle.addEventListener('change', updateCostCalculator);
+        calcCountry.addEventListener('change', handleCountryChange);
+        if (calcTuition) calcTuition.addEventListener('input', updateCostCalculator);
+        if (calcRent) calcRent.addEventListener('change', updateCostCalculator);
+        if (calcLifestyle) calcLifestyle.addEventListener('change', updateCostCalculator);
     }
 
     // Trigger WhatsApp lead generation inside Cost Calculator
@@ -562,6 +939,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const schSearchInput = document.getElementById('sch-search');
     const schCountrySelect = document.getElementById('sch-country');
     const schTypeSelect = document.getElementById('sch-type');
+    const schCoverageSelect = document.getElementById('sch-coverage');
     const schResultsGrid = document.getElementById('scholarship-results-grid');
 
     function renderScholarships() {
@@ -570,12 +948,22 @@ document.addEventListener('DOMContentLoaded', function () {
         const query = schSearchInput ? schSearchInput.value.toLowerCase().trim() : '';
         const country = schCountrySelect ? schCountrySelect.value : 'all';
         const type = schTypeSelect ? schTypeSelect.value : 'all';
+        const coverage = schCoverageSelect ? schCoverageSelect.value : 'all';
 
         const filtered = scholarships.filter(sch => {
-            const matchesQuery = sch.name.toLowerCase().includes(query) || sch.amount.toLowerCase().includes(query) || sch.gpa.toLowerCase().includes(query);
+            const matchesQuery = !query || 
+                sch.name.toLowerCase().includes(query) || 
+                sch.amount.toLowerCase().includes(query) || 
+                sch.gpa.toLowerCase().includes(query) ||
+                sch.country.toLowerCase().includes(query) ||
+                sch.degree.toLowerCase().includes(query) ||
+                sch.description.toLowerCase().includes(query);
+
             const matchesCountry = country === 'all' || sch.country === country;
             const matchesType = type === 'all' || sch.type === type;
-            return matchesQuery && matchesCountry && matchesType;
+            const matchesCoverage = coverage === 'all' || sch.coverageType === coverage;
+
+            return matchesQuery && matchesCountry && matchesType && matchesCoverage;
         });
 
         if (filtered.length === 0) {
@@ -588,30 +976,69 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // Render card buttons with HTML5 data attributes to completely bypass unescaped inline single quotes
-        schResultsGrid.innerHTML = filtered.map(sch => `
+        // Render rich scholarship cards
+        schResultsGrid.innerHTML = filtered.map(sch => {
+            let badgeClass = 'badge-govt';
+            if (sch.type === 'university') badgeClass = 'badge-univ';
+            if (sch.type === 'external') badgeClass = 'badge-trust';
+
+            let covClass = 'cov-partial';
+            let covLabel = '🏷️ Tuition Waiver';
+            if (sch.coverageType === 'full') {
+                covClass = 'cov-full';
+                covLabel = '★ 100% Full-Ride';
+            } else if (sch.coverageType === 'stipend') {
+                covClass = 'cov-stipend';
+                covLabel = '💵 Living Stipend';
+            }
+
+            return `
             <div class="scholarship-card">
                 <div>
-                    <span class="sch-badge">${sch.type.charAt(0).toUpperCase() + sch.type.slice(1)}</span>
-                    <h4>${sch.name}</h4>
+                    <div class="sch-badge-row">
+                        <span class="sch-badge ${badgeClass}">${sch.typeLabel || sch.type.toUpperCase()}</span>
+                        <span class="sch-coverage-tag ${covClass}">${covLabel}</span>
+                    </div>
+                    <h4 class="sch-title">${sch.name}</h4>
                     <div class="sch-amount">${sch.amount}</div>
-                    <div class="sch-details">
-                        <div class="sch-detail-item"><i class="fas fa-map-marker-alt"></i> ${sch.country}</div>
-                        <div class="sch-detail-item"><i class="fas fa-graduation-cap"></i> ${sch.gpa}</div>
-                        <div class="sch-detail-item"><i class="fas fa-language"></i> ${sch.test}</div>
+                    <p class="sch-desc">${sch.description}</p>
+                    <div class="sch-details-grid">
+                        <div class="sch-detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div><strong>Country &amp; Level:</strong> ${sch.country} (${sch.degree})</div>
+                        </div>
+                        <div class="sch-detail-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div><strong>Min Academics:</strong> ${sch.gpa}</div>
+                        </div>
+                        <div class="sch-detail-item">
+                            <i class="fas fa-language"></i>
+                            <div><strong>Test Criteria:</strong> ${sch.test}</div>
+                        </div>
+                        <div class="sch-detail-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <div><strong>Deadline:</strong> ${sch.deadline}</div>
+                        </div>
+                        <div class="sch-detail-item">
+                            <i class="fas fa-paper-plane"></i>
+                            <div><strong>Application Mode:</strong> ${sch.mode}</div>
+                        </div>
                     </div>
                 </div>
                 <button class="btn btn--outline btn--sm sch-cta-btn" data-name="${sch.name.replace(/"/g, '&quot;')}" data-country="${sch.country}">
-                    Check My Eligibility
+                    <span>Check Eligibility &amp; Apply</span>
+                    <i class="fas fa-arrow-right" style="margin-left: 6px;"></i>
                 </button>
             </div>
-        `).join('');
+            `;
+        }).join('');
     }
 
     if (schSearchInput) {
         schSearchInput.addEventListener('input', renderScholarships);
         schCountrySelect.addEventListener('change', renderScholarships);
         schTypeSelect.addEventListener('change', renderScholarships);
+        if (schCoverageSelect) schCoverageSelect.addEventListener('change', renderScholarships);
     }
     
     // Global function to trigger drawer for scholarships (preserving backwards compatibility)
@@ -938,8 +1365,11 @@ function getPageSection(element) {
 // ...existing code...
 
 // ============================================
-// ANNOUNCEMENT BANNER FUNCTIONS
+// ANNOUNCEMENT BANNER FUNCTIONS (Multi-Slide Interactive)
 // ============================================
+let bannerSlideInterval = null;
+let currentBannerSlide = 0;
+
 function initAnnounceBanner() {
     const banner = document.getElementById('announceBanner');
     if (!banner) return;
@@ -953,9 +1383,11 @@ function initAnnounceBanner() {
     if (isEnabled && !isClosed) {
         banner.classList.remove('hidden');
         document.body.classList.add('banner-visible');
-        // Set CSS variable for banner height
         updateBannerHeight();
         window.addEventListener('resize', updateBannerHeight);
+
+        // Initialize dynamic slider
+        initBannerSlider(banner);
     } else {
         banner.classList.add('hidden');
         document.body.classList.remove('banner-visible');
@@ -963,62 +1395,100 @@ function initAnnounceBanner() {
     }
 }
 
+function initBannerSlider(banner) {
+    const slides = banner.querySelectorAll('.announce-slide');
+    const dots = banner.querySelectorAll('.announce-dot');
+    if (slides.length <= 1) return;
+
+    function goToSlide(index) {
+        currentBannerSlide = (index + slides.length) % slides.length;
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === currentBannerSlide);
+        });
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentBannerSlide);
+        });
+        updateBannerHeight();
+    }
+
+    function nextSlide() {
+        goToSlide(currentBannerSlide + 1);
+    }
+
+    function startAutoSlide() {
+        clearInterval(bannerSlideInterval);
+        bannerSlideInterval = setInterval(nextSlide, 4500);
+    }
+
+    function stopAutoSlide() {
+        clearInterval(bannerSlideInterval);
+    }
+
+    // Dot click listeners
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            goToSlide(i);
+            startAutoSlide();
+        });
+    });
+
+    // Pause auto-rotation on mouse hover / touch
+    banner.addEventListener('mouseenter', stopAutoSlide);
+    banner.addEventListener('mouseleave', startAutoSlide);
+
+    startAutoSlide();
+}
+
 function updateBannerHeight() {
     const banner = document.getElementById('announceBanner') || document.getElementById('rebrandBanner');
-    if (banner && !banner.classList.contains('hidden')) {
+    if (banner && !banner.classList.contains('hidden') && banner.getAttribute('data-enabled') !== 'false') {
         const height = banner.offsetHeight;
         document.body.style.setProperty('--banner-height', height + 'px');
     }
 }
 
-// Close banner function (called from HTML onclick)
-window.closeBanner = function () {
-    const banner = document.getElementById('announceBanner');
-    if (banner) {
-        banner.classList.add('hidden');
-        document.body.classList.remove('banner-visible');
-        document.body.style.setProperty('--banner-height', '0px');
-        // Remember that user closed the banner for this session
-        sessionStorage.setItem('bannerClosed', 'true');
-    }
-};
-
-// ============================================
-// CLOSE ANNOUNCE BANNER (for onclick handler)
-// ============================================
+// Close banner function
 window.closeAnnounceBanner = function () {
     const banner = document.getElementById('announceBanner');
     if (banner) {
         banner.classList.add('hidden');
         document.body.classList.remove('banner-visible');
         document.body.style.setProperty('--banner-height', '0px');
-        // Remember that user closed the banner for this session
         sessionStorage.setItem('bannerClosed', 'true');
+        clearInterval(bannerSlideInterval);
     }
 };
 
-// Initialize announce banner on page load (auto-enable for this banner)
-document.addEventListener('DOMContentLoaded', function () {
-    const banner = document.getElementById('announceBanner');
-    if (banner) {
-        // Check if user has closed the banner in this session
-        const isClosed = sessionStorage.getItem('bannerClosed') === 'true';
+window.closeBanner = window.closeAnnounceBanner;
 
-        if (!isClosed) {
-            banner.classList.remove('hidden');
-            document.body.classList.add('banner-visible');
-            // Set CSS variable for banner height
-            const height = banner.offsetHeight;
-            document.body.style.setProperty('--banner-height', height + 'px');
-            window.addEventListener('resize', () => {
-                if (!banner.classList.contains('hidden')) {
-                    document.body.style.setProperty('--banner-height', banner.offsetHeight + 'px');
-                }
-            });
-        } else {
-            banner.classList.add('hidden');
-            document.body.classList.remove('banner-visible');
-            document.body.style.setProperty('--banner-height', '0px');
-        }
+// Smooth Scroll & Tab Switch to Cost & Budget Estimator
+window.scrollToBudgetCalculator = function (event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
     }
-});
+
+    const hubSection = document.getElementById('hub') || document.querySelector('.abroad-hub-section');
+    if (hubSection) {
+        // Activate the calculator tab button
+        const calcTabBtn = document.querySelector('.hub-tab-btn[data-tab="calculator"]');
+        if (calcTabBtn) {
+            calcTabBtn.click();
+        }
+
+        // Account for fixed navbar & dynamic banner
+        const navHeight = 72;
+        const bannerVisible = document.body.classList.contains('banner-visible');
+        const bannerHeight = bannerVisible ? 48 : 0;
+        const targetTop = hubSection.getBoundingClientRect().top + window.pageYOffset - (navHeight + bannerHeight);
+
+        window.scrollTo({
+            top: Math.max(0, targetTop),
+            behavior: 'smooth'
+        });
+    } else {
+        window.location.href = 'index.html#hub';
+    }
+};

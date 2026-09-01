@@ -1,19 +1,25 @@
 # robots.txt for evoverseas.com (EV Overseas)
+# Best Study Abroad Consultants in Hyderabad
 
 User-agent: *
 Allow: /
-
-# Sitemap
-Sitemap: https://evoverseas.com/sitemap.xml
-
-# Block non-public paths
 Disallow: /admin/
 Disallow: /test/
 Disallow: /.git/
 Disallow: /google-apps-script.js
 
-# Allow static assets
-Allow: /images/
-Allow: /style.css
-Allow: /app.js
-Allow: /dashboard.html
+# Specific Search & AI Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Sitemap Location
+Sitemap: https://evoverseas.com/sitemap.xml
