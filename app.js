@@ -771,42 +771,42 @@ document.addEventListener('DOMContentLoaded', function () {
         USA: {
             baseRent: 6.4,          // Shared ~5.1L, Studio ~8.0L, Campus ~10.2L
             baseLiving: 3.6,        // Budget ~2.9L, Moderate ~4.3L, Comfort ~5.8L
-            insuranceVisa: 3.0,     // F-1 Visa ($185) + SEVIS ($350) + Mandatory Health Insurance ($1.8k) + Airfare (~85k) + Essentials
+            insuranceVisa: 3.0,     // F-1 Visa + SEVIS + Mandatory Health Insurance + Airfare
             defaultTuition: 24,
             maxTuition: 60,
             tuitionDesc: "Annual tuition for US public & private universities",
-            insuranceDesc: "F-1 Visa ($185), SEVIS fee ($350), Mandatory Health Insurance & Flights",
+            insuranceDesc: "Student Visa, SEVIS Fee, Mandatory Health Insurance & Flights",
             totalNote: "Convertible to Education Loan with Low Interest Rate"
         },
         UK: {
             baseRent: 6.0,          // Shared ~4.8L, Studio ~7.5L, Campus ~9.6L
             baseLiving: 3.5,        // Budget ~2.8L, Moderate ~4.2L, Comfort ~5.6L
-            insuranceVisa: 2.6,     // Student Visa (£490) + Mandatory NHS Health Surcharge (IHS £776/yr) + Airfare (~60k) + TB/VFS
+            insuranceVisa: 2.6,     // Student Visa + Mandatory NHS Health Surcharge + Airfare
             defaultTuition: 18,
             maxTuition: 50,
-            tuitionDesc: "Annual tuition (standard 1-year Master's or per-year UG)",
-            insuranceDesc: "Tier 4 Visa (£490), Mandatory NHS Surcharge (IHS £776/yr) & Flights",
+            tuitionDesc: "Full Master's or Undergraduate tuition",
+            insuranceDesc: "Student Route Visa, NHS Health Surcharge & Flights",
             totalNote: "1-Year Master's structure significantly saves overall living cost"
         },
         Germany: {
             baseRent: 5.0,          // Shared WG ~4.0L, Studio ~6.2L, Campus ~8.0L
-            baseLiving: 3.6,        // Budget ~2.9L, Moderate ~4.3L, Comfort ~5.8L (Aligns with €11,904/yr Sperrkonto requirement)
-            insuranceVisa: 2.5,     // National Visa + APS Verification (₹18k) + Mandatory TK Health Insurance (€130/mo) + Flights (~55k)
+            baseLiving: 3.6,        // Budget ~2.9L, Moderate ~4.3L, Comfort ~5.8L
+            insuranceVisa: 2.5,     // National Visa + APS Verification + Mandatory Health Insurance + Flights
             defaultTuition: 0,
             maxTuition: 25,
-            tuitionDesc: "€0 for top Public Universities (or ₹8-15L for Private Universities)",
-            insuranceDesc: "National Visa, APS Verification, Mandatory TK Health Cover & Flights",
-            totalNote: "Primarily covers Blocked Account (€11,904/yr) + Pre-departure requirements"
+            tuitionDesc: "Tuition at German public universities (Semester contribution only)",
+            insuranceDesc: "National Student Visa, APS Verification, Health Cover & Flights",
+            totalNote: "Convertible to Education Loan with Low Interest Rate"
         },
         Australia: {
             baseRent: 6.5,          // Shared ~5.2L, Studio ~8.1L, Campus ~10.4L
             baseLiving: 3.8,        // Budget ~3.0L, Moderate ~4.6L, Comfort ~6.1L
-            insuranceVisa: 2.8,     // Student Visa Subclass 500 (AUD 1,600) + Mandatory OSHC Cover (AUD 750/yr) + Airfare (~70k) + Medicals
+            insuranceVisa: 2.8,     // Student Visa Subclass 500 + Mandatory OSHC Cover + Airfare
             defaultTuition: 20,
             maxTuition: 55,
-            tuitionDesc: "Annual tuition for CRICOS accredited Australian universities",
-            insuranceDesc: "Subclass 500 Visa (AUD 1,600), Mandatory OSHC Insurance & Flights",
-            totalNote: "Aligns with official DHA annual financial proof requirements"
+            tuitionDesc: "Annual tuition for Australian universities",
+            insuranceDesc: "Subclass 500 Student Visa, Mandatory OSHC Insurance & Flights",
+            totalNote: "Convertible to Education Loan with Low Interest Rate"
         }
     };
 
@@ -1342,27 +1342,51 @@ function trackEvent(eventName, eventData = {}) {
     }
 }
 
-// Add form submission tracking (ADD this to your form submit handler)
-var contactFormEl = document.getElementById('contactForm');
-if (contactFormEl) {
-    contactFormEl.addEventListener('submit', function () {
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'form_submit', {
-                event_category: 'engagement',
-                event_label: 'contact_form',
-                value: 1
-            });
-        }
+// Add GA4 Standard Key Event & Lead Tracking
+document.addEventListener('DOMContentLoaded', function () {
+    // 1. Form Submission -> 'generate_lead' Key Event
+    var contactFormEl = document.getElementById('contactForm');
+    if (contactFormEl) {
+        contactFormEl.addEventListener('submit', function () {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'generate_lead', {
+                    event_category: 'lead_generation',
+                    event_label: 'contact_form_submission',
+                    currency: 'INR',
+                    value: 1
+                });
+            }
+        });
+    }
+
+    // 2. WhatsApp Inquiries -> 'generate_lead' (Method: WhatsApp)
+    document.querySelectorAll('a[href*="wa.me"]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'generate_lead', {
+                    event_category: 'inquiry',
+                    event_label: 'whatsapp_click',
+                    method: 'whatsapp',
+                    value: 1
+                });
+            }
+        });
     });
-}
 
-
-function getPageSection(element) {
-    const section = element.closest('section');
-    return section ? section.id || section.className : 'unknown';
-}
-
-// ...existing code...
+    // 3. Direct Phone Calls -> 'generate_lead' (Method: Phone)
+    document.querySelectorAll('a[href^="tel:"]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'generate_lead', {
+                    event_category: 'inquiry',
+                    event_label: 'phone_call_click',
+                    method: 'phone',
+                    value: 1
+                });
+            }
+        });
+    });
+});
 
 // ============================================
 // ANNOUNCEMENT BANNER FUNCTIONS (Multi-Slide Interactive)
