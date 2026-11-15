@@ -6,7 +6,6 @@ Allow: /
 Disallow: /admin/
 Disallow: /test/
 Disallow: /.git/
-Disallow: /google-apps-script.js
 
 # Specific Search & AI Crawlers
 User-agent: Googlebot
@@ -22,4 +21,4 @@ User-agent: PerplexityBot
 Allow: /
 
 # Sitemap Location
-Sitemap: https://evoverseas.com/sitemap.xml
+Sitemap: https://www.evoverseas.com/sitemap.xml
